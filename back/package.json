@@ -7,5 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "CORABOEUF, DEMARS, DE SOUSA",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }
