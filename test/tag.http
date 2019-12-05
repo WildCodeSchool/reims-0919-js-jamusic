@@ -1,0 +1,25 @@
+GET http://localhost3000/tags
+
+###
+
+POST http://localhost3000/tags
+Content-Type: application/json
+{
+  instrument: "flute de Pan"
+  status: "Amateur",
+  style: "Alternatif"
+}
+
+###
+
+PUT http://localhost3000/tags/1
+Content-Type: application/json
+{
+  instrument: "Guitare"
+  status: "Pro",
+  style: "Rock 60's"
+}
+
+###
+
+DELETE http://localhost3000/tags/1

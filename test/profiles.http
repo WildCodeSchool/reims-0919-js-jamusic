@@ -1,0 +1,25 @@
+GET http://localhost3000/profiles
+
+###
+
+POST http://localhost3000/profiles
+Content-Type: application/json
+{
+  nickname: "XxDarkSasukexX",
+  firstname: "Killian",
+  lastname: "Lelouch"
+}
+
+### 
+
+PUT http://localhost3000/profiles/1
+Content-Type: application/json
+{
+  nickname: "Asomar",
+  firstname: "Pierre-Alban",
+  lastname: "Demars"
+}
+
+###
+
+DELETE http://localhost3000/profiles/1
