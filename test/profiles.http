@@ -1,0 +1,23 @@
+### Get all profiles
+GET http://localhost3000/profiles
+
+### Add a profile to the database 
+POST http://localhost3000/profiles
+Content-Type: application/json
+{
+  nickname: "XxDarkSasukexX",
+  firstname: "Killian",
+  lastname: "Lelouch"
+}
+
+### Edit a profile at the given id in the database
+PUT http://localhost3000/profiles/1
+Content-Type: application/json
+{
+  nickname: "Asomar",
+  firstname: "Pierre-Alban",
+  lastname: "Demars"
+}
+
+### Delete a profile at the given id
+DELETE http://localhost3000/profiles/1

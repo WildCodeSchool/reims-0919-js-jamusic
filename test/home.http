@@ -1,0 +1,2 @@
+### Test the connection to the home page
+GET http://localhost:3000/
