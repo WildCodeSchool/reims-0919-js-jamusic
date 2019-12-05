@@ -1,22 +1,24 @@
 ### Get all the tags
-GET http://localhost3000/tags
+GET http://localhost:3000/tags
 
 ### Add tags to the database
-POST http://localhost3000/tags
+POST http://localhost:3000/tags
 Content-Type: application/json
+
 {
-  instrument: "flute de Pan"
-  status: "Amateur",
-  style: "Alternatif"
+  "instrument": "flute de Pan",
+  "status": "Amateur",
+  "style": "Alternatif"
 }
 
 ### Edit tags at the given id in the database
-PUT http://localhost3000/tags/1
+PUT http://localhost:3000/tags/1
 Content-Type: application/json
+
 {
-  instrument: "Guitare"
-  status: "Pro",
-  style: "Rock 60's"
+  "instrument": "Guitare",
+  "status": "Pro",
+  "style": "Rock 60's"
 }
 
 ### Delete tags at the given id in the database
