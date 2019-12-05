@@ -23,7 +23,7 @@ app.route('/profiles')
 })
   
   .post((request, response) => {
-    const formData = req.body;
+    const formData = request.body;
     connection.query('INSERT INTO profile SET ?;', formData, (err, results) => {
       if (err) {
         console.log(err);
