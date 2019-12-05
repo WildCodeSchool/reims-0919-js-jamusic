@@ -7,8 +7,18 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.get('/', (request, response) => {
-  response.send('Welcome to Express');
+  response.send('Welcome to jaMusic Server');
 });
+
+app.get('/profiles', (request, response) => {
+  connection.query('SELECT * from profile', (err, results) => {
+    if (err) {
+      response.status(500).send('Error retrieving profiles');
+    } else {
+      response.json(results);
+    }
+  });
+})
 
 app.listen(port, (err) => {
   if (err) {
