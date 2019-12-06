@@ -3,8 +3,10 @@ const app = express();
 const port = 3000;
 const connection = require("./config");
 const bodyParser = require("body-parser");
+const cors = require('cors')
 
 app.use(bodyParser.json());
+app.use(cors())
 
 app.get("/", (request, response) => {
   response.send("Welcome to jaMusic Server");
