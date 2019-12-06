@@ -22,11 +22,11 @@ class Profiles extends React.Component {
   render() {
     return (
       <div>
-        {tests.map(test => (
-          <div>
-            <h2>{test.nickname}</h2>
-            <p>{test.firstname}</p>
-            <p>{test.lastname}</p>
+        {this.props.profiles.map(profile => (
+          <div key={profile.id}>
+            <h2>{profile.nickname}</h2>
+            <p>{profile.firstname}</p>
+            <p>{profile.lastname}</p>
           </div>
         ))}
       </div>
