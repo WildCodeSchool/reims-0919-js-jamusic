@@ -23,7 +23,7 @@ class Profiles extends React.Component {
     return (
       <div>
         {this.props.profiles.map(profile => (
-          <div>
+          <div key={profile.id}>
             <h2>{profile.nickname}</h2>
             <p>{profile.firstname}</p>
             <p>{profile.lastname}</p>

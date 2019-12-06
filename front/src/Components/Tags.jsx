@@ -23,7 +23,7 @@ class Tags extends React.Component {
     return (
       <div>
         {this.props.tags.map(tag => (
-          <div>
+          <div key={tag.id}>
             <p>{tag.status}</p>
             <p>{tag.style}</p>
             <p>{tag.instrument}</p>
