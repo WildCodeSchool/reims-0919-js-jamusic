@@ -12,11 +12,6 @@ class App extends React.Component {
   }
 
   componentDidMount() { 
-    // axios.get(`http://localhost:3000/profiles`)
-    // .then(profilesRes => {
-    //   const profiles = profilesRes.data;
-    //   this.setState({ profiles });
-    // })
     axios.all([
       axios.get('http://localhost:3000/profiles'),
       axios.get('http://localhost:3000/tags')
