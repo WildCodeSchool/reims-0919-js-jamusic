@@ -49,20 +49,19 @@ app
         response.json(results);
       }
     })
-  })
-  
-  
+  })  
+
   .put((request,response) => {
     const idProfile = request.params.id;
     const formData = request.body;
-    connection.query('UPDATE profile SET ? WHERE id = ?'), [formData, idProfile], err => {
+    connection.query('UPDATE profile SET ? WHERE id = ?', [formData, idProfile], err => {
       if (err) {
         console.log(err);
         response.status(500).send("Error editing a profile");
       } else {
         response.sendStatus(200);
       }
-    }
+    })
   })
 
 app
