@@ -30,8 +30,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>Welcome to jaMusic</h1>
+      <div>
+        <h1 className='title'>jaMusic</h1>
         <div className='rendering'>
           <Profiles profiles={this.state.profiles} />
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Profile.css";
 
 const test = {
   id: 1,
@@ -9,6 +10,7 @@ const test = {
   status: "Amateur",
   city: "Reims"
 };
+
 class Profiles extends React.Component {
   constructor(props) {
     super(props);
@@ -17,13 +19,13 @@ class Profiles extends React.Component {
 
   render() {
     return (
-      <div key={test.id}>
-        <img src={test.profile_pic} alt='Personnal profile pic' />
+      <div key={test.id} className='profile'>
+        <img src={test.profile_pic} alt='Personnal profile pic' className='profilePic'/>
         <h2>@{test.nickname}</h2>
         <p>x abonnés ! y abonnements</p>
         <h3>Centres d'intérêts : </h3>
         <p>
-          {test.style} / {test.instrument}
+          {test.style} / {test.instrument} / {test.status}
         </p>
         <p>{test.city}</p>
       </div>
