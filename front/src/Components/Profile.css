@@ -7,7 +7,7 @@
 .profileHead hr{
   transform: rotate(90deg);
   height: 30vh;
-  border: solid #7f0777 1px;
+  border: solid #7f0777 3px;
 }
 
 .profile{
@@ -44,6 +44,6 @@
 .profilePost hr{
   transform: rotate(90deg);
   height: 20vh;
-  border: solid #7f0777 1px;
+  border: solid #7f0777 3px;
 }
 
