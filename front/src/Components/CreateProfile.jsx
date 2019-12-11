@@ -1,8 +1,9 @@
 import React from "react"
+import "./CreateProfile.css"
 
 const CreateProfile = () => {
     return (
-        <form action="">
+        <form action="" method="post" className="createProfileForm">
             <label htmlFor="email">Email :</label>
             <br />
             <input type="email" name="email" id="email" />
@@ -15,7 +16,22 @@ const CreateProfile = () => {
             <br />
             <input type="text" name="nickname" id="nickname" />
             <br />
-            <button type="submit">S'inscrire</button>
+            <input
+                type="file"
+                name="profilePicture"
+                id="profilePicture"
+                accept=".png, .jpg, .jpeg"
+                style={{ display: "none" }}
+            />
+            <label htmlFor="profilePicture">
+                Choisir une image...
+                <br />
+                (Format: jpg, jpeg ou png)
+            </label>
+            <br />
+            <button type="submit" id="submit">
+                S'inscrire
+            </button>
         </form>
     )
 }
