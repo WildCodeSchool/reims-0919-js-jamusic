@@ -1,11 +1,18 @@
 import React from "react";
 import "./Search.css"
 
-const Search = ({tags}) => {
+const Search = (props) => {
+
   return (
     <div className="search_sidebar">
       <p>Selectionnez vos tags:</p>
-      {tags}
+      <ul>
+      {props.tags.map(tag => {
+        return(
+          <li key={tag.id}>{`< ${tag.instrument} >`}</li>
+        )})}
+      
+      </ul>
 
     </div>
   )
