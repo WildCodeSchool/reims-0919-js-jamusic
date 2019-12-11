@@ -34,7 +34,6 @@ class App extends React.Component {
         <h1>Welcome to jaMusic</h1>
         <div className='rendering'>
           <Profiles profiles={this.state.profiles} />
-          <Tags tags={this.state.tags} />
         </div>
       </div>
     );
