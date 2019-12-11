@@ -31,9 +31,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <h1>Welcome to jaMusic</h1>
-                <div className="rendering">
-                    <CreateProfile />
-                </div>
+                <CreateProfile />
             </div>
         )
     }
