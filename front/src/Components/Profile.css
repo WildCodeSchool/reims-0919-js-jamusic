@@ -1,9 +1,49 @@
+.profileHead {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+}
+
+.profileHead hr{
+  transform: rotate(90deg);
+  height: 30vh;
+  border: solid #7f0777 1px;
+}
+
 .profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  border: solid #aaa 1px;
+  border-radius: 5%;
+  margin: 3vh 10vw;
+  background: #e6e6e6;
 }
 
 .profilePic {
   border-radius: 50%;
-  height: 150px;
-  width: 150px;
+  height: 20vw;
+  width: 20vw;
+  padding: 5px;
+  background: #e6e6e6;
+  border: solid #aaa 2px;
+  margin-top: -13%;
 }
+
+.profile p, h2, h3 {
+  margin: 5px;
+}
+
+.profilePost {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+}
+
+.profilePost hr{
+  transform: rotate(90deg);
+  height: 20vh;
+  border: solid #7f0777 1px;
+}
+

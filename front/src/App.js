@@ -30,11 +30,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 className='title'>jaMusic</h1>
-        <div className='rendering'>
+      <div className='app'>
+        <h1 className='title'>JaMusic</h1>
           <Profiles profiles={this.state.profiles} />
-        </div>
       </div>
     );
   }

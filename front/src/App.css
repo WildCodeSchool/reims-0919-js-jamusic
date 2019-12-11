@@ -1,3 +1,13 @@
 .title{
   text-align: center;
+  margin-top: 0;
+}
+
+.app{
+  background: #f1b0e5;
+  height: 100vh;
+}
+
+h1, h2, h3, hr {
+  color: #7f0777;
 }
