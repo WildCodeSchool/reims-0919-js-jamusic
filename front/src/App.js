@@ -3,13 +3,15 @@ import "./App.css";
 import axios from "axios";
 import Tags from "./Components/Tags";
 import Profiles from "./Components/Profiles";
+import Search from "./Components/Search";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       profiles: [],
-      tags: []
+      tags: [],
+      researchIsVisible: true
     };
   }
 
@@ -31,11 +33,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Welcome to jaMusic</h1>
-        <div className='rendering'>
+          <h1>Welcome to jaMusic</h1>
           <Profiles profiles={this.state.profiles} />
           <Tags tags={this.state.tags} />
-        </div>
+          {this.state.researchIsVisible && 
+          <Search />}
       </div>
     );
   }
