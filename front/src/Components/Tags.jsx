@@ -1,18 +1,5 @@
 import React from 'react'
 
-const tests = [
-  {
-    instrument: 'guitare',
-    status: 'pro',
-    style: "60's rock"
-  },
-  {
-    instrument: 'pan flute',
-    status: 'amateur',
-    style: "alternative" 
-  }
-]
-
 class Tags extends React.Component {
   constructor(props) {
     super(props);
