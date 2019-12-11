@@ -1,18 +1,5 @@
 import React from "react";
 
-const tests = [
-  {
-    nickname: "DarkSasuke",
-    firstname: "Kevin",
-    lastname: "Beaubois"
-  },
-  {
-    nickname: "Ragsomar",
-    firstname: "P",
-    lastname: "A"    
-  }
-];
-
 class Profiles extends React.Component {
   constructor(props) {
     super(props);
