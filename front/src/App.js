@@ -31,9 +31,10 @@ class App extends React.Component {
         })
       );
   }
-  handleSelectedTags (id) {
-    console.log("yo")
-    this.setState({selectedTags: this.state.selectedTags.concat(id)})
+  handleSelectedTags (instrument) {
+    this.state.selectedTags.includes(instrument) ?
+    this.setState({selectedTags: this.state.selectedTags.filter(tag => tag !== instrument)}) :
+    this.setState({selectedTags: [...this.state.selectedTags, instrument]})
   }
   render() {
     return (
