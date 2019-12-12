@@ -1,7 +1,6 @@
 import React from 'react'
 import './App.css'
 import axios from 'axios'
-import Tags from './Components/Tags'
 import CreateProfile from './Components/CreateProfile'
 
 class App extends React.Component {
