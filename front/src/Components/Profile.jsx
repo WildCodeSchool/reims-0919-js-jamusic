@@ -14,7 +14,7 @@ const test = {
     "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti consectetur, architecto accusamus modi optio sunt qui at et incidunt quidem accusantium pariatur nobis, animi quis placeat earum amet quasi fugit."
 };
 
-class Profiles extends React.Component {
+class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -47,4 +47,4 @@ class Profiles extends React.Component {
   }
 }
 
-export default Profiles;
+export default Profile;
