@@ -1,13 +1,16 @@
-.title{
-  text-align: center;
-  margin-top: 0;
+.title {
+    text-align: center;
+    margin-top: 0;
 }
 
-.app{
-  background: #ffedfd;
-  height: 100vh;
+.app {
+    background: #ffedfd;
+    height: 100vh;
 }
 
-h1, h2, h3, hr {
-  color: #7f0777;
+h1,
+h2,
+h3,
+hr {
+    color: #7f0777;
 }
