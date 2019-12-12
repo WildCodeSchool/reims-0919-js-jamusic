@@ -25,3 +25,10 @@
   color:blue;
   padding: 1vh
 }
+
+img {
+  position:fixed;
+  top: 0;
+  left: 0;
+  size: 2em;
+}
