@@ -25,7 +25,11 @@ class Profile extends React.Component {
       <div className="profilePage">
         <div key={test.id} className="profile">
           <img
-            src={test.profile_pic ? test.profile_pic : "https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png"}
+            src={
+              test.profile_pic
+                ? test.profile_pic
+                : "https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png"
+            }
             alt="Personnal profile pic"
             className="profilePic"
           />
