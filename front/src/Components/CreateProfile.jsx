@@ -1,35 +1,26 @@
-import React from "react"
-import "./CreateProfile.css"
+import React from 'react'
+import './CreateProfile.css'
 
 const CreateProfile = () => {
     return (
-        <form action="" method="post" className="createProfileForm">
-            <label htmlFor="email">Email :</label>
+        <form method='post' className='createProfileForm'>
+            <label htmlFor='nickname'>Pseudonyme :</label>
             <br />
-            <input type="email" name="email" id="email" />
+            <input type='text' name='nickname' id='nickname' required />
             <br />
-            <label htmlFor="password">Mot de passe :</label>
+            <label htmlFor='firstname'>Prénom :</label>
             <br />
-            <input type="password" name="password" id="password" />
+            <input type='text' name='firstname' id='firstname' required />
             <br />
-            <label htmlFor="nickname">Pseudonyme :</label>
+            <label htmlFor='lastname'>Nom :</label>
             <br />
-            <input type="text" name="nickname" id="nickname" />
+            <input type='text' name='lastname' id='lastname' required />
             <br />
-            <input
-                type="file"
-                name="profilePicture"
-                id="profilePicture"
-                accept=".png, .jpg, .jpeg"
-                style={{ display: "none" }}
-            />
-            <label htmlFor="profilePicture">
-                Choisir une image...
-                <br />
-                (Format: jpg, jpeg ou png)
-            </label>
-            <br />
-            <button type="submit" id="submit">
+            <button
+                type='submit'
+                id='submit'
+                formAction='http://localhost:3000/profiles'
+            >
                 S'inscrire
             </button>
         </form>
