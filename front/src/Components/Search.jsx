@@ -9,7 +9,7 @@ const Search = (props) => {
       <ul>
       {props.tags.map(tag => {
         return(
-          <li key={tag.id} onClick={() => props.handleSelectedTags(tag.instrument)}>{`#${tag.instrument}`}</li>
+          <li key={tag.id} onClick={() => props.handleSelectedTags(tag.instrument)} className={props.selectedTags.includes(tag.instrument) ? "is_selected" : "not_selected"}>{`#${tag.instrument}`}</li>
         )})}
       
       </ul>

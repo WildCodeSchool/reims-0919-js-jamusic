@@ -43,7 +43,7 @@ class App extends React.Component {
           <Profiles profiles={this.state.profiles} />
           <Tags tags={this.state.tags} />
           {this.state.researchIsVisible && 
-          <Search tags={this.state.tags} handleSelectedTags={this.handleSelectedTags} />}
+          <Search tags={this.state.tags} handleSelectedTags={this.handleSelectedTags} selectedTags={this.state.selectedTags}/>}
       </div>
     );
   }

@@ -16,7 +16,12 @@
   list-style: none;
 }
 
-.search_sidebar li{
+.not_selected{
   color: pink;
   padding: 1vh;
+}
+
+.is_selected {
+  color:blue;
+  padding: 1vh
 }
