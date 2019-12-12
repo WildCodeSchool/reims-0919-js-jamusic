@@ -22,14 +22,10 @@ class Profiles extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="profileHead">
-          <h2>MON PROFIL</h2>
-          <hr />
-        </div>
+      <div className="profilePage">
         <div key={test.id} className="profile">
           <img
-            src={test.profile_pic}
+            src={test.profile_pic ? test.profile_pic : "https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png"}
             alt="Personnal profile pic"
             className="profilePic"
           />
@@ -43,7 +39,7 @@ class Profiles extends React.Component {
           <p>{test.bio}</p>
         </div>
         <div className="profilePost">
-          <h2>MES PUBLICATIONS</h2>
+          <h2>DERNIERES PUBLICATIONS</h2>
           <hr />
         </div>
       </div>
