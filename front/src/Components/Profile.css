@@ -1,13 +1,5 @@
-.profileHead {
-  display: flex;
-  align-items: center;
-  height: 10vh;
-}
-
-.profileHead hr{
-  transform: rotate(90deg);
-  height: 30vh;
-  border: solid #7f0777 3px;
+.profilePage {
+  font-family: Arial, sans-serif;
 }
 
 .profile{
@@ -17,18 +9,18 @@
   text-align: center;
   border: solid #aaa 1px;
   border-radius: 5%;
-  margin: 3vh 10vw;
+  margin: 11vh 10vw 1vh 10vw;
   background: #e6e6e6;
 }
 
 .profilePic {
   border-radius: 50%;
-  height: 20vw;
-  width: 20vw;
+  height: 30vw;
+  width: 30vw;
   padding: 5px;
   background: #e6e6e6;
   border: solid #aaa 2px;
-  margin-top: -13%;
+  margin-top: -20%;
 }
 
 .profile p, h2, h3 {
@@ -43,7 +35,7 @@
 
 .profilePost hr{
   transform: rotate(90deg);
-  height: 20vh;
+  height: 10vh;
   border: solid #7f0777 3px;
 }
 
