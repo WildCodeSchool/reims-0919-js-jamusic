@@ -1,8 +1,7 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
-import Tags from "./Components/Tags";
-import Profiles from "./Components/Profiles";
+import Profile from "./Components/Profile";
 
 class App extends React.Component {
   constructor(props) {
@@ -30,12 +29,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>Welcome to jaMusic</h1>
-        <div className='rendering'>
-          <Profiles profiles={this.state.profiles} />
-          <Tags tags={this.state.tags} />
-        </div>
+      <div className='app'>
+        <h1 className='title'>JaMusic</h1>
+          <Profile />
       </div>
     );
   }
