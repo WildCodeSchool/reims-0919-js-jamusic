@@ -9,7 +9,7 @@ const Search = (props) => {
       <ul>
       {props.tags.map(tag => {
         return(
-          <li key={tag.id}>{`#${tag.instrument}`}</li>
+          <li key={tag.id} onTouchStartCapture={() => props.handleSelectedTags(tag.id)}>{`#${tag.instrument}`}</li>
         )})}
       
       </ul>

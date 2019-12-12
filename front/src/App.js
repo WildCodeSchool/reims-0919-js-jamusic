@@ -11,8 +11,10 @@ class App extends React.Component {
     this.state = {
       profiles: [],
       tags: [],
-      researchIsVisible: true
+      researchIsVisible: true,
+      selectedTags: []
     };
+    this.handleSelectedTags = this.handleSelectedTags.bind(this)
   }
 
   componentDidMount() {
@@ -29,7 +31,10 @@ class App extends React.Component {
         })
       );
   }
-
+  handleSelectedTags (id) {
+    console.log("yo")
+    this.setState({selectedTags: this.state.selectedTags.concat(id)})
+  }
   render() {
     return (
       <div className="App">
@@ -37,7 +42,7 @@ class App extends React.Component {
           <Profiles profiles={this.state.profiles} />
           <Tags tags={this.state.tags} />
           {this.state.researchIsVisible && 
-          <Search tags={this.state.tags} />}
+          <Search tags={this.state.tags} handleSelectedTags={this.handleSelectedTags} />}
       </div>
     );
   }
