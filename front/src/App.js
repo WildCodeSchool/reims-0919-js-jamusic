@@ -1,7 +1,8 @@
-import React from 'react'
-import './App.css'
-import axios from 'axios'
-import CreateProfile from './Components/CreateProfile'
+
+import React from "react";
+import "./App.css";
+import axios from "axios";
+import Profile from "./Components/Profile";
 
 class App extends React.Component {
     constructor(props) {
@@ -27,14 +28,15 @@ class App extends React.Component {
             )
     }
 
-    render() {
-        return (
-            <div className='App'>
-                <h1>Welcome to jaMusic</h1>
-                <CreateProfile />
-            </div>
-        )
-    }
+
+  render() {
+    return (
+      <div className='app'>
+        <h1 className='title'>JaMusic</h1>
+          <Profile />
+      </div>
+    );
+  }
 }
 
 export default App
