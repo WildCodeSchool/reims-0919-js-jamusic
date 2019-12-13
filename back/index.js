@@ -38,6 +38,33 @@ app
   });
 
 app
+  .route("/profiles/:id")
+  .get((request,response) => {
+    const idProfile = request.params.id;
+    connection.query('SELECT * FROM profile WHERE id = ?', [idProfile], (err,results) => {
+      if (err) {
+        console.log(err);
+        response.status(500).send("Erreur dans la récupération du profile")
+      } else {
+        response.json(results);
+      }
+    })
+  })  
+
+  .put((request,response) => {
+    const idProfile = request.params.id;
+    const formData = request.body;
+    connection.query('UPDATE profile SET ? WHERE id = ?', [formData, idProfile], err => {
+      if (err) {
+        console.log(err);
+        response.status(500).send("Error editing a profile");
+      } else {
+        response.sendStatus(200);
+      }
+    })
+  })
+
+app
   .route("/tags")
 
   .get((request, response) => {
