@@ -4,24 +4,27 @@
     height: 100vh;
 }
 .App .menu_icon {
-  top:0;
-  left:0;
-  position: fixed;
-  transform:scaleX(-1);
-  text-align: left;  
+    top: 0;
+    left: 0;
+    position: fixed;
+    transform: scaleX(-1);
+    text-align: left;
 }
 
 .title {
-  margin-top:0;
+    margin-top: 0;
 }
 
-h1, h2, h3, hr{
-  color:#7f0777
+h1,
+h2,
+h3,
+hr {
+    color: #7f0777;
 }
 
 .App .menu_return_icon {
-  top:0;
-  left:0;
-  position: fixed;
-  text-align: left;  
+    top: 0;
+    left: 0;
+    position: fixed;
+    text-align: left;
 }
