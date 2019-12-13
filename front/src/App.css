@@ -1,6 +1,7 @@
 .App {
     text-align: center;
     background: #ffedfd;
+    width: 100vw;
 }
 .App .menu_icon {
     top: 0;
@@ -26,4 +27,11 @@ hr {
     left: 0;
     position: fixed;
     text-align: left;
+}
+
+CreateProfile {
+    height: 100vh;
+}
+Profile {
+    height: 100vh;
 }

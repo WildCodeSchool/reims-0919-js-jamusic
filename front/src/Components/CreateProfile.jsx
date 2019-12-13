@@ -3,7 +3,7 @@ import './CreateProfile.css'
 
 const CreateProfile = () => {
     return (
-        <form method='post' className='createProfileForm'>
+        <form className='createProfileForm'>
             <label htmlFor='nickname'>Pseudonyme :</label>
             <br />
             <input type='text' name='nickname' id='nickname' required />
