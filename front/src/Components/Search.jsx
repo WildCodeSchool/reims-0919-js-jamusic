@@ -4,8 +4,14 @@ import "./Search.css";
 const Search = props => {
   return (
     <div className="search_sidebar">
-      {props.researchIsVisible && <img src="https://img.icons8.com/material-outlined/24/000000/chevron-left.png"  alt="chevron"
-            onClick={props.handleresearchIsVisible}></img>}
+      {props.researchIsVisible && (
+        <img
+          src="https://img.icons8.com/material-outlined/24/000000/chevron-left.png"
+          alt="chevron"
+          onClick={props.handleresearchIsVisible}
+          className="menu_return_icon"
+        ></img>
+      )}
       <p>Selectionnez vos tags:</p>
       <ul>
         {props.tags.map(tag => {

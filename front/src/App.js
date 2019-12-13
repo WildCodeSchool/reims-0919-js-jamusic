@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
-import Tags from "./Components/Tags";
 import Search from "./Components/Search";
 import Profile from "./Components/Profile";
 
@@ -58,9 +57,8 @@ class App extends React.Component {
             onClick={this.handleresearchIsVisible}
           />
         )}
-        <h1>Welcome to jaMusic</h1>
-        <Profile />
-        <Tags tags={this.state.tags} />
+        <h1 className="title">jaMusic</h1>
+
         {this.state.researchIsVisible && (
           <Search
             tags={this.state.tags}
@@ -70,6 +68,7 @@ class App extends React.Component {
             handleresearchIsVisible={this.handleresearchIsVisible}
           />
         )}
+        <Profile />
       </div>
     );
   }

@@ -1,20 +1,27 @@
 .App {
     text-align: center;
+    background: #ffedfd;
+    height: 100vh;
 }
-<<<<<<< HEAD
-.menu_icon {
+.App .menu_icon {
   top:0;
   left:0;
   position: fixed;
   transform:scaleX(-1);
+  text-align: left;  
 }
-.app{
-  background: #ffedfd;
-  height: 100vh;
-=======
-.rendering {
-    display: flex;
-    align-items: center;
-    margin-left: 50em;
->>>>>>> 842f908cb4c0e860e0fea496c9275fa77ccd1f5b
+
+.title {
+  margin-top:0;
+}
+
+h1, h2, h3, hr{
+  color:#7f0777
+}
+
+.App .menu_return_icon {
+  top:0;
+  left:0;
+  position: fixed;
+  text-align: left;  
 }

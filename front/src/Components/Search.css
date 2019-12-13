@@ -26,9 +26,8 @@
   padding: 1vh
 }
 
-img {
+.imgenu_return_icon {
   position:fixed;
   top: 0;
   left: 0;
-  size: 2em;
 }
