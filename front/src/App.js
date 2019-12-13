@@ -3,6 +3,7 @@ import './App.css'
 import axios from 'axios'
 import Search from './Components/Search'
 import Profile from './Components/Profile'
+import CreateProfile from './Components/CreateProfile'
 
 class App extends React.Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class App extends React.Component {
     componentDidMount() {
         axios
             .all([
-                axios.get('http://localhost:3000/profiles'),
+                axios.get('http://localhost:3000/profiles/'),
                 axios.get('http://localhost:3000/tags')
             ])
             .then(
@@ -69,6 +70,7 @@ class App extends React.Component {
                     />
                 )}
                 <Profile />
+                <CreateProfile />
             </div>
         )
     }
