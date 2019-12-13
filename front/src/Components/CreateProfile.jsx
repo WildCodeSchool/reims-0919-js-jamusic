@@ -8,19 +8,19 @@ const CreateProfile = () => {
             <br />
             <input type='text' name='nickname' id='nickname' required />
             <br />
-            <label htmlFor='firstname'>Prénom :</label>
+            <label htmlFor='email'>Adresse mail :</label>
             <br />
-            <input type='text' name='firstname' id='firstname' required />
+            <input type='email' name='email' id='email' required />
             <br />
-            <label htmlFor='lastname'>Nom :</label>
+            <label htmlFor='password'>Mot de passe :</label>
             <br />
-            <input type='text' name='lastname' id='lastname' required />
+            <input type='password' name='password' id='password' required />
             <br />
-            <button
-                type='submit'
-                id='submit'
-                formAction='http://localhost:3000/profiles'
-            >
+            <label htmlFor='password2'>Confirmation du mot de passe :</label>
+            <br />
+            <input type='password' name='password2' id='password2' />
+            <br />
+            <button type='submit' id='submit'>
                 S'inscrire
             </button>
         </form>

@@ -1,8 +1,8 @@
-
-import React from "react";
-import "./App.css";
-import axios from "axios";
-import Profile from "./Components/Profile";
+import React from 'react'
+import './App.css'
+import axios from 'axios'
+import Profile from './Components/Profile'
+import CreateProfile from './Components/CreateProfile'
 
 class App extends React.Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class App extends React.Component {
     componentDidMount() {
         axios
             .all([
-                axios.get('http://localhost:3000/profiles'),
+                axios.get('http://localhost:3000/profiles/'),
                 axios.get('http://localhost:3000/tags')
             ])
             .then(
@@ -28,15 +28,15 @@ class App extends React.Component {
             )
     }
 
-
-  render() {
-    return (
-      <div className='app'>
-        <h1 className='title'>JaMusic</h1>
-          <Profile />
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className='app'>
+                <h1 className='title'>JaMusic</h1>
+                <Profile />
+                <CreateProfile />
+            </div>
+        )
+    }
 }
 
 export default App
