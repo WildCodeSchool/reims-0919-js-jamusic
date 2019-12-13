@@ -17,7 +17,6 @@ class App extends React.Component {
     this.handleSelectedTags = this.handleSelectedTags.bind(this);
     this.handleresearchIsVisible = this.handleresearchIsVisible.bind(this);
   }
-
   componentDidMount() {
     axios
       .all([

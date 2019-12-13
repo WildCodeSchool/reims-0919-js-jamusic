@@ -1,0 +1,10 @@
+.createProfileForm {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.createProfileForm input,
+.createProfileForm label {
+    margin: 2%;
+}
