@@ -2,8 +2,8 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import Tags from "./Components/Tags";
-import Profiles from "./Components/Profiles";
 import Search from "./Components/Search";
+import Profile from "./Components/Profile";
 
 class App extends React.Component {
   constructor(props) {
@@ -60,7 +60,7 @@ class App extends React.Component {
           />
         )}
         <h1>Welcome to jaMusic</h1>
-        <Profiles profiles={this.state.profiles} />
+        <Profile />
         <Tags tags={this.state.tags} />
         {this.state.researchIsVisible && (
           <Search

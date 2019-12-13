@@ -1,9 +1,18 @@
-.App {
+.title{
   text-align: center;
+  margin-top: 0;
 }
 .menu_icon {
   top:0;
   left:0;
   position: fixed;
   transform:scaleX(-1);
+}
+.app{
+  background: #ffedfd;
+  height: 100vh;
+}
+
+h1, h2, h3, hr {
+  color: #7f0777;
 }

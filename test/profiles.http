@@ -11,14 +11,17 @@ Content-Type: application/json
   "lastname": "Lelouch"
 }
 
+### Get a profile of a given id
+GET http://localhost:3000/profiles/1
+
 ### Edit a profile at the given id in the database
 PUT http://localhost:3000/profiles/1
-
 Content-Type: application/json
+
 {
-  "nickname": "Asomar",
-  "firstname": "Pierre-Alban",
-  "lastname": "Demars"
+  "nickname": "Brolyus",
+  "firstname": "Anthony",
+  "lastname": "De Sousa"
 }
 
 ### Delete a profile at the given id

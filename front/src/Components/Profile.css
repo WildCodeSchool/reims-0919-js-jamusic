@@ -1,0 +1,41 @@
+.profilePage {
+  font-family: Arial, sans-serif;
+}
+
+.profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: solid #aaa 1px;
+  border-radius: 5%;
+  margin: 11vh 10vw 1vh 10vw;
+  background: #e6e6e6;
+}
+
+.profilePic {
+  border-radius: 50%;
+  height: 30vw;
+  width: 30vw;
+  padding: 3%;
+  background: #e6e6e6;
+  border: solid #aaa 1px;
+  margin-top: -20%;
+}
+
+.profile p, h2, h3 {
+  margin: 5px;
+}
+
+.profilePost {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+}
+
+.profilePost hr{
+  transform: rotate(90deg);
+  height: 10vh;
+  border: solid #7f0777 3px;
+}
+
