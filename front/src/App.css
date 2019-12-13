@@ -1,13 +1,8 @@
-.title{
-  text-align: center;
-  margin-top: 0;
+.App {
+    text-align: center;
 }
-
-.app{
-  background: #ffedfd;
-  height: 100vh;
-}
-
-h1, h2, h3, hr {
-  color: #7f0777;
+.rendering {
+    display: flex;
+    align-items: center;
+    margin-left: 50em;
 }
