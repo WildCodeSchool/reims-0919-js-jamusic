@@ -42,15 +42,11 @@ class App extends React.Component {
     }
 
     handleSelectedTags(instrument) {
-        this.state.selectedTags.includes(instrument)
-            ? this.setState({
-                  selectedTags: this.state.selectedTags.filter(
-                      tag => tag !== instrument
-                  )
-              })
-            : this.setState({
-                  selectedTags: [...this.state.selectedTags, instrument]
-              })
+        this.setState({
+            selectedTags: this.state.selectedTags.includes(instrument)
+                ? this.state.selectedTags.filter(tag => tag !== instrument)
+                : [...this.state.selectedTags, instrument]
+        })
     }
     render() {
         if (!this.state.isLoaded) {
@@ -58,7 +54,7 @@ class App extends React.Component {
         } else {
             return (
                 <div className='App'>
-                    {this.state.researchIsVisible ? null : (
+                    {this.state.researchIsVisible || (
                         <img
                             src='https://img.icons8.com/metro/26/000000/chevron-left.png'
                             className='menu_icon'
