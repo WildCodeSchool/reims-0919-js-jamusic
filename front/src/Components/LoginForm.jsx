@@ -29,7 +29,7 @@ class LoginForm extends React.Component {
             },
             body: JSON.stringify(this.state)
         }
-        const url = ''
+        const url = 'http://localhost:3000/accounts'
 
         fetch(url, config)
             .then(res => res.json())
