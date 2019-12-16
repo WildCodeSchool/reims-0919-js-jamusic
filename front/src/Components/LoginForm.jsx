@@ -1,4 +1,5 @@
 import React from 'react'
+import './CreateProfile.css'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -51,35 +52,35 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div>
-                <h2>Connection</h2>
-                <form onSubmit={this.submitForm}>
-                    <fieldset>
-                        <div>
-                            <label htmlFor='email'>Adresse Email</label>
-                            <input
-                                type='email'
-                                id='email'
-                                name='email'
-                                onChange={this.onChange}
-                                value={this.state.title}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor='password'>Mot de passe</label>
-                            <input
-                                type='password'
-                                id='password'
-                                name='password'
-                                onChange={this.onChange}
-                                value={this.state.password}
-                            />
-                        </div>
+                <h2>Connexion</h2>
+                <form onSubmit={this.submitForm} className='createProfileForm'>
+                    <div>
+                        <label htmlFor='email'>Adresse Email</label>
                         <input
-                            type='submit'
-                            value='Envoyer'
-                            onClick={this.postForm}
+                            type='email'
+                            id='email'
+                            name='email'
+                            onChange={this.onChange}
+                            value={this.state.title}
+                            required
                         />
-                    </fieldset>
+                    </div>
+                    <div>
+                        <label htmlFor='password'>Mot de passe</label>
+                        <input
+                            type='password'
+                            id='password'
+                            name='password'
+                            onChange={this.onChange}
+                            value={this.state.password}
+                            required
+                        />
+                    </div>
+                    <input
+                        type='submit'
+                        value='Envoyer'
+                        onClick={this.postForm}
+                    />
                 </form>
             </div>
         )

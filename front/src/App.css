@@ -35,3 +35,6 @@ CreateProfile {
 Profile {
     height: 100vh;
 }
+LoginForm {
+    height: 100vh;
+}
