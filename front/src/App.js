@@ -1,8 +1,8 @@
-
-import React from "react";
-import "./App.css";
-import axios from "axios";
-import Profile from "./Components/Profile";
+import React from 'react'
+import './App.css'
+import axios from 'axios'
+import Profile from './Components/Profile'
+import LoginForm from './Components/LoginForm'
 
 class App extends React.Component {
     constructor(props) {
@@ -28,15 +28,15 @@ class App extends React.Component {
             )
     }
 
-
-  render() {
-    return (
-      <div className='app'>
-        <h1 className='title'>JaMusic</h1>
-          <Profile />
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className='app'>
+                <h1 className='title'>JaMusic</h1>
+                <LoginForm />
+                <Profile />
+            </div>
+        )
+    }
 }
 
 export default App

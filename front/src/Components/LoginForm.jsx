@@ -49,8 +49,39 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        return(
-            
+        return (
+            <div>
+                <h2>Connection</h2>
+                <form onSubmit={this.submitForm}>
+                    <fieldset>
+                        <div>
+                            <label htmlFor='email'>Adresse Email</label>
+                            <input
+                                type='email'
+                                id='email'
+                                name='email'
+                                onChange={this.onChange}
+                                value={this.state.title}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='password'>Mot de passe</label>
+                            <input
+                                type='password'
+                                id='password'
+                                name='password'
+                                onChange={this.onChange}
+                                value={this.state.password}
+                            />
+                        </div>
+                        <input
+                            type='submit'
+                            value='Envoyer'
+                            onClick={this.postForm}
+                        />
+                    </fieldset>
+                </form>
+            </div>
         )
     }
 }
