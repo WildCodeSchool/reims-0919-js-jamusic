@@ -1,7 +1,9 @@
 .createProfileForm {
     display: flex;
+    align-items: center;
     flex-direction: column;
     width: 70%;
+    margin: 0 auto;
 }
 
 .createProfileForm input,
