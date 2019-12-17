@@ -18,7 +18,6 @@ app.route('/register')
     .get((request, response) => {
         connection.query('SELECT * FROM account', (err, results) => {
             if (err) {
-                console.log(err)
                 response.status(500).send('Impossible de récupérer les comptes')
             } else {
                 response.json(results)
@@ -29,14 +28,27 @@ app.route('/register')
     .post((request, response) => {
         const formData = request.body
         connection.query(
-            'INSERT INTO account SET ?',
-            formData,
+            'SELECT email FROM account WHERE email = ?',
+            formData.email,
             (err, results) => {
                 if (err) {
-                    console.log(err)
-                    response.status(500).send("Erreur pendant l'inscription.")
+                    response.status(500).send('Problème inscription')
+                } else if (results.length !== 0) {
+                    response.status(200).send('Email déjà utilisé')
                 } else {
-                    response.json(results)
+                    connection.query(
+                        'INSERT INTO account SET ?',
+                        formData,
+                        (err, results) => {
+                            if (err) {
+                                response
+                                    .status(500)
+                                    .send("Erreur pendant l'inscription.")
+                            } else {
+                                response.json(results)
+                            }
+                        }
+                    )
                 }
             }
         )
