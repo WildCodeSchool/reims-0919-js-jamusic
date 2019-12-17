@@ -1,0 +1,12 @@
+### Test POST of username and password
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "test",
+  "profile_id": 1
+}
+
+### Test GET of accounts data
+GET http://localhost:3000/login
