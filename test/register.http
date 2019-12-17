@@ -1,0 +1,13 @@
+### Get all the accounts
+
+GET http://localhost:3000/register
+
+### Add an account to the database
+
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "email": "Karadoc@Kaamelott.uk",
+    "password": "LeGrasCestLaVie"
+}
