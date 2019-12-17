@@ -20,9 +20,6 @@ class LoginForm extends React.Component {
 
     submitForm(e) {
         e.preventDefault()
-    }
-
-    postForm() {
         const config = {
             method: 'POST',
             headers: {
@@ -48,6 +45,8 @@ class LoginForm extends React.Component {
                 )
             })
     }
+
+    postForm() {}
 
     render() {
         return (
@@ -79,7 +78,7 @@ class LoginForm extends React.Component {
                     <input
                         type='submit'
                         value='Envoyer'
-                        onClick={this.postForm}
+                        onClick={this.submitForm}
                     />
                 </form>
             </div>
