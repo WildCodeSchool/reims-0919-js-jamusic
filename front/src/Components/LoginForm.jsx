@@ -10,7 +10,6 @@ class LoginForm extends React.Component {
         }
         this.onChange = this.onChange.bind(this)
         this.submitForm = this.submitForm.bind(this)
-        this.postForm = this.postForm.bind(this)
     }
     onChange(e) {
         this.setState({
@@ -73,11 +72,7 @@ class LoginForm extends React.Component {
                             required
                         />
                     </div>
-                    <input
-                        type='submit'
-                        value='Envoyer'
-                        onClick={this.submitForm}
-                    />
+                    <input type='submit' value='Envoyer' />
                 </form>
             </div>
         )
