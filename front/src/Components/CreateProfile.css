@@ -1,9 +1,15 @@
 .createProfileForm {
     display: flex;
+<<<<<<< HEAD
+    flex-direction: column;
+    width: 70%;
+=======
     align-items: center;
     flex-direction: column;
     width: 70%;
     margin-left: 15%;
+
+>>>>>>> 4850b2474a1b74182425f4609517b8eb9f8806cf
 }
 
 .createProfileForm input,
