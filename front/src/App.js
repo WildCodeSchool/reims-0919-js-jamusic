@@ -4,6 +4,7 @@ import axios from 'axios'
 import Search from './Components/Search'
 import Profile from './Components/Profile'
 import CreateProfile from './Components/CreateProfile'
+import LoginForm from './Components/LoginForm'
 
 class App extends React.Component {
     constructor(props) {
@@ -76,6 +77,7 @@ class App extends React.Component {
                         />
                     )}
                     <CreateProfile />
+                    <LoginForm />
                     <Profile profile={this.state.profiles} />
                 </div>
             )
