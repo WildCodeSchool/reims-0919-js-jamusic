@@ -46,8 +46,6 @@ class LoginForm extends React.Component {
             })
     }
 
-    postForm() {}
-
     render() {
         return (
             <div>
