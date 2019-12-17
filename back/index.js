@@ -4,6 +4,8 @@ const port = 3000
 const connection = require('./config')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const jwt = require('jsonwebtoken')
+const secret = require('./secret')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -45,7 +47,12 @@ app.route('/register')
                                     .status(500)
                                     .send("Erreur pendant l'inscription.")
                             } else {
-                                response.json(results)
+                                jwt.sign(formData, secret, (err, token) => {
+                                    response.json({
+                                        token
+                                    })
+                                })
+                                //response.status(200).send('You are token to me')
                             }
                         }
                     )
