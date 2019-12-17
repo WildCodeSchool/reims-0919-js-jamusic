@@ -6,11 +6,41 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
 app.get('/', (request, response) => {
     response.send('Welcome to jaMusic Server')
 })
+
+app.route('/register')
+
+    .get((request, response) => {
+        connection.query('SELECT * FROM account', (err, results) => {
+            if (err) {
+                console.log(err)
+                response.status(500).send('Impossible de récupérer les comptes')
+            } else {
+                response.json(results)
+            }
+        })
+    })
+
+    .post((request, response) => {
+        const formData = request.body
+        connection.query(
+            'INSERT INTO account SET ?',
+            formData,
+            (err, results) => {
+                if (err) {
+                    console.log(err)
+                    response.status(500).send("Erreur pendant l'inscription.")
+                } else {
+                    response.json(results)
+                }
+            }
+        )
+    })
 
 app.route('/profiles')
 
@@ -32,7 +62,7 @@ app.route('/profiles')
             (err, results) => {
                 if (err) {
                     console.log(err)
-                    response.status(500).send('Error adding a new profile')
+                    res.status(500).send('Error adding a new profile')
                 } else {
                     response.json(results)
                 }
@@ -95,40 +125,12 @@ app.route('/tags')
             (err, results) => {
                 if (err) {
                     console.log(err)
-                    response.status(500).send('Error adding a new profile')
+                    res.status(500).send('Error adding a new profile')
                 } else {
                     response.json(results)
                 }
             }
         )
-    })
-
-app.route('/login')
-    .post((request, response) => {
-        const formData = request.body
-        connection.query(
-            'INSERT INTO account SET ?;',
-            formData,
-            (err, results) => {
-                if (err) {
-                    console.log(err)
-                    response.status(500).send('Error registering')
-                } else {
-                    response.json(formData)
-                    console.log(request.body)
-                }
-            }
-        )
-    })
-
-    .get((request, response) => {
-        connection.query('SELECT * from account', (err, results) => {
-            if (err) {
-                response.status(500).send('Cannot access accounts')
-            } else {
-                response.json(results)
-            }
-        })
     })
 
 app.listen(port, err => {
