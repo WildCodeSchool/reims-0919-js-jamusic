@@ -1,12 +1,5 @@
 .App {
     text-align: center;
-<<<<<<< HEAD
-}
-.rendering {
-    display: flex;
-    align-items: center;
-    margin-left: 50em;
-=======
     background: #ffedfd;
     width: 100vw;
 }
@@ -41,5 +34,4 @@ CreateProfile {
 }
 Profile {
     height: 100vh;
->>>>>>> 4850b2474a1b74182425f4609517b8eb9f8806cf
 }

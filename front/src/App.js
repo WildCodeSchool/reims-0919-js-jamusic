@@ -1,33 +1,15 @@
-<<<<<<< HEAD
-
-import React from "react";
-import "./App.css";
-import axios from "axios";
-import Profile from "./Components/Profile";
-=======
 import React from 'react'
 import './App.css'
 import axios from 'axios'
 import Search from './Components/Search'
 import Profile from './Components/Profile'
 import CreateProfile from './Components/CreateProfile'
->>>>>>> 4850b2474a1b74182425f4609517b8eb9f8806cf
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             profiles: [],
-<<<<<<< HEAD
-            tags: []
-        }
-    }
-
-    componentDidMount() {
-        axios
-            .all([
-                axios.get('http://localhost:3000/profiles'),
-=======
             tags: [],
             researchIsVisible: false,
             selectedTags: [],
@@ -40,37 +22,21 @@ class App extends React.Component {
         axios
             .all([
                 axios.get('http://localhost:3000/profiles/2'),
->>>>>>> 4850b2474a1b74182425f4609517b8eb9f8806cf
                 axios.get('http://localhost:3000/tags')
             ])
             .then(
                 axios.spread((profilesRes, tagsRes) => {
                     const profiles = profilesRes.data
                     const tags = tagsRes.data
-<<<<<<< HEAD
-                    this.setState({ profiles, tags })
-=======
                     this.setState({
                         profiles,
                         tags,
                         isLoaded: true
                     })
->>>>>>> 4850b2474a1b74182425f4609517b8eb9f8806cf
                 })
             )
     }
 
-<<<<<<< HEAD
-
-  render() {
-    return (
-      <div className='app'>
-        <h1 className='title'>JaMusic</h1>
-          <Profile />
-      </div>
-    );
-  }
-=======
     handleresearchIsVisible() {
         this.setState({ researchIsVisible: !this.state.researchIsVisible })
     }
@@ -115,7 +81,6 @@ class App extends React.Component {
             )
         }
     }
->>>>>>> 4850b2474a1b74182425f4609517b8eb9f8806cf
 }
 
 export default App
