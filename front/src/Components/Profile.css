@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border: solid #aaa 1px;
+  border: solid var(--bord-color) 1px;
   border-radius: 5%;
   margin: 11vh 10vw 1vh 10vw;
   background: var(--other-background);
@@ -19,7 +19,7 @@
   width: 30vw;
   padding: 3%;
   background: var(--other-background);
-  border: solid #aaa 1px;
+  border: solid var(--bord-color) 1px;
   margin-top: -20%;
 }
 
