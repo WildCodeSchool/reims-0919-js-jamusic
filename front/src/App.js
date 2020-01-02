@@ -3,7 +3,7 @@ import './App.css'
 import axios from 'axios'
 import Search from './Components/Search'
 import Profile from './Components/Profile'
-import CreateProfile from './Components/CreateProfile'
+import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 
 class App extends React.Component {
@@ -73,7 +73,7 @@ class App extends React.Component {
               handleresearchIsVisible={this.handleresearchIsVisible}
             />
           )}
-          <CreateProfile />
+          <AccountRegister />
           <LoginForm />
           <Profile profile={this.state.profiles} />
         </div>
