@@ -43,6 +43,6 @@ CreateProfile {
 Profile {
   height: 100vh;
 }
-LoginForm {
+AccountRegister {
   height: 100vh;
 }
