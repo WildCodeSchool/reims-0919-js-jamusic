@@ -18,7 +18,7 @@
   height: 30vw;
   width: 30vw;
   padding: 3%;
-  background: var();
+  background: var(--other-background);
   border: solid #aaa 1px;
   margin-top: -20%;
 }
