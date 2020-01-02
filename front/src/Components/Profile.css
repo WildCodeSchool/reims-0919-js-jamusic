@@ -2,7 +2,7 @@
   font-family: Arial, sans-serif;
 }
 
-.profile{
+.profile {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,7 @@
   border: solid #aaa 1px;
   border-radius: 5%;
   margin: 11vh 10vw 1vh 10vw;
-  background: #e6e6e6;
+  background: var(--other-background);
 }
 
 .profilePic {
@@ -18,12 +18,14 @@
   height: 30vw;
   width: 30vw;
   padding: 3%;
-  background: #e6e6e6;
+  background: var();
   border: solid #aaa 1px;
   margin-top: -20%;
 }
 
-.profile p, h2, h3 {
+.profile p,
+h2,
+h3 {
   margin: 5px;
 }
 
@@ -33,9 +35,8 @@
   height: 10vh;
 }
 
-.profilePost hr{
+.profilePost hr {
   transform: rotate(90deg);
   height: 10vh;
-  border: solid #7f0777 3px;
+  border: solid 3px var(--title-color);
 }
-
