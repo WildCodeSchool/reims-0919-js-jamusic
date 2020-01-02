@@ -1,40 +1,48 @@
 .App {
-    text-align: center;
-    background: #ffedfd;
-    width: 100vw;
+  text-align: center;
+  background: var(--background-color);
+  width: 100vw;
 }
 .App .menu_icon {
-    top: 0;
-    left: 0;
-    position: fixed;
-    transform: scaleX(-1);
-    text-align: left;
+  top: 0;
+  left: 0;
+  position: fixed;
+  transform: scaleX(-1);
+  text-align: left;
+}
+
+:root {
+  --background-color: #ffedfd;
+  --title-color: #7f0777;
+  --other-background: #e6e6e6;
+  --select: pink;
+  --bord-color: #aaaaaa;
 }
 
 .title {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 h1,
 h2,
 h3,
 hr {
-    color: #7f0777;
+  color: var(--title-color);
 }
 
 .App .menu_return_icon {
-    top: 0;
-    left: 0;
-    position: fixed;
-    text-align: left;
+  top: 0;
+  left: 0;
+  position: fixed;
+  text-align: left;
 }
 
 CreateProfile {
-    height: 100vh;
+  height: 100vh;
 }
 Profile {
-    height: 100vh;
+  height: 100vh;
 }
-LoginForm {
-    height: 100vh;
+AccountRegister {
+  height: 100vh;
 }
