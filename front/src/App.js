@@ -5,6 +5,7 @@ import Search from './Components/Search'
 import Profile from './Components/Profile'
 import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
+import Navbar from './Components/Navbar'
 
 class App extends React.Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class App extends React.Component {
           <AccountRegister />
           <LoginForm />
           <Profile profile={this.state.profiles} />
+          <Navbar />
         </div>
       )
     }
