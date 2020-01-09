@@ -12,7 +12,7 @@ const Search = props => {
                     className='menu_return_icon'
                 ></img>
             )}
-            <p>Selectionnez vos tags:</p>
+            <h2>Selectionnez vos tags:</h2>
             <ul>
                 {props.tags.map(tag => {
                     return (

@@ -1,5 +1,4 @@
 .profilePage {
-    font-family: Arial, sans-serif;
     padding-bottom: 15%;
 }
 
@@ -12,6 +11,7 @@
     border-radius: 5%;
     margin: 11vh 10vw 1vh 10vw;
     background: var(--other-background);
+    font-family: Arial, sans-serif;
 }
 
 .profilePic {
