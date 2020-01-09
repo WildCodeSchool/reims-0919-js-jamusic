@@ -54,7 +54,7 @@ app.route('/register')
                 if (err) {
                     response.status(500).send('Problème inscription')
                 } else if (results.length !== 0) {
-                    response.status(200).send('Email déjà utilisé')
+                    response.status(400).send('Email déjà utilisé')
                 } else {
                     connection.query(
                         'INSERT INTO account SET ?',
