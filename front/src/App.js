@@ -7,7 +7,7 @@ import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 class App extends React.Component {
     constructor(props) {
@@ -53,62 +53,63 @@ class App extends React.Component {
         })
     }
     render() {
-        if (!this.state.isLoaded) {
-            return <h1>JaMusic</h1>
-        } else {
-            return (
-                <div className='App'>
-                    <Switch>
+        return (
+            <div className='App'>
+                <Switch>
+                    <Route exact path='/'>
+                        {this.state.isLoaded ? (
+                            <Redirect to='/login' />
+                        ) : (
+                            <h1>JaMusic</h1>
+                        )}
+                    </Route>
+                    <Route
+                        exact
+                        path='/register'
+                        component={() => <AccountRegister />}
+                    />
+                    <Route
+                        exact
+                        path='/login'
+                        component={() => <LoginForm />}
+                    />
+                    <React.Fragment>
                         <Route
                             exact
-                            path='/register'
-                            component={() => <AccountRegister />}
+                            path={`/profiles`}
+                            component={() => (
+                                <Profile profile={this.state.profiles} />
+                            )}
                         />
                         <Route
                             exact
-                            path='/login'
-                            component={() => <LoginForm />}
+                            path={`/profiles/modif`}
+                            component={() => (
+                                <ModifProfileForm tags={this.state.tags} />
+                            )}
                         />
-                        <React.Fragment>
-                            <Route
-                                exact
-                                path={`/profiles`}
-                                component={() => (
-                                    <Profile profile={this.state.profiles} />
-                                )}
-                            />
-                            <Route
-                                exact
-                                path={`/profiles/modif`}
-                                component={() => (
-                                    <ModifProfileForm tags={this.state.tags} />
-                                )}
-                            />
-                            <Route
-                                exact
-                                path={'/tags'}
-                                component={() => (
-                                    <Search
-                                        tags={this.state.tags}
-                                        handleSelectedTags={
-                                            this.handleSelectedTags
-                                        }
-                                        selectedTags={this.state.selectedTags}
-                                        researchIsVisible={
-                                            this.state.researchIsVisible
-                                        }
-                                        handleresearchIsVisible={
-                                            this.handleresearchIsVisible
-                                        }
-                                    />
-                                )}
-                            />
-                            <Navbar />
-                        </React.Fragment>
-                    </Switch>
-                </div>
-            )
-        }
+                        <Route
+                            exact
+                            path={'/tags'}
+                            component={() => (
+                                <Search
+                                    tags={this.state.tags}
+                                    handleSelectedTags={this.handleSelectedTags}
+                                    selectedTags={this.state.selectedTags}
+                                    researchIsVisible={
+                                        this.state.researchIsVisible
+                                    }
+                                    handleresearchIsVisible={
+                                        this.handleresearchIsVisible
+                                    }
+                                />
+                            )}
+                        />
+                        <Navbar />
+                    </React.Fragment>
+                </Switch>
+            </div>
+        )
     }
 }
 
