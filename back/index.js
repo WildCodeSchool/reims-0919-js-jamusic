@@ -4,10 +4,30 @@ const port = 3000
 const connection = require('./config')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const jwt = require('jsonwebtoken')
+const secret = require('./secret')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
+
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    if (token == null) {
+        return res.sendStatus(401)
+    } else {
+        jwt.verify(token, secret, (err, user) => {
+            console.log(err)
+            if (err) {
+                return res.sendStatus(403)
+            } else {
+                req.user = user
+            }
+            next()
+        })
+    }
+}
 
 app.get('/', (request, response) => {
     response.send('Welcome to jaMusic Server')
@@ -18,7 +38,6 @@ app.route('/register')
     .get((request, response) => {
         connection.query('SELECT * FROM account', (err, results) => {
             if (err) {
-                console.log(err)
                 response.status(500).send('Impossible de récupérer les comptes')
             } else {
                 response.json(results)
@@ -29,18 +48,37 @@ app.route('/register')
     .post((request, response) => {
         const formData = request.body
         connection.query(
-            'INSERT INTO account SET ?',
-            formData,
+            'SELECT email FROM account WHERE email = ?',
+            formData.email,
             (err, results) => {
                 if (err) {
-                    console.log(err)
-                    response.status(500).send("Erreur pendant l'inscription.")
+                    response.status(500).send('Problème inscription')
+                } else if (results.length !== 0) {
+                    response.status(400).send('Email déjà utilisé')
                 } else {
-                    response.json(results)
+                    connection.query(
+                        'INSERT INTO account SET ?',
+                        formData,
+                        (err, results) => {
+                            if (err) {
+                                response
+                                    .status(500)
+                                    .send("Erreur pendant l'inscription.")
+                            } else {
+                                jwt.sign(formData, secret, (err, token) => {
+                                    response.json({
+                                        token
+                                    })
+                                })
+                            }
+                        }
+                    )
                 }
             }
         )
     })
+
+// End of register route
 
 app.route('/profiles')
 
@@ -69,6 +107,8 @@ app.route('/profiles')
             }
         )
     })
+
+// End of profiles route
 
 app.route('/profiles/:id')
     .get((request, response) => {
@@ -105,6 +145,8 @@ app.route('/profiles/:id')
             }
         )
     })
+
+// End of profiles ID routes
 
 app.route('/tags')
 
