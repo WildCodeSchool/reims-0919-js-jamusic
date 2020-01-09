@@ -6,6 +6,7 @@
     width: 100%;
     bottom: 0;
     z-index: 1;
+    box-shadow: var(--shadow-color) 1px 1px 10px;
 }
 
 .Navbar .navIcon {
@@ -14,4 +15,12 @@
     background: var(--background-color);
     height: 4vh;
     padding: 1vh 0;
+}
+
+.Navbar .navlink:focus {
+    color: var(--select);
+}
+
+.Navbar .navlink {
+    color: var(--title-color);
 }
