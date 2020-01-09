@@ -6,6 +6,7 @@ import Profile from './Components/Profile'
 import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
+import { Switch, Route } from 'react-router-dom'
 
 class App extends React.Component {
     constructor(props) {
@@ -56,30 +57,28 @@ class App extends React.Component {
         } else {
             return (
                 <div className='App'>
-                    {this.state.researchIsVisible || (
-                        <img
-                            src='https://img.icons8.com/metro/26/000000/chevron-left.png'
-                            className='menu_icon'
-                            alt='chevron'
-                            onClick={this.handleresearchIsVisible}
+                    <Switch>
+                        <Route
+                            exact
+                            path='/register'
+                            component={() => <AccountRegister />}
                         />
-                    )}
-                    <h1 className='title'>jaMusic</h1>
-                    {this.state.researchIsVisible && (
-                        <Search
-                            tags={this.state.tags}
-                            handleSelectedTags={this.handleSelectedTags}
-                            selectedTags={this.state.selectedTags}
-                            researchIsVisible={this.state.researchIsVisible}
-                            handleresearchIsVisible={
-                                this.handleresearchIsVisible
-                            }
+                        <Route
+                            exact
+                            path='/login'
+                            component={() => <LoginForm />}
                         />
-                    )}
-                    <AccountRegister />
-                    <LoginForm />
-                    <Profile profile={this.state.profiles} />
-                    <Navbar />
+                        <React.Fragment>
+                            <Route
+                                exact
+                                path={`/profiles`}
+                                component={() => (
+                                    <Profile profile={this.state.profiles} />
+                                )}
+                            />{' '}
+                            <Navbar />
+                        </React.Fragment>
+                    </Switch>
                 </div>
             )
         }
