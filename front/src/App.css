@@ -12,6 +12,10 @@
     text-align: left;
 }
 
+body {
+    font-family: 'Lato', sans-serif;
+}
+
 :root {
     --background-color: #ffffff;
     --title-color: #7956ed;
