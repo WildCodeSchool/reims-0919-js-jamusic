@@ -52,7 +52,6 @@ app.route('/register')
                                         token
                                     })
                                 })
-                                //response.status(200).send('You are token to me')
                             }
                         }
                     )
@@ -60,6 +59,8 @@ app.route('/register')
             }
         )
     })
+
+// End of register route
 
 app.route('/profiles')
 
@@ -88,6 +89,8 @@ app.route('/profiles')
             }
         )
     })
+
+// End of profiles route
 
 app.route('/profiles/:id')
     .get((request, response) => {
@@ -124,6 +127,8 @@ app.route('/profiles/:id')
             }
         )
     })
+
+// End of profiles ID routes
 
 app.route('/tags')
 
