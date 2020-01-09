@@ -75,7 +75,26 @@ class App extends React.Component {
                                 component={() => (
                                     <Profile profile={this.state.profiles} />
                                 )}
-                            />{' '}
+                            />
+                            <Route
+                                exact
+                                path={'/tags'}
+                                component={() => (
+                                    <Search
+                                        tags={this.state.tags}
+                                        handleSelectedTags={
+                                            this.handleSelectedTags
+                                        }
+                                        selectedTags={this.state.selectedTags}
+                                        researchIsVisible={
+                                            this.state.researchIsVisible
+                                        }
+                                        handleresearchIsVisible={
+                                            this.handleresearchIsVisible
+                                        }
+                                    />
+                                )}
+                            />
                             <Navbar />
                         </React.Fragment>
                     </Switch>
