@@ -1,5 +1,6 @@
 import React from 'react'
 import './AccountRegister.css'
+import { Link } from 'react-router-dom'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -75,8 +76,13 @@ class LoginForm extends React.Component {
                             required
                         />
                     </div>
-                    <input type='submit' value='Envoyer' />
+                    <Link to={`/profiles`}>
+                        <input type='submit' value='Envoyer' />
+                    </Link>
                 </form>
+                <Link to='/register'>
+                    Vous n'avez pas de comtpe ? Inscrivez-vous !
+                </Link>
             </div>
         )
     }

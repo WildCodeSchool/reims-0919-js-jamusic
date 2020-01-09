@@ -1,5 +1,6 @@
 import React from 'react'
 import './AccountRegister.css'
+import { Link } from 'react-router-dom'
 
 const AccountRegister = () => {
     return (
@@ -10,9 +11,11 @@ const AccountRegister = () => {
             <input type='password' name='password' id='password' required />
             <label htmlFor='password2'>Confirmation du mot de passe :</label>
             <input type='password' name='password2' id='password2' />
-            <button type='submit' id='submit'>
-                S'inscrire
-            </button>
+            <Link to='/login'>
+                <button type='submit' id='submit'>
+                    S'inscrire
+                </button>
+            </Link>
         </form>
     )
 }

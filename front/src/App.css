@@ -39,6 +39,12 @@ hr {
     color: var(--title-color);
 }
 
+h1 {
+    text-align: center;
+    margin-top: 40vh;
+    font-size: 500%;
+}
+
 .App .menu_return_icon {
     top: 0;
     left: 0;
