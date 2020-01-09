@@ -77,8 +77,34 @@ app.route('/register')
             }
         )
     })
-
 // End of register route
+
+app.route('/login').post((request, response) => {
+    const username = request.body.email
+    const password = request.body.password
+    if (username && password) {
+        connection.query(
+            'SELECT email, password FROM account WHERE email = ? AND password = ?',
+            [username, password],
+            (err, results) => {
+                if (results.length > 0) {
+                    jwt.sign([username, password], secret, (err, token) => {
+                        response.json({
+                            token
+                        })
+                    })
+                } else {
+                    response.send('Incorrect username and/or password!')
+                }
+                response.end()
+            }
+        )
+    } else {
+        response.send('Please enter Username and Password!')
+    }
+})
+
+// end of login route
 
 app.route('/profiles')
 
