@@ -17,6 +17,7 @@
     --other-background: #f2effd;
     --select: lightblue;
     --bord-color: #7956ed;
+    --shadow-color: #6e7079;
 }
 
 [data-theme='bordeaux'] {
