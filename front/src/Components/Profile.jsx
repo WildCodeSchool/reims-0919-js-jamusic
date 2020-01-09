@@ -1,5 +1,6 @@
 import React from 'react'
 import './Profile.css'
+import { Link } from 'react-router-dom'
 
 const test = {
     id: 1,
@@ -33,6 +34,7 @@ class Profile extends React.Component {
                         alt='Personnal profile pic'
                         className='profilePic'
                     />
+                    <Link to='/profiles/modif'>Modifier</Link>
                     <h3>@{this.props.profile[0].nickname}</h3>
                     <p>2B abonnés / 1k abonnements</p>
                     <h3>CENTRES D'INTERETS : </h3>
@@ -44,7 +46,6 @@ class Profile extends React.Component {
                 </div>
                 <div className='profilePost'>
                     <h2>DERNIERES PUBLICATIONS</h2>
-                    <hr />
                 </div>
             </div>
         )

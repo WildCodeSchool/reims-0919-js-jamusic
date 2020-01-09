@@ -6,6 +6,7 @@ import Profile from './Components/Profile'
 import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
+import ModifProfileForm from './Components/ModifProfileForm'
 import { Switch, Route } from 'react-router-dom'
 
 class App extends React.Component {
@@ -74,6 +75,13 @@ class App extends React.Component {
                                 path={`/profiles`}
                                 component={() => (
                                     <Profile profile={this.state.profiles} />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path={`/profiles/modif`}
+                                component={() => (
+                                    <ModifProfileForm tags={this.state.tags} />
                                 )}
                             />
                             <Route
