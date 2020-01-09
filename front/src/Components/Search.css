@@ -30,3 +30,12 @@
     top: 0;
     left: 0;
 }
+
+.search_sidebar li {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.search_sidebar h2 {
+    color: var(--select);
+    font-size: 100%;
+}

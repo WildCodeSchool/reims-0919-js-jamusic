@@ -3,6 +3,7 @@
     background: var(--background-color);
     width: 100vw;
 }
+
 .App .menu_icon {
     top: 0;
     left: 0;
@@ -37,6 +38,7 @@ h2,
 h3,
 hr {
     color: var(--title-color);
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 h1 {
