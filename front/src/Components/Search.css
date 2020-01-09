@@ -1,32 +1,32 @@
 .search_sidebar {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 1;
-  overflow-x: hidden;
-  left: 0;
-  top: 0;
-  color: var(--select);
-  font-size: 2em;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1;
+    overflow-x: hidden;
+    left: 0;
+    top: 0;
+    color: var(--select);
+    font-size: 2em;
 }
 .search_sidebar ul {
-  padding: 0;
-  list-style: none;
+    padding: 0;
+    list-style: none;
 }
 
 .not_selected {
-  color: var(--title-color);
-  padding: 1vh;
+    color: var(--title-color);
+    padding: 1vh;
 }
 
 .is_selected {
-  color: var(--select);
-  padding: 1vh;
+    color: var(--select);
+    padding: 1vh;
 }
 
 .imgenu_return_icon {
-  position: fixed;
-  top: 0;
-  left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 }

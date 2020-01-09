@@ -1,40 +1,41 @@
 .profilePage {
-  font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif;
+    padding-bottom: 15%;
 }
 
 .profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: solid var(--bord-color) 1px;
-  border-radius: 5%;
-  margin: 11vh 10vw 1vh 10vw;
-  background: var(--other-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: solid var(--bord-color) 1px;
+    border-radius: 5%;
+    margin: 11vh 10vw 1vh 10vw;
+    background: var(--other-background);
 }
 
 .profilePic {
-  border-radius: 50%;
-  height: 30vw;
-  width: 30vw;
-  padding: 3%;
-  margin-top: -20%;
+    border-radius: 50%;
+    height: 30vw;
+    width: 30vw;
+    padding: 3%;
+    margin-top: -20%;
 }
 
 .profile p,
 h2,
 h3 {
-  margin: 5px;
+    margin: 5px;
 }
 
 .profilePost {
-  display: flex;
-  align-items: center;
-  height: 10vh;
+    display: flex;
+    align-items: center;
+    height: 10vh;
 }
 
 .profilePost hr {
-  transform: rotate(90deg);
-  height: 10vh;
-  border: solid 3px var(--title-color);
+    transform: rotate(90deg);
+    height: 10vh;
+    border: solid 3px var(--title-color);
 }
