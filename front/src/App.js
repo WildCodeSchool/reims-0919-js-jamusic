@@ -54,7 +54,7 @@ class App extends React.Component {
     }
     render() {
         if (!this.state.isLoaded) {
-            return <h2>Loading ...</h2>
+            return <h1>JaMusic</h1>
         } else {
             return (
                 <div className='App'>
