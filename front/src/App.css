@@ -12,6 +12,14 @@
 }
 
 :root {
+  --background-color: #ffffff;
+  --title-color: #7956ed;
+  --other-background: #f2effd;
+  --select: lightblue;
+  --bord-color: #7956ed;
+}
+
+[data-theme='bordeaux'] {
   --background-color: #ffedfd;
   --title-color: #7f0777;
   --other-background: #e6e6e6;
