@@ -83,15 +83,12 @@ app.route('/login').post((request, response) => {
     const username = request.body.email
     const password = request.body.password
     const formData = request.body
-    console.log(formData)
     if (username && password) {
-        console.log("i'm in")
         connection.query(
             'SELECT email, password FROM account WHERE email = ? AND password = ?',
             [username, password],
             (err, results) => {
                 if (results.length > 0) {
-                    console.log('in here too')
                     jwt.sign(formData, secret, (err, token) => {
                         response.json({
                             token: token
