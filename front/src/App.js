@@ -7,7 +7,7 @@ import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect, ren } from 'react-router-dom'
 
 class App extends React.Component {
     constructor(props) {
@@ -17,10 +17,16 @@ class App extends React.Component {
             tags: [],
             researchIsVisible: false,
             selectedTags: [],
-            isLoaded: false
+            isLoaded: false,
+            email: '',
+            password: '',
+            token: ''
         }
         this.handleSelectedTags = this.handleSelectedTags.bind(this)
         this.handleresearchIsVisible = this.handleresearchIsVisible.bind(this)
+        this.submitForm = this.submitForm.bind(this)
+        this.onChangeEmail = this.onChangeEmail.bind(this)
+        this.onChangePassword = this.onChangePassword.bind(this)
     }
     componentDidMount() {
         axios
@@ -39,6 +45,33 @@ class App extends React.Component {
                     })
                 })
             )
+    }
+
+    submitForm(e) {
+        e.preventDefault()
+        const url = 'http://localhost:3000/login'
+
+        axios
+            .post(url, {
+                email: this.state.email,
+                password: this.state.password
+            })
+            .then(data => this.setState({ token: data.data.token }))
+            .catch(function(error) {
+                console.log(error)
+            })
+    }
+
+    onChangeEmail(e) {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    onChangePassword(e) {
+        this.setState({
+            password: e.target.value
+        })
     }
 
     handleresearchIsVisible() {
@@ -71,14 +104,26 @@ class App extends React.Component {
                     <Route
                         exact
                         path='/login'
-                        component={() => <LoginForm />}
+                        render={() => (
+                            <LoginForm
+                                email={this.state.email}
+                                password={this.state.password}
+                                token={this.state.token}
+                                submitForm={this.submitForm}
+                                onChangeEmail={this.onChangeEmail}
+                                onChangePassword={this.onChangePassword}
+                            />
+                        )}
                     />
                     <React.Fragment>
                         <Route
                             exact
                             path={`/profiles`}
                             component={() => (
-                                <Profile profile={this.state.profiles} />
+                                <Profile
+                                    profile={this.state.profiles}
+                                    token={this.state.token}
+                                />
                             )}
                         />
                         <Route
