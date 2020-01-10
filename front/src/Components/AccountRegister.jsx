@@ -40,11 +40,11 @@ const AccountRegister = () => {
 				id='passwordCheck'
 				onInput={e => setPasswordCheck(e.target.value)}
 			/>
-			{/* <Link to='/login'> */}
-			<button type='submit' id='submit'>
-				S'inscrire
-			</button>
-			{/* </Link> */}
+			<Link to='/login'>
+				<button type='submit' id='submit'>
+					S'inscrire
+				</button>
+			</Link>
 		</form>
 	)
 }
