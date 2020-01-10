@@ -67,7 +67,7 @@ app.route('/register')
                             } else {
                                 jwt.sign(formData, secret, (err, token) => {
                                     response.json({
-                                        token
+                                        token: token
                                     })
                                 })
                             }
@@ -82,25 +82,28 @@ app.route('/register')
 app.route('/login').post((request, response) => {
     const username = request.body.email
     const password = request.body.password
+    const formData = request.body
+    console.log(formData)
     if (username && password) {
+        console.log("i'm in")
         connection.query(
             'SELECT email, password FROM account WHERE email = ? AND password = ?',
             [username, password],
             (err, results) => {
                 if (results.length > 0) {
-                    jwt.sign([username, password], secret, (err, token) => {
+                    console.log('in here too')
+                    jwt.sign(formData, secret, (err, token) => {
                         response.json({
-                            token
+                            token: token
                         })
                     })
                 } else {
-                    response.send('Incorrect username and/or password!')
+                    response.send('Mauvais email ou mot de passe!')
                 }
-                response.end()
             }
         )
     } else {
-        response.send('Please enter Username and Password!')
+        response.send('Merci de bien entrer un email et un mot de passe!')
     }
 })
 
