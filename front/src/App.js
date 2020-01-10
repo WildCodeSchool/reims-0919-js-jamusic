@@ -7,7 +7,7 @@ import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
-import { Switch, Route, Redirect, ren } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 class App extends React.Component {
     constructor(props) {
