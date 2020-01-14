@@ -1,10 +1,10 @@
 import React from 'react'
-import './Header.css'
+//import './Header.css'
 
 function Header() {
     return (
-        <div className='header'>
-            <h2>JaMusic</h2>
+        <div className='borderHead width100'>
+            <h2 className='space-size:l space:inset-squish'>JaMusic</h2>
         </div>
     )
 }
