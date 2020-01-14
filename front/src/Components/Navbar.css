@@ -1,26 +1,17 @@
-.Navbar {
-    display: flex;
-    justify-content: space-around;
-    border-top: solid 1px var(--bord-color);
+.fixed-bottom-1 {
     position: fixed;
-    width: 100%;
     bottom: 0;
     z-index: 1;
-    box-shadow: var(--shadow-color) 1px 1px 10px;
 }
 
-.Navbar .navIcon {
-    margin: 0;
-    width: 24.3%;
-    background: var(--background-color);
-    height: 4vh;
-    padding: 1vh 0;
+.width25 {
+    width: 25%;
+}
+.border {
+    border-top: black 1px solid;
+    box-shadow: black 1px 1px 10px;
 }
 
-.Navbar .navlink:focus {
-    color: var(--select);
-}
-
-.Navbar .navlink {
-    color: var(--title-color);
+.icon-zone {
+    padding: 2vh 25%;
 }
