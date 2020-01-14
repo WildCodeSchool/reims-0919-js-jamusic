@@ -67,6 +67,17 @@ class Profile extends React.Component {
                     <h2 className='flex-column space:inset'>
                         DERNIERES PUBLICATIONS
                     </h2>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing
+                        elit. Maiores sapiente esse ipsum quisquam quibusdam,
+                        beatae aperiam tempore quo alias exercitationem dolorum,
+                        quaerat eos magni voluptates at veniam odio obcaecati
+                        culpa! Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Ullam laboriosam itaque,
+                        necessitatibus expedita aut voluptatibus ad animi totam
+                        quod ratione quaerat nisi doloribus quidem non assumenda
+                        quam atque! Ex, in?
+                    </p>
                 </div>
             </div>
         )
