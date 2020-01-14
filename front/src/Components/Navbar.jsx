@@ -14,19 +14,32 @@ library.add(faCommentDots, faTags, faUser, faScroll)
 
 const Navbar = () => {
     return (
-        <div className='flex-row fixed-bottom-1 width100 space-around border'>
+        <div className='flex-row width100 space-around border'>
             <Link to='' className=''>
-                <FontAwesomeIcon icon='scroll' className='width25 icon-zone' />
+                <FontAwesomeIcon
+                    icon='scroll'
+                    size='lg'
+                    className='icon-zone'
+                />
             </Link>
             <Link to='/tags' className=''>
-                <FontAwesomeIcon icon='tags' className='width25 icon-zone' />
+                <FontAwesomeIcon
+                    icon='tags'
+                    size='lg'
+                    className='width25 icon-zone'
+                />
             </Link>
             <Link to='/profiles' className=''>
-                <FontAwesomeIcon icon='user' className='width25 icon-zone' />
+                <FontAwesomeIcon
+                    icon='user'
+                    size='lg'
+                    className='width25 icon-zone'
+                />
             </Link>
             <Link to='' className=''>
                 <FontAwesomeIcon
                     icon='comment-dots'
+                    size='lg'
                     className='width25 icon-zone'
                 />
             </Link>
