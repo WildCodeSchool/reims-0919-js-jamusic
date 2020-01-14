@@ -1,5 +1,4 @@
 import React from 'react'
-//import './Profile.css'
 import { Link } from 'react-router-dom'
 import './Space.css'
 
@@ -64,8 +63,10 @@ class Profile extends React.Component {
                         <p className='space:inset-squish'>{test.bio}</p>
                     </div>
                 </div>
-                <div className='profilePost'>
-                    <h2 className='space:inline'>DERNIERES PUBLICATIONS</h2>
+                <div className=''>
+                    <h2 className='flex-column space:inset'>
+                        DERNIERES PUBLICATIONS
+                    </h2>
                 </div>
             </div>
         )
