@@ -28,3 +28,15 @@
 .space-around {
     justify-content: space-around;
 }
+
+.height100 {
+    max-height: 100vh;
+    height: 100vh;
+}
+
+.flex1 {
+    flex: 1;
+}
+.overflow {
+    overflow: auto;
+}

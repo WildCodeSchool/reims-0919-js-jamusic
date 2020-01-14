@@ -7,6 +7,7 @@ import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
+import Header from './Components/Header'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import './Components/Layout.css'
 import './Components/Space.css'
@@ -76,40 +77,45 @@ class App extends React.Component {
                         path='/login'
                         component={() => <LoginForm />}
                     />
-                    <React.Fragment>
-                        <Route
-                            exact
-                            path={`/profiles`}
-                            component={() => (
-                                <Profile profile={this.state.profiles} />
-                            )}
-                        />
-                        <Route
-                            exact
-                            path={`/profiles/modif`}
-                            component={() => (
-                                <ModifProfileForm tags={this.state.tags} />
-                            )}
-                        />
-                        <Route
-                            exact
-                            path={'/tags'}
-                            component={() => (
-                                <Search
-                                    tags={this.state.tags}
-                                    handleSelectedTags={this.handleSelectedTags}
-                                    selectedTags={this.state.selectedTags}
-                                    researchIsVisible={
-                                        this.state.researchIsVisible
-                                    }
-                                    handleresearchIsVisible={
-                                        this.handleresearchIsVisible
-                                    }
-                                />
-                            )}
-                        />
+                    <div className='flex-column height100'>
+                        <Header />
+                        <main className='flex1 overflow height100'>
+                            <Route
+                                exact
+                                path={`/profiles`}
+                                component={() => (
+                                    <Profile profile={this.state.profiles} />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path={`/profiles/modif`}
+                                component={() => (
+                                    <ModifProfileForm tags={this.state.tags} />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path={'/tags'}
+                                component={() => (
+                                    <Search
+                                        tags={this.state.tags}
+                                        handleSelectedTags={
+                                            this.handleSelectedTags
+                                        }
+                                        selectedTags={this.state.selectedTags}
+                                        researchIsVisible={
+                                            this.state.researchIsVisible
+                                        }
+                                        handleresearchIsVisible={
+                                            this.handleresearchIsVisible
+                                        }
+                                    />
+                                )}
+                            />
+                        </main>
                         <Navbar />
-                    </React.Fragment>
+                    </div>
                 </Switch>
             </div>
         )
