@@ -77,9 +77,9 @@ class App extends React.Component {
                         path='/login'
                         component={() => <LoginForm />}
                     />
-                    <div className='flex-column height100'>
+                    <div className='flex-column height-max-100'>
                         <Header />
-                        <main className='flex1 overflow height100'>
+                        <main className='flex1 overflow height-max-100'>
                             <Route
                                 exact
                                 path={`/profiles`}
