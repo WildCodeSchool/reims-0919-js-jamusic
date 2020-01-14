@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+//import './App.css'
 import axios from 'axios'
 import Search from './Components/Search'
 import Profile from './Components/Profile'
@@ -8,6 +8,8 @@ import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import './Components/Layout.css'
+import './Components/Space.css'
 
 class App extends React.Component {
     constructor(props) {
