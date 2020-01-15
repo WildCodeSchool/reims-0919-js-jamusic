@@ -1,6 +1,7 @@
 import React from 'react'
 //import './AccountRegister.css'
 import { Link } from 'react-router-dom'
+import logo from './images/logo.png'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className='height-max-100 flex-column flex-both:center'>
-                <h2 className='space:stack'>JaMusic</h2>
+                <img src={logo} alt='logo de JaMusic' className='space:stack' />
                 <form
                     onSubmit={this.submitForm}
                     className='space:stack space:inset-squish flex-column'
