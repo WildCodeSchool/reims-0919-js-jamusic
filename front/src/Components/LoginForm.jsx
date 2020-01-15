@@ -29,12 +29,10 @@ function LoginForm(props) {
                         required
                     />
                 </div>
-                <Link to={'/profiles'}>
-                    <input type='submit' value='Envoyer' />
-                </Link>
+                <button type='submit'>Envoyer</button>
             </form>
             <Link to='/register'>
-                Vous n'avez pas de comtpe ? Inscrivez-vous !
+                Vous n'avez pas de compte ? Inscrivez-vous !
             </Link>
         </div>
     )
