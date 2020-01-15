@@ -37,7 +37,11 @@ const AccountRegister = () => {
                 id='password2'
                 className='space:stack underlined no-focus'
             />
-            <button type='submit' id='submit'>
+            <button
+                type='submit'
+                id='submit'
+                className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color'
+            >
                 S'inscrire
             </button>
         </form>

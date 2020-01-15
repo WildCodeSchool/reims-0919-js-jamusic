@@ -55,7 +55,11 @@ function ModifProfileForm({ tags }) {
                     rows='1'
                     className='space-size space:stack'
                 ></textarea>
-                <input type='submit' id='submit' />
+                <input
+                    type='submit'
+                    id='submit'
+                    className='space-size:m space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color'
+                />
             </form>
         </div>
     )

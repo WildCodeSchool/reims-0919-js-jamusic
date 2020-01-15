@@ -82,7 +82,11 @@ class LoginForm extends React.Component {
                             className='underlined no-focus space:stack'
                         />
                     </div>
-                    <input type='submit' value='Envoyer' />
+                    <input
+                        type='submit'
+                        value='Se connecter'
+                        className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color'
+                    />
                 </form>
                 <Link to='/register'>
                     Vous n'avez pas de comtpe ? Inscrivez-vous !

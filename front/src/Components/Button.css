@@ -1,0 +1,20 @@
+.btn-animation:active {
+    transform: scale(1.1, 1.1);
+}
+
+.btn-angles {
+    border-radius: 30px;
+}
+
+.btn-shadow {
+    box-shadow: black 1px 1px 10px;
+}
+
+.btn-color {
+    background-color: var(--button-bg-color);
+    color: var(--button-font-color);
+}
+
+.btn-borderless {
+    border: 0;
+}
