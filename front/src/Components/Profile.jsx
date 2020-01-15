@@ -24,7 +24,7 @@ class Profile extends React.Component {
     render() {
         return (
             <div className=''>
-                <div key={test.id} className='flex-column'>
+                <div key={test.id} className='flex-column border'>
                     <img
                         src={
                             test.profile_pic
@@ -32,7 +32,7 @@ class Profile extends React.Component {
                                 : 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
                         }
                         alt='Personnal profile pic'
-                        className='profilePic'
+                        className='img-chip rescale40'
                     />
                     <div className='flex-column space:inset'>
                         <Link
