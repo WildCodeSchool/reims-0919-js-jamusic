@@ -40,3 +40,7 @@
 .overflow {
     overflow: auto;
 }
+
+.flex-self\:center {
+    align-self: center;
+}

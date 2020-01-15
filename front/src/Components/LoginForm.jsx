@@ -1,5 +1,5 @@
 import React from 'react'
-import './AccountRegister.css'
+//import './AccountRegister.css'
 import { Link } from 'react-router-dom'
 
 class LoginForm extends React.Component {
@@ -48,14 +48,16 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <h2>Connexion</h2>
+            <div className='height-max-100 flex-column flex-both:center'>
+                <h2 className='space:stack'>JaMusic</h2>
                 <form
                     onSubmit={this.submitForm}
-                    className='accountRegisterForm'
+                    className='space:stack space:inset-squish flex-column'
                 >
-                    <div>
-                        <label htmlFor='email'>Adresse Email</label>
+                    <div className='flex-column'>
+                        <label htmlFor='email' className='space:stack'>
+                            Email
+                        </label>
                         <input
                             type='email'
                             id='email'
@@ -63,10 +65,13 @@ class LoginForm extends React.Component {
                             onChange={this.onChange}
                             value={this.state.title}
                             required
+                            className='underlined no-focus space:stack'
                         />
                     </div>
-                    <div>
-                        <label htmlFor='password'>Mot de passe</label>
+                    <div className='flex-column'>
+                        <label htmlFor='password' className='space:stack'>
+                            Mot de passe
+                        </label>
                         <input
                             type='password'
                             id='password'
@@ -74,11 +79,10 @@ class LoginForm extends React.Component {
                             onChange={this.onChange}
                             value={this.state.password}
                             required
+                            className='underlined no-focus space:stack'
                         />
                     </div>
-                    <Link to={`/profiles`}>
-                        <input type='submit' value='Envoyer' />
-                    </Link>
+                    <input type='submit' value='Envoyer' />
                 </form>
                 <Link to='/register'>
                     Vous n'avez pas de comtpe ? Inscrivez-vous !

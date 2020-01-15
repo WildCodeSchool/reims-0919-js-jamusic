@@ -12,6 +12,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import './Components/Layout.css'
 import './Components/Space.css'
 import './Components/List.css'
+import './Components/Form.css'
 
 class App extends React.Component {
     constructor(props) {

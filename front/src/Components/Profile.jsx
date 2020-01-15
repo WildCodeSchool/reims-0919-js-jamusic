@@ -47,16 +47,16 @@ class Profile extends React.Component {
                         </p>
                         <h3 className='space:stack'>CENTRES D'INTERETS : </h3>
                         <div className='flex-row'>
-                            <p className='space-size:s space:inline space:stack'>
+                            <p className='space-size:s space:inline space:stack space:inset-squish'>
                                 {test.style}
                             </p>
-                            <p className='space-size:s space:inline space:stack'>
+                            <p className='space-size:s space:inline space:stack space:inset-squish'>
                                 {test.instrument}
                             </p>
-                            <p className='space-size:s space:inline space:stack'>
+                            <p className='space-size:s space:inline space:stack space:inset-squish'>
                                 {test.status}
                             </p>
-                            <p className='space-size:s space:inline space:stack'>
+                            <p className='space-size:s space:inline space:stack space:inset-squish'>
                                 {test.city}
                             </p>
                         </div>
