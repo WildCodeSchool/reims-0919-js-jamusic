@@ -49,8 +49,8 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div className='height-max-100 flex-column flex-both:center'>
-                <img src={logo} alt='logo de JaMusic' className='space:stack' />
+            <div className='height-max-100 flex-column flex-align:center'>
+                <img src={logo} alt='logo de JaMusic' className='rescale50' />
                 <form
                     onSubmit={this.submitForm}
                     className='space:stack space:inset-squish flex-column'

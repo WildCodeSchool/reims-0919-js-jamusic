@@ -15,6 +15,7 @@ import './Components/List.css'
 import './Components/Form.css'
 import './Components/Button.css'
 import './Components/Color.css'
+import './Components/Image.css'
 
 class App extends React.Component {
     constructor(props) {

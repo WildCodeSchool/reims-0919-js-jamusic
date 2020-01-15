@@ -1,0 +1,7 @@
+.rescale50 {
+    transform: scale(0.5, 0.5);
+}
+
+.img-chip {
+    border-radius: 50%;
+}
