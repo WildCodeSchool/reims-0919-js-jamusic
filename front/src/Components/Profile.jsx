@@ -1,6 +1,7 @@
 import React from 'react'
 import './Profile.css'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const test = {
     id: 1,
@@ -18,13 +19,34 @@ const test = {
 class Profile extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            id: this.props.id,
+            nickname: '',
+            firstname: '',
+            lastname: ''
+        }
+    }
+    componentDidMount() {
+        axios
+            .get(`http://localhost:3000/profiles/${this.state.id}`, {
+                params: {
+                    token: this.props.token
+                }
+            })
+            .then(data =>
+                this.setState({
+                    id: data.data[0].profile_id,
+                    nickname: data.data[0].nickname,
+                    firstname: data.data[0].firstname,
+                    lastname: data.data[0].lastname
+                })
+            )
     }
 
     render() {
         return (
             <div className='profilePage'>
-                <div key={test.id} className='profile'>
+                <div key={this.state.id} className='profile'>
                     <img
                         src={
                             test.profile_pic
@@ -35,7 +57,7 @@ class Profile extends React.Component {
                         className='profilePic'
                     />
                     <Link to='/profiles/modif'>Modifier</Link>
-                    <h3>@{this.props.profile[0].nickname}</h3>
+                    <h3>@{this.state.nickname}</h3>
                     <p>2B abonnés / 1k abonnements</p>
                     <h3>CENTRES D'INTERETS : </h3>
                     <p>
@@ -46,6 +68,8 @@ class Profile extends React.Component {
                 </div>
                 <div className='profilePost'>
                     <h2>DERNIERES PUBLICATIONS</h2>
+
+                    {}
                 </div>
             </div>
         )
