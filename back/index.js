@@ -78,17 +78,31 @@ app.route('/login').post((request, response) => {
 	}
 	if (username && password) {
 		connection.query(
-			'SELECT email, password FROM account WHERE email = ? AND password = ?',
-			[username, password],
-			(err, results) => {
-				if (results.length > 0) {
-					jwt.sign(payload, secret, (err, token) => {
-						response.status(201).json({
-							token
-						})
-					})
-				} else {
+			'SELECT email, password FROM account WHERE email = ?',
+			[username],
+			async (err, results) => {
+				if (err) {
+					response.status(500).send('Server error 500')
+				} else if (results.length === 0) {
 					response.send('Mauvais email ou mot de passe!')
+				} else {
+					try {
+						await bcrypt.compare(
+							password,
+							results[0].password,
+							(error, res) => {
+								if (res) {
+									jwt.sign(payload, secret, (err, token) => {
+										response.status(201).json({
+											token
+										})
+									})
+								}
+							}
+						)
+					} catch {
+						res.status(500).send('Erreur de pass')
+					}
 				}
 			}
 		)
