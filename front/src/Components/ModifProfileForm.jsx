@@ -1,5 +1,4 @@
 import React from 'react'
-//import './ModifProfileForm.css'
 import { Link } from 'react-router-dom'
 
 function ModifProfileForm({ tags }) {

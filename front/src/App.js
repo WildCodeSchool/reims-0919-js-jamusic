@@ -1,5 +1,4 @@
 import React from 'react'
-//import './App.css'
 import axios from 'axios'
 import Search from './Components/Search'
 import Profile from './Components/Profile'

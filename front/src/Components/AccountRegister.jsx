@@ -1,5 +1,4 @@
 import React from 'react'
-//import './AccountRegister.css'
 import logo from './images/logo.png'
 
 const AccountRegister = () => {
