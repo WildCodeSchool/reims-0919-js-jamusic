@@ -63,3 +63,32 @@ CREATE TABLE account
                     (profile_id) REFERENCES profile
                     (id)
 );
+
+
+                    CREATE TABLE profile_has_profile
+(
+    profile_ID INT NOT NULL,
+    profile2_ID INT NOT NULL,
+    CONSTRAINT PK_profile_has_profile PRIMARY KEY
+    (
+        profile_id,
+        profile_id
+    ),
+    FOREIGN KEY (profile_has_profile)
+)
+
+                    (
+    StudentID int NOT NULL,
+    ClassroomID int NOT NULL,
+    CONSTRAINT PK_StudentClassroom PRIMARY KEY
+                    (
+        StudentID,
+        ClassroomID
+    ),
+    FOREIGN KEY
+                    (StudentID) REFERENCES Students
+                    (StudentID),
+    FOREIGN KEY
+                    (ClassroomID) REFERENCES Classrooms
+                    (ClassroomID)
+)
