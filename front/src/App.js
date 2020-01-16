@@ -16,6 +16,7 @@ import './Components/Form.css'
 import './Components/Button.css'
 import './Components/Color.css'
 import './Components/Image.css'
+import './Components/Font.css'
 
 class App extends React.Component {
     constructor(props) {
@@ -62,7 +63,7 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div className='background-color'>
+            <div className='background-color body-font'>
                 <Switch>
                     <Route exact path='/'>
                         {this.state.isLoaded ? (

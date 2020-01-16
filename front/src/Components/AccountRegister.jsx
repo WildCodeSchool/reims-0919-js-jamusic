@@ -15,7 +15,7 @@ const AccountRegister = () => {
                     name='email'
                     id='email'
                     required
-                    className='space:stack underlined no-focus'
+                    className='space:stack underlined no-focus body-font'
                 />
                 <label htmlFor='password' className='space:stack'>
                     Mot de passe :
@@ -25,7 +25,7 @@ const AccountRegister = () => {
                     name='password'
                     id='password'
                     required
-                    className='space:stack underlined no-focus'
+                    className='space:stack underlined no-focus body-font'
                 />
                 <label htmlFor='password2' className='space:stack'>
                     Confirmation du mot de passe :
@@ -34,12 +34,12 @@ const AccountRegister = () => {
                     type='password'
                     name='password2'
                     id='password2'
-                    className='space:stack underlined no-focus'
+                    className='space:stack underlined no-focus body-font'
                 />
                 <button
                     type='submit'
                     id='submit'
-                    className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color'
+                    className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font'
                 >
                     S'inscrire
                 </button>

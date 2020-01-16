@@ -4,7 +4,7 @@ import React from 'react'
 const Search = props => {
     return (
         <div className='flex-column overflow:hidden'>
-            <h2 className='space-size:xl space:inset-squish'>
+            <h2 className='space-size:xl space:inset-squish title-font'>
                 Selectionnez vos tags:
             </h2>
             <ul>
@@ -17,8 +17,8 @@ const Search = props => {
                             }
                             className={
                                 props.selectedTags.includes(tag.instrument)
-                                    ? 'is_selected space-size:s space:stack style:none space:inset-squish'
-                                    : 'space-size:s space:stack style:none space:inset-squish'
+                                    ? 'is_selected space-size:s space:stack style:none space:inset-squish tags-font'
+                                    : 'space-size:s space:stack style:none space:inset-squish tags-font'
                             }
                         >{`#${tag.instrument}`}</li>
                     )

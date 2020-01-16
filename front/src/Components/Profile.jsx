@@ -32,13 +32,13 @@ class Profile extends React.Component {
                         <div className='flex-row'>
                             <div className=''>
                                 <div className='flex-column space:inset'>
-                                    <h2 className='space:stack title-color'>
+                                    <h2 className='space:stack title-color title-font'>
                                         @{test.nickname}
                                     </h2>
                                     <p className='space-size:s space:stack'>
                                         2B abonnés / 1k abonnements
                                     </p>
-                                    <h3 className='space:stack'>
+                                    <h3 className='space:stack title-font'>
                                         CENTRES D'INTERETS :{' '}
                                     </h3>
                                 </div>
@@ -84,7 +84,7 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className=''>
-                    <h2 className='flex-column space:inset'>
+                    <h2 className='flex-column space:inset title-font'>
                         DERNIERES PUBLICATIONS
                     </h2>
                     <p>

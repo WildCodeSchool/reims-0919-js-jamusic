@@ -66,7 +66,7 @@ class LoginForm extends React.Component {
                             onChange={this.onChange}
                             value={this.state.title}
                             required
-                            className='underlined no-focus space:stack'
+                            className='underlined no-focus space:stack body-font'
                         />
                     </div>
                     <div className='flex-column'>
@@ -80,13 +80,13 @@ class LoginForm extends React.Component {
                             onChange={this.onChange}
                             value={this.state.password}
                             required
-                            className='underlined no-focus space:stack'
+                            className='underlined no-focus space:stack body-font'
                         />
                     </div>
                     <input
                         type='submit'
                         value='Se connecter'
-                        className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color'
+                        className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font'
                     />
                 </form>
                 <Link to='/register'>
