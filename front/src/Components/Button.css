@@ -18,3 +18,7 @@
 .btn-borderless {
     border: 0;
 }
+
+.is_selected {
+    transform: scale(1.2, 1.2);
+}

@@ -17,8 +17,8 @@ const Search = props => {
                             }
                             className={
                                 props.selectedTags.includes(tag.instrument)
-                                    ? 'is_selected space-size:s space:stack style:none'
-                                    : 'not_selected space-size:s space:stack style:none'
+                                    ? 'is_selected space-size:s space:stack style:none space:inset-squish'
+                                    : 'space-size:s space:stack style:none space:inset-squish'
                             }
                         >{`#${tag.instrument}`}</li>
                     )

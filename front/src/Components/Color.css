@@ -6,6 +6,7 @@
     --button-font-color: #ffffff;
     --shadow-color: #6e7079;
     --profile-bg-color: #eeefff;
+    --selected: #9042d4;
 }
 
 .background-color {
@@ -18,4 +19,8 @@
 
 .profile-bg-color {
     background-color: var(--profile-bg-color);
+}
+
+.is_selected {
+    color: var(--selected);
 }
