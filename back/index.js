@@ -31,11 +31,13 @@ app.get('/', (request, response) => {
 
 app.route('/register').post(async (request, response) => {
 	try {
-		const formData = request.body
+		const salt = await bcrypt.genSalt(10)
+		const hashedPassword = await bcrypt.hash(request.body.password, salt)
+		const user = { email: request.body.email, password: hashedPassword }
 
 		connection.query(
 			'SELECT email FROM account WHERE email = ?',
-			formData.email,
+			user.email,
 			(err, results) => {
 				if (err) {
 					response.status(500).send('Problème inscription')
@@ -44,14 +46,14 @@ app.route('/register').post(async (request, response) => {
 				} else {
 					connection.query(
 						'INSERT INTO account SET ?',
-						formData,
+						user,
 						(err, results) => {
 							if (err) {
 								response
 									.status(500)
 									.send("Erreur pendant l'inscription.")
 							} else {
-								jwt.sign(formData, secret, (err, token) => {
+								jwt.sign(user.email, secret, (err, token) => {
 									response.json({
 										token: token
 									})
@@ -63,7 +65,7 @@ app.route('/register').post(async (request, response) => {
 			}
 		)
 	} catch {
-		res.status(500).send()
+		response.status(500).send()
 	}
 })
 // End of register route
