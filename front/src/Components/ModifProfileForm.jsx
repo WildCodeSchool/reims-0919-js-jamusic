@@ -13,9 +13,9 @@ function ModifProfileForm({ tags }) {
                     type='text'
                     name='nickname'
                     id='nickname'
-                    value='Asomar'
+                    placeholder='Asomar'
                     required
-                    className='space:size space:stack'
+                    className='space:size space:stack underlined no-focus'
                 />
                 <label htmlFor='profile_pic' className='space-size space:stack'>
                     Photo de profil :
@@ -53,7 +53,7 @@ function ModifProfileForm({ tags }) {
                     id='bio'
                     cols='30'
                     rows='1'
-                    className='space-size space:stack'
+                    className='space-size space:stack underlined no-focus'
                 ></textarea>
                 <input
                     type='submit'
