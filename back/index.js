@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const secret = require('./secret')
+const bcrypt = require('bcrypt')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -28,37 +29,44 @@ app.get('/', (request, response) => {
 	response.send('Welcome to jaMusic Server')
 })
 
-app.route('/register').post((request, response) => {
-	const formData = request.body
-	connection.query(
-		'SELECT email FROM account WHERE email = ?',
-		formData.email,
-		(err, results) => {
-			if (err) {
-				response.status(500).send('Problème inscription')
-			} else if (results.length !== 0) {
-				response.status(400).send('Email déjà utilisé')
-			} else {
-				connection.query(
-					'INSERT INTO account SET ?',
-					formData,
-					(err, results) => {
-						if (err) {
-							response
-								.status(500)
-								.send("Erreur pendant l'inscription.")
-						} else {
-							jwt.sign(formData, secret, (err, token) => {
-								response.json({
-									token: token
+app.route('/register').post(async (request, response) => {
+	try {
+		const salt = await bcrypt.genSalt(10)
+		const hashedPassword = await bcrypt.hash(request.body.password, salt)
+		const user = { email: request.body.email, password: hashedPassword }
+
+		connection.query(
+			'SELECT email FROM account WHERE email = ?',
+			user.email,
+			(err, results) => {
+				if (err) {
+					response.status(500).send('Problème inscription')
+				} else if (results.length !== 0) {
+					response.status(400).send('Email déjà utilisé')
+				} else {
+					connection.query(
+						'INSERT INTO account SET ?',
+						user,
+						(err, results) => {
+							if (err) {
+								response
+									.status(500)
+									.send("Erreur pendant l'inscription.")
+							} else {
+								jwt.sign(user.email, secret, (err, token) => {
+									response.json({
+										token: token
+									})
 								})
-							})
+							}
 						}
-					}
-				)
+					)
+				}
 			}
-		}
-	)
+		)
+	} catch {
+		response.status(500).send()
+	}
 })
 // End of register route
 
@@ -70,17 +78,31 @@ app.route('/login').post((request, response) => {
 	}
 	if (username && password) {
 		connection.query(
-			'SELECT email, password FROM account WHERE email = ? AND password = ?',
-			[username, password],
-			(err, results) => {
-				if (results.length > 0) {
-					jwt.sign(payload, secret, (err, token) => {
-						response.status(201).json({
-							token
-						})
-					})
-				} else {
+			'SELECT email, password FROM account WHERE email = ?',
+			[username],
+			async (err, results) => {
+				if (err) {
+					response.status(500).send('Server error 500')
+				} else if (results.length === 0) {
 					response.send('Mauvais email ou mot de passe!')
+				} else {
+					try {
+						await bcrypt.compare(
+							password,
+							results[0].password,
+							(error, res) => {
+								if (res) {
+									jwt.sign(payload, secret, (err, token) => {
+										response.status(201).json({
+											token
+										})
+									})
+								}
+							}
+						)
+					} catch {
+						res.status(500).send('Erreur de pass')
+					}
 				}
 			}
 		)
