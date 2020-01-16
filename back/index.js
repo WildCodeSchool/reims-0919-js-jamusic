@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const secret = require('./secret')
+const bcrypt = require('bcrypt')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -28,37 +29,42 @@ app.get('/', (request, response) => {
 	response.send('Welcome to jaMusic Server')
 })
 
-app.route('/register').post((request, response) => {
-	const formData = request.body
-	connection.query(
-		'SELECT email FROM account WHERE email = ?',
-		formData.email,
-		(err, results) => {
-			if (err) {
-				response.status(500).send('Problème inscription')
-			} else if (results.length !== 0) {
-				response.status(400).send('Email déjà utilisé')
-			} else {
-				connection.query(
-					'INSERT INTO account SET ?',
-					formData,
-					(err, results) => {
-						if (err) {
-							response
-								.status(500)
-								.send("Erreur pendant l'inscription.")
-						} else {
-							jwt.sign(formData, secret, (err, token) => {
-								response.json({
-									token: token
+app.route('/register').post(async (request, response) => {
+	try {
+		const formData = request.body
+
+		connection.query(
+			'SELECT email FROM account WHERE email = ?',
+			formData.email,
+			(err, results) => {
+				if (err) {
+					response.status(500).send('Problème inscription')
+				} else if (results.length !== 0) {
+					response.status(400).send('Email déjà utilisé')
+				} else {
+					connection.query(
+						'INSERT INTO account SET ?',
+						formData,
+						(err, results) => {
+							if (err) {
+								response
+									.status(500)
+									.send("Erreur pendant l'inscription.")
+							} else {
+								jwt.sign(formData, secret, (err, token) => {
+									response.json({
+										token: token
+									})
 								})
-							})
+							}
 						}
-					}
-				)
+					)
+				}
 			}
-		}
-	)
+		)
+	} catch {
+		res.status(500).send()
+	}
 })
 // End of register route
 
