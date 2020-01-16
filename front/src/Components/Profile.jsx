@@ -24,43 +24,63 @@ class Profile extends React.Component {
     render() {
         return (
             <div className=''>
-                <div key={test.id} className='flex-column border'>
-                    <img
-                        src={
-                            test.profile_pic
-                                ? test.profile_pic
-                                : 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
-                        }
-                        alt='Personnal profile pic'
-                        className='img-chip rescale40'
-                    />
-                    <div className='flex-column space:inset'>
-                        <Link
-                            to='/profiles/modif'
-                            className='space-size:s space:stack'
-                        >
-                            Modifier
-                        </Link>
-                        <h3 className='space:stack'>@{test.nickname}</h3>
-                        <p className='space-size:s space:stack'>
-                            2B abonnés / 1k abonnements
-                        </p>
-                        <h3 className='space:stack'>CENTRES D'INTERETS : </h3>
+                <div className='space-between'>
+                    <div
+                        key={test.id}
+                        className=' flex-column border profile-bg-color'
+                    >
                         <div className='flex-row'>
-                            <p className='space-size:s space:inline space:stack space:inset-squish'>
-                                {test.style}
-                            </p>
-                            <p className='space-size:s space:inline space:stack space:inset-squish'>
-                                {test.instrument}
-                            </p>
-                            <p className='space-size:s space:inline space:stack space:inset-squish'>
-                                {test.status}
-                            </p>
-                            <p className='space-size:s space:inline space:stack space:inset-squish'>
-                                {test.city}
-                            </p>
+                            <div className=''>
+                                <div className='flex-column space:inset'>
+                                    <h2 className='space:stack title-color'>
+                                        @{test.nickname}
+                                    </h2>
+                                    <p className='space-size:s space:stack'>
+                                        2B abonnés / 1k abonnements
+                                    </p>
+                                    <h3 className='space:stack'>
+                                        CENTRES D'INTERETS :{' '}
+                                    </h3>
+                                </div>
+                                <div className='flex-column'>
+                                    <div className='flex-row'>
+                                        <p className='space-size:s space:inline space:stack space:inset-squish'>
+                                            {test.style}
+                                        </p>
+                                        <p className='space-size:s space:inline space:stack space:inset-squish'>
+                                            {test.instrument}
+                                        </p>
+                                        <p className='space-size:s space:inline space:stack space:inset-squish'>
+                                            {test.status}
+                                        </p>
+                                        <p className='space-size:s space:inline space:stack space:inset-squish'>
+                                            {test.city}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex-column'>
+                                <img
+                                    src={
+                                        test.profile_pic
+                                            ? test.profile_pic
+                                            : 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
+                                    }
+                                    alt='Personnal profile pic'
+                                    className='img-chip width100 space:stack'
+                                />
+                                <Link
+                                    to='/profiles/modif'
+                                    className='space-size:s space:inset-squish space:stack'
+                                >
+                                    Modifier
+                                </Link>
+                            </div>
                         </div>
-                        <p className='space:inset-squish'>{test.bio}</p>
+
+                        <p className='space:inset-squish space:stack'>
+                            {test.bio}
+                        </p>
                     </div>
                 </div>
                 <div className=''>
