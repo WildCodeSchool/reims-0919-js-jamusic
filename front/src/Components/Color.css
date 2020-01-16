@@ -1,8 +1,21 @@
 :root {
-    --background-color: ;
-    --paragraph-color: ;
+    --background-color: #ffffff;
     --title-color: #9042d4;
-    --border-color: #000000;
+    --border-color: #7956ed;
     --button-bg-color: #9042d4;
-    --button-font-color: white;
+    --button-font-color: #ffffff;
+    --shadow-color: #6e7079;
+    --profile-bg-color: #eeefff;
+}
+
+.background-color {
+    background-color: var(--background-color);
+}
+
+.title-color {
+    color: var(--title-color);
+}
+
+.profile-bg-color {
+    background-color: var(--profile-bg-color);
 }

@@ -44,3 +44,7 @@
 .flex-self\:center {
     align-self: center;
 }
+
+.space-between {
+    justify-content: space-between;
+}

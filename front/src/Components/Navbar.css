@@ -2,8 +2,8 @@
     width: 25%;
 }
 .border {
-    border-top: black 1px solid;
-    box-shadow: black 1px 1px 10px;
+    border-top: var(--border-color) 1px solid;
+    box-shadow: var(--shadow-color) 1px 1px 10px;
 }
 
 .icon-zone {
@@ -11,6 +11,14 @@
 }
 
 .borderHead {
-    border-bottom: black 1px solid;
-    box-shadow: black 1px 1px 10px;
+    border-bottom: var(--border-color) 1px solid;
+    box-shadow: var(--shadow-color) 1px 1px 10px;
+}
+
+.nav-icon-color {
+    color: var(--button-bg-color);
+}
+
+.nav-icon-color:active {
+    color: var(--background-color);
 }

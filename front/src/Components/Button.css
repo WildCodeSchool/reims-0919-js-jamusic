@@ -7,7 +7,7 @@
 }
 
 .btn-shadow {
-    box-shadow: black 1px 1px 10px;
+    box-shadow: var(--shadow-color) 1px 1px 10px;
 }
 
 .btn-color {
