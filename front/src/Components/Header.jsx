@@ -4,7 +4,9 @@ import React from 'react'
 function Header() {
     return (
         <div className='borderHead width100'>
-            <h2 className='space-size:l space:inset-squish'>JaMusic</h2>
+            <h1 className='space-size:l space:inset-squish title-color'>
+                JaMusic
+            </h1>
         </div>
     )
 }

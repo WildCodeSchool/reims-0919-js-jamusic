@@ -19,28 +19,28 @@ const Navbar = () => {
                 <FontAwesomeIcon
                     icon='scroll'
                     size='lg'
-                    className='icon-zone'
+                    className='icon-zone nav-icon-color'
                 />
             </Link>
             <Link to='/tags'>
                 <FontAwesomeIcon
                     icon='tags'
                     size='lg'
-                    className='width25 icon-zone'
+                    className='icon-zone nav-icon-color'
                 />
             </Link>
             <Link to='/profiles'>
                 <FontAwesomeIcon
                     icon='user'
                     size='lg'
-                    className='width25 icon-zone'
+                    className='icon-zone nav-icon-color'
                 />
             </Link>
             <Link to=''>
                 <FontAwesomeIcon
                     icon='comment-dots'
                     size='lg'
-                    className='width25 icon-zone'
+                    className='icon-zone nav-icon-color'
                 />
             </Link>
         </div>

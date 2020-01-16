@@ -62,7 +62,7 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div className='App'>
+            <div className='background-color'>
                 <Switch>
                     <Route exact path='/'>
                         {this.state.isLoaded ? (
