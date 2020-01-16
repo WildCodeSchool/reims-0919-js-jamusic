@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from './images/logo.png'
 
 const AccountRegister = () => {
+    const [password, setPassword] = useState()
+    const [passwordCheck, setPasswordCheck] = useState()
+
+    const handleForm = e => {
+        if (password === passwordCheck) {
+            alert('les mots de passe correspondent')
+        } else {
+            e.preventDefault()
+            alert('Les mots de passe ne correspondent pas')
+        }
+    }
     return (
         <div className='height-max-100 flex-column flex-align:center'>
             <img src={logo} alt='logo de JaMusic' className='rescale50' />
-            <form method='post' className='flex-column'>
+            <form
+                onSubmit={handleForm}
+                action='http://localhost:3000/register'
+                method='post'
+                className='flex-column'
+            >
                 <label htmlFor='email' className='space:stack'>
                     Adresse mail :
                 </label>
@@ -24,16 +40,18 @@ const AccountRegister = () => {
                     name='password'
                     id='password'
                     required
+                    onInput={e => setPassword(e.target.value)}
                     className='space:stack underlined no-focus body-font'
                 />
-                <label htmlFor='password2' className='space:stack'>
+                <label htmlFor='passwordCheck' className='space:stack'>
                     Confirmation du mot de passe :
                 </label>
                 <input
                     type='password'
-                    name='password2'
-                    id='password2'
+                    name='passwordCheck'
+                    id='passwordCheck'
                     className='space:stack underlined no-focus body-font'
+                    onInput={e => setPasswordCheck(e.target.value)}
                 />
                 <button
                     type='submit'

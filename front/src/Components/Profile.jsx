@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Space.css'
+import axios from 'axios'
 
 const test = {
     id: 1,
@@ -18,7 +19,28 @@ const test = {
 class Profile extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            id: this.props.id,
+            nickname: '',
+            firstname: '',
+            lastname: ''
+        }
+    }
+    componentDidMount() {
+        axios
+            .get(`http://localhost:3000/profiles/${this.state.id}`, {
+                params: {
+                    token: this.props.token
+                }
+            })
+            .then(data =>
+                this.setState({
+                    id: data.data[0].profile_id,
+                    nickname: data.data[0].nickname,
+                    firstname: data.data[0].firstname,
+                    lastname: data.data[0].lastname
+                })
+            )
     }
 
     render() {
@@ -26,14 +48,14 @@ class Profile extends React.Component {
             <div className=''>
                 <div className='space-between'>
                     <div
-                        key={test.id}
+                        key={this.state.id}
                         className=' flex-column border profile-bg-color'
                     >
                         <div className='flex-row'>
                             <div className=''>
                                 <div className='flex-column space:inset'>
                                     <h2 className='space:stack title-color title-font'>
-                                        @{test.nickname}
+                                        @{this.state.nickname}
                                     </h2>
                                     <p className='space-size:s space:stack'>
                                         2B abonnés / 1k abonnements
