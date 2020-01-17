@@ -1,6 +1,6 @@
 import React from 'react'
-import './Profile.css'
 import { Link } from 'react-router-dom'
+import './Space.css'
 import axios from 'axios'
 
 const test = {
@@ -45,31 +45,81 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <div className='profilePage'>
-                <div key={this.state.id} className='profile'>
-                    <img
-                        src={
-                            test.profile_pic
-                                ? test.profile_pic
-                                : 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
-                        }
-                        alt='Personnal profile pic'
-                        className='profilePic'
-                    />
-                    <Link to='/profiles/modif'>Modifier</Link>
-                    <h3>@{this.state.nickname}</h3>
-                    <p>2B abonnés / 1k abonnements</p>
-                    <h3>CENTRES D'INTERETS : </h3>
-                    <p>
-                        {test.style} / {test.instrument} / {test.status}
-                    </p>
-                    <p>{test.city}</p>
-                    <p>{test.bio}</p>
-                </div>
-                <div className='profilePost'>
-                    <h2>DERNIERES PUBLICATIONS</h2>
+            <div className=''>
+                <div className='space-between'>
+                    <div
+                        key={this.state.id}
+                        className=' flex-column border profile-bg-color'
+                    >
+                        <div className='flex-row'>
+                            <div className=''>
+                                <div className='flex-column space:inset'>
+                                    <h2 className='space:stack title-color title-font'>
+                                        @{this.state.nickname}
+                                    </h2>
+                                    <p className='space-size:s space:stack'>
+                                        2B abonnés / 1k abonnements
+                                    </p>
+                                    <h3 className='space:stack title-font'>
+                                        CENTRES D'INTERETS :{' '}
+                                    </h3>
+                                </div>
+                                <div className='flex-column'>
+                                    <div className='flex-row'>
+                                        <p className='space-size:s space:inline space:stack space:inset-squish'>
+                                            {test.style}
+                                        </p>
+                                        <p className='space-size:s space:inline space:stack space:inset-squish'>
+                                            {test.instrument}
+                                        </p>
+                                        <p className='space-size:s space:inline space:stack space:inset-squish'>
+                                            {test.status}
+                                        </p>
+                                        <p className='space-size:s space:inline space:stack space:inset-squish'>
+                                            {test.city}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex-column'>
+                                <img
+                                    src={
+                                        test.profile_pic
+                                            ? test.profile_pic
+                                            : 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
+                                    }
+                                    alt='Personnal profile pic'
+                                    className='img-chip width100 space:stack'
+                                />
+                                <Link
+                                    to='/profiles/modif'
+                                    className='space-size:s space:inset-squish space:stack'
+                                >
+                                    Modifier
+                                </Link>
+                            </div>
+                        </div>
 
-                    {}
+                        <p className='space:inset-squish space:stack'>
+                            {test.bio}
+                        </p>
+                    </div>
+                </div>
+                <div className=''>
+                    <h2 className='flex-column space:inset title-font'>
+                        DERNIERES PUBLICATIONS
+                    </h2>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing
+                        elit. Maiores sapiente esse ipsum quisquam quibusdam,
+                        beatae aperiam tempore quo alias exercitationem dolorum,
+                        quaerat eos magni voluptates at veniam odio obcaecati
+                        culpa! Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Ullam laboriosam itaque,
+                        necessitatibus expedita aut voluptatibus ad animi totam
+                        quod ratione quaerat nisi doloribus quidem non assumenda
+                        quam atque! Ex, in?
+                    </p>
                 </div>
             </div>
         )

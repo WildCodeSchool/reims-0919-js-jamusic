@@ -7,25 +7,41 @@ import {
     faScroll
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Navbar.css'
 import { Link } from 'react-router-dom'
+import './Navbar.css'
 
 library.add(faCommentDots, faTags, faUser, faScroll)
 
 const Navbar = () => {
     return (
-        <div className='Navbar'>
-            <Link to='' className='navlink'>
-                <FontAwesomeIcon icon='scroll' className='navIcon' />
+        <div className='flex-row width100 space-around border'>
+            <Link to=''>
+                <FontAwesomeIcon
+                    icon='scroll'
+                    size='lg'
+                    className='icon-zone nav-icon-color'
+                />
             </Link>
-            <Link to='/tags' className='navlink'>
-                <FontAwesomeIcon icon='tags' className='navIcon' />
+            <Link to='/tags'>
+                <FontAwesomeIcon
+                    icon='tags'
+                    size='lg'
+                    className='icon-zone nav-icon-color'
+                />
             </Link>
-            <Link to='/profiles' className='navlink'>
-                <FontAwesomeIcon icon='user' className='navIcon' />
+            <Link to='/profiles'>
+                <FontAwesomeIcon
+                    icon='user'
+                    size='lg'
+                    className='icon-zone nav-icon-color'
+                />
             </Link>
-            <Link to='' className='navlink'>
-                <FontAwesomeIcon icon='comment-dots' className='navIcon' />
+            <Link to=''>
+                <FontAwesomeIcon
+                    icon='comment-dots'
+                    size='lg'
+                    className='icon-zone nav-icon-color'
+                />
             </Link>
         </div>
     )

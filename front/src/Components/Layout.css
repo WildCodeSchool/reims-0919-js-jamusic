@@ -1,0 +1,50 @@
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-align\:center {
+    align-items: center;
+}
+
+.flex-justify\:center {
+    justify-content: center;
+}
+
+.flex-both\:center {
+    align-items: center;
+    justify-content: center;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.height-max-100 {
+    max-height: 100vh;
+    height: 100vh;
+}
+
+.flex1 {
+    flex: 1;
+}
+.overflow {
+    overflow: auto;
+}
+
+.flex-self\:center {
+    align-self: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}

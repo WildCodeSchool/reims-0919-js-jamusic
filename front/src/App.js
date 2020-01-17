@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css'
 import axios from 'axios'
 import Search from './Components/Search'
 import Profile from './Components/Profile'
@@ -8,7 +7,16 @@ import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
 import PostDisplay from './Components/PostDisplay'
+import Header from './Components/Header'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import './Components/Layout.css'
+import './Components/Space.css'
+import './Components/List.css'
+import './Components/Form.css'
+import './Components/Button.css'
+import './Components/Color.css'
+import './Components/Image.css'
+import './Components/Font.css'
 
 class App extends React.Component {
 	constructor(props) {
@@ -89,7 +97,7 @@ class App extends React.Component {
 	}
 	render() {
 		return (
-			<div className='App'>
+			<div className='background-color body-font'>
 				<Switch>
 					<Route exact path='/'>
 						{this.state.isLoaded ? (
@@ -118,55 +126,57 @@ class App extends React.Component {
 							)
 						}
 					/>
-					<React.Fragment>
-						<Route
-							exact
-							path={`/profiles/:id`}
-							render={() =>
-								this.state.isConnected ? (
-									<Profile
-										{...this.props}
-										{...this.state}
-										submitForm={this.submitForm}
-										onChangeEmail={this.onChangeEmail}
-										onChangePassword={this.onChangePassword}
+					<div className='flex-column height-max-100'>
+						<Header />
+						<main className='flex1 overflow height-max-100'>
+							<Route
+								exact
+								path={`/profiles/:id`}
+								render={() =>
+									this.state.isConnected ? (
+										<Profile
+											{...this.props}
+											{...this.state}
+											submitForm={this.submitForm}
+											onChangeEmail={this.onChangeEmail}
+											onChangePassword={
+												this.onChangePassword
+											}
+										/>
+									) : (
+										<Redirect to='/login/' />
+									)
+								}
+							/>
+							<Route
+								exact
+								path={`/profiles/modif`}
+								component={() => (
+									<ModifProfileForm {...this.state} />
+								)}
+							/>
+							<Route
+								exact
+								path={'/tags'}
+								component={() => (
+									<Search
+										tags={this.state.tags}
+										handleSelectedTags={
+											this.handleSelectedTags
+										}
+										selectedTags={this.state.selectedTags}
+										researchIsVisible={
+											this.state.researchIsVisible
+										}
+										handleresearchIsVisible={
+											this.handleresearchIsVisible
+										}
 									/>
-								) : (
-									<Redirect to='/login/' />
-								)
-							}
-						/>
-						<Route
-							exact
-							path={`/profiles/modif`}
-							component={() => (
-								<ModifProfileForm {...this.state} />
-							)}
-						/>
-						<Route
-							exact
-							path={'/tags'}
-							component={() => (
-								<Search
-									tags={this.state.tags}
-									handleSelectedTags={this.handleSelectedTags}
-									selectedTags={this.state.selectedTags}
-									researchIsVisible={
-										this.state.researchIsVisible
-									}
-									handleresearchIsVisible={
-										this.handleresearchIsVisible
-									}
-								/>
-							)}
-						/>
-						<Route
-							exact
-							path={'/displayTest'}
-							component={() => <PostDisplay />}
-						/>
+								)}
+							/>
+						</main>
 						<Navbar />
-					</React.Fragment>
+					</div>
 				</Switch>
 			</div>
 		)
