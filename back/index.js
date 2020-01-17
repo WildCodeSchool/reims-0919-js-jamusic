@@ -53,11 +53,15 @@ app.route('/register').post(async (request, response) => {
 									.status(500)
 									.send("Erreur pendant l'inscription.")
 							} else {
+<<<<<<< HEAD
 								jwt.sign(user.email, secret, (err, token) => {
 									response.json({
 										token: token
 									})
 								})
+=======
+								response.redirect('http://localhost:3001/login')
+>>>>>>> fed647f250ad4f4f39a29f0e9abf585c148b94ee
 							}
 						}
 					)

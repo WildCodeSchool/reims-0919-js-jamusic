@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
+import PostDisplay from './PostDisplay'
 
 const test = {
 	id: 1,
@@ -91,12 +92,12 @@ class Profile extends React.Component {
 									alt='Personnal profile pic'
 									className='img-chip width100 space:stack'
 								/>
-								<Link
+								{/*<Link
 									to='/profiles/modif'
 									className='space-size:s space:inset-squish space:stack'
 								>
 									Modifier
-								</Link>
+								</Link>*/}
 							</div>
 						</div>
 
@@ -109,17 +110,7 @@ class Profile extends React.Component {
 					<h2 className='flex-column space:inset title-font'>
 						DERNIERES PUBLICATIONS
 					</h2>
-					<p>
-						Lorem ipsum dolor sit, amet consectetur adipisicing
-						elit. Maiores sapiente esse ipsum quisquam quibusdam,
-						beatae aperiam tempore quo alias exercitationem dolorum,
-						quaerat eos magni voluptates at veniam odio obcaecati
-						culpa! Lorem ipsum dolor sit amet consectetur
-						adipisicing elit. Ullam laboriosam itaque,
-						necessitatibus expedita aut voluptatibus ad animi totam
-						quod ratione quaerat nisi doloribus quidem non assumenda
-						quam atque! Ex, in?
-					</p>
+					<PostDisplay />
 				</div>
 			</div>
 		)

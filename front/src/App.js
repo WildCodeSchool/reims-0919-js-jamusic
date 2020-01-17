@@ -6,6 +6,10 @@ import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
+<<<<<<< HEAD
+=======
+import PostDisplay from './Components/PostDisplay'
+>>>>>>> fed647f250ad4f4f39a29f0e9abf585c148b94ee
 import Header from './Components/Header'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import './Components/Layout.css'
@@ -99,11 +103,7 @@ class App extends React.Component {
 			<div className='background-color body-font'>
 				<Switch>
 					<Route exact path='/'>
-						{this.state.isLoaded ? (
-							<Redirect to='/login' />
-						) : (
-							<h1>JaMusic</h1>
-						)}
+						<Redirect to='/login' />
 					</Route>
 					<Route
 						exact
