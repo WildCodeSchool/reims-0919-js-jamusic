@@ -23,6 +23,7 @@ function LoginForm(props) {
 						onChange={props.onChangeEmail}
 						value={props.email}
 						required
+						className='underlined no-focus space:stack body-font'
 					/>
 				</div>
 				<div className='flex-column'>
