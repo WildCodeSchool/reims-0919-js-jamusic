@@ -100,11 +100,7 @@ class App extends React.Component {
 			<div className='background-color body-font'>
 				<Switch>
 					<Route exact path='/'>
-						{this.state.isLoaded ? (
-							<Redirect to='/login' />
-						) : (
-							<h1>JaMusic</h1>
-						)}
+						<Redirect to='/login' />
 					</Route>
 					<Route
 						exact
