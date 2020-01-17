@@ -1,0 +1,14 @@
+.underlined {
+	border-top-style: none;
+	border-left-style: none;
+	border-right-style: none;
+	border-bottom: solid black 1px;
+}
+
+.no-focus {
+	outline: none;
+}
+
+.shadow {
+	box-shadow: black 1px 1px 10px;
+}

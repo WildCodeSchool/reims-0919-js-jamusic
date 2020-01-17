@@ -1,0 +1,18 @@
+:root {
+	--font-title: 'Josefin Sans', sans-serif;
+	--font-body: 'Lato', sans-serif;
+	--font-tags: 'Fira sans', sans-serif;
+}
+
+.body-font {
+	font-family: var(--font-body);
+	font-size: 1.1rem;
+}
+
+.title-font {
+	font-family: var(--font-title);
+}
+
+.tags-font {
+	font-family: var(--font-tags);
+}

@@ -22,7 +22,8 @@ const PostDisplay = () => {
 				background: 'pink',
 				borderRadius: '10px'
 			}}
-			className='PostDisplay'>
+			className='PostDisplay'
+		>
 			<div
 				style={{
 					display: 'flex',
@@ -31,7 +32,8 @@ const PostDisplay = () => {
 					margin: '3%',
 					justifyContent: 'space-between'
 				}}
-				className='postHeader'>
+				className='postHeader'
+			>
 				<img
 					style={{
 						maxWidth: '64px',
@@ -46,7 +48,8 @@ const PostDisplay = () => {
 						overflowWrap: 'anywhere',
 						margin: 'auto',
 						textAlign: 'center'
-					}}>
+					}}
+				>
 					{' '}
 					{data.nickname}
 				</p>
@@ -55,13 +58,15 @@ const PostDisplay = () => {
 						overflowWrap: 'anywhere',
 						margin: 'auto',
 						textAlign: 'center'
-					}}>
+					}}
+				>
 					{data.tags}
 				</p>
 			</div>
 			<div
 				style={{ display: 'flex', flexDirection: 'column' }}
-				className='postBody'>
+				className='postBody'
+			>
 				<img
 					style={{
 						maxWidth: '100%'
@@ -77,7 +82,8 @@ const PostDisplay = () => {
 						alignSelf: 'start',
 						textDecoration: 'none',
 						outline: '0'
-					}}>
+					}}
+				>
 					<span className='likesSymbol' role='img' aria-label='Likes'>
 						❤️
 					</span>{' '}

@@ -1,0 +1,58 @@
+:root {
+	--space-size--xs: calc(var(--space-size--m) / 4);
+	--space-size--s: calc(var(--space-size--m) / 2);
+	--space-size--m: 16px;
+	--space-size--l: calc(var(--space-size--m) * 2);
+	--space-size--xl: calc(var(--space-size--m) * 4);
+	--space-size: var(--space-size--m);
+}
+
+.space-size\:xs {
+	--space-size: var(--space-size--xs);
+}
+
+.space-size\:s {
+	--space-size: var(--space-size--s);
+}
+
+.space-size\:m {
+	--space-size: var(--space-size--m);
+}
+
+.space-size\:l {
+	--space-size: var(--space-size--l);
+}
+
+.space-size\:xl {
+	--space-size: var(--space-size--xl);
+}
+
+.space\:reset,
+.space\:stack,
+.space\:inset-stretch,
+.space\:inset-squish,
+.space\:inset,
+.space\:inline {
+	margin: 0;
+	padding: 0;
+}
+
+.space\:inline {
+	margin-right: var(--space-size);
+}
+
+.space\:inset {
+	padding: var(--space-size);
+}
+
+.space\:inset-squish {
+	padding: calc(var(--space-size) / 2) var(--space-size);
+}
+
+.space\:inset-stretch {
+	padding: calc(1.5 * var(--space-size)) var(--space-size);
+}
+
+.space\:stack {
+	margin-bottom: var(--space-size);
+}
