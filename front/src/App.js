@@ -6,10 +6,6 @@ import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
-<<<<<<< HEAD
-=======
-import PostDisplay from './Components/PostDisplay'
->>>>>>> fed647f250ad4f4f39a29f0e9abf585c148b94ee
 import Header from './Components/Header'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import './Components/Layout.css'

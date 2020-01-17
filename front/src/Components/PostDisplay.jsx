@@ -19,7 +19,7 @@ const PostDisplay = () => {
 				flexDirection: 'column',
 				width: '90%',
 				margin: '0 auto',
-				background: 'pink',
+				background: '#eeefff',
 				borderRadius: '10px'
 			}}
 			className='PostDisplay'
