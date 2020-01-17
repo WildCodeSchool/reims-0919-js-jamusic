@@ -6,11 +6,7 @@ import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
-<<<<<<< HEAD
 import Header from './Components/Header'
-=======
-import PostDisplay from './Components/PostDisplay'
->>>>>>> 49aa4db2ee265844e3dc47e0b49189a1702483d0
 import { Switch, Route, Redirect } from 'react-router-dom'
 import './Components/Layout.css'
 import './Components/Space.css'
@@ -91,99 +87,99 @@ class App extends React.Component {
 		this.setState({ researchIsVisible: !this.state.researchIsVisible })
 	}
 
-    handleSelectedTags(instrument) {
-        this.setState({
-            selectedTags: this.state.selectedTags.includes(instrument)
-                ? this.state.selectedTags.filter(tag => tag !== instrument)
-                : [...this.state.selectedTags, instrument]
-        })
-    }
-    render() {
-        return (
-            <div className='background-color body-font'>
-                <Switch>
-                    <Route exact path='/'>
-                        {this.state.isLoaded ? (
-                            <Redirect to='/login' />
-                        ) : (
-                            <h1>JaMusic</h1>
-                        )}
-                    </Route>
-                    <Route
-                        exact
-                        path='/register'
-                        component={() => <AccountRegister />}
-                    />
-                    <Route
-                        path='/login'
-                        render={() =>
-                            this.state.isConnected !== true ? (
-                                <LoginForm
-                                    {...this.state}
-                                    submitForm={this.submitForm}
-                                    onChangeEmail={this.onChangeEmail}
-                                    onChangePassword={this.onChangePassword}
-                                />
-                            ) : (
-                                <Redirect to='/profiles/:id' />
-                            )
-                        }
-                    />
-                    <div className='flex-column height-max-100'>
-                        <Header />
-                        <main className='flex1 overflow height-max-100'>
-                            <Route
-                                exact
-                                path={`/profiles/:id`}
-                                render={() =>
-                                    this.state.isConnected ? (
-                                        <Profile
-                                            {...this.props}
-                                            {...this.state}
-                                            submitForm={this.submitForm}
-                                            onChangeEmail={this.onChangeEmail}
-                                            onChangePassword={
-                                                this.onChangePassword
-                                            }
-                                        />
-                                    ) : (
-                                        <Redirect to='/login/' />
-                                    )
-                                }
-                            />
-                            <Route
-                                exact
-                                path={`/profiles/modif`}
-                                component={() => (
-                                    <ModifProfileForm {...this.state} />
-                                )}
-                            />
-                            <Route
-                                exact
-                                path={'/tags'}
-                                component={() => (
-                                    <Search
-                                        tags={this.state.tags}
-                                        handleSelectedTags={
-                                            this.handleSelectedTags
-                                        }
-                                        selectedTags={this.state.selectedTags}
-                                        researchIsVisible={
-                                            this.state.researchIsVisible
-                                        }
-                                        handleresearchIsVisible={
-                                            this.handleresearchIsVisible
-                                        }
-                                    />
-                                )}
-                            />
-                        </main>
-                        <Navbar />
-                    </div>
-                </Switch>
-            </div>
-        )
-    }
+	handleSelectedTags(instrument) {
+		this.setState({
+			selectedTags: this.state.selectedTags.includes(instrument)
+				? this.state.selectedTags.filter(tag => tag !== instrument)
+				: [...this.state.selectedTags, instrument]
+		})
+	}
+	render() {
+		return (
+			<div className='background-color body-font'>
+				<Switch>
+					<Route exact path='/'>
+						{this.state.isLoaded ? (
+							<Redirect to='/login' />
+						) : (
+							<h1>JaMusic</h1>
+						)}
+					</Route>
+					<Route
+						exact
+						path='/register'
+						component={() => <AccountRegister />}
+					/>
+					<Route
+						path='/login'
+						render={() =>
+							this.state.isConnected !== true ? (
+								<LoginForm
+									{...this.state}
+									submitForm={this.submitForm}
+									onChangeEmail={this.onChangeEmail}
+									onChangePassword={this.onChangePassword}
+								/>
+							) : (
+								<Redirect to='/profiles/:id' />
+							)
+						}
+					/>
+					<div className='flex-column height-max-100'>
+						<Header />
+						<main className='flex1 overflow height-max-100'>
+							<Route
+								exact
+								path={`/profiles/:id`}
+								render={() =>
+									this.state.isConnected ? (
+										<Profile
+											{...this.props}
+											{...this.state}
+											submitForm={this.submitForm}
+											onChangeEmail={this.onChangeEmail}
+											onChangePassword={
+												this.onChangePassword
+											}
+										/>
+									) : (
+										<Redirect to='/login/' />
+									)
+								}
+							/>
+							<Route
+								exact
+								path={`/profiles/modif`}
+								component={() => (
+									<ModifProfileForm {...this.state} />
+								)}
+							/>
+							<Route
+								exact
+								path={'/tags'}
+								component={() => (
+									<Search
+										tags={this.state.tags}
+										handleSelectedTags={
+											this.handleSelectedTags
+										}
+										selectedTags={this.state.selectedTags}
+										researchIsVisible={
+											this.state.researchIsVisible
+										}
+										handleresearchIsVisible={
+											this.handleresearchIsVisible
+										}
+									/>
+								)}
+							/>
+						</main>
+						<Navbar />
+					</div>
+				</Switch>
+			</div>
+		)
+	}
 }
 
 export default App
