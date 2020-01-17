@@ -1,24 +1,24 @@
 .width25 {
-    width: 25%;
+	width: 25%;
 }
 .border {
-    border-top: var(--border-color) 1px solid;
-    box-shadow: var(--shadow-color) 1px 1px 10px;
+	border-top: var(--border-color) 1px solid;
+	box-shadow: var(--shadow-color) 1px 1px 10px;
 }
 
 .icon-zone {
-    padding: 2vh 25%;
+	padding: 2vh 25%;
 }
 
 .borderHead {
-    border-bottom: var(--border-color) 1px solid;
-    box-shadow: var(--shadow-color) 1px 1px 10px;
+	border-bottom: var(--border-color) 1px solid;
+	box-shadow: var(--shadow-color) 1px 1px 10px;
 }
 
 .nav-icon-color {
-    color: var(--button-bg-color);
+	color: var(--button-bg-color);
 }
 
 .nav-icon-color:active {
-    color: var(--background-color);
+	color: var(--background-color);
 }

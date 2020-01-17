@@ -6,7 +6,11 @@ import AccountRegister from './Components/AccountRegister'
 import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
+<<<<<<< HEAD
 import Header from './Components/Header'
+=======
+import PostDisplay from './Components/PostDisplay'
+>>>>>>> 49aa4db2ee265844e3dc47e0b49189a1702483d0
 import { Switch, Route, Redirect } from 'react-router-dom'
 import './Components/Layout.css'
 import './Components/Space.css'
@@ -18,74 +22,74 @@ import './Components/Image.css'
 import './Components/Font.css'
 
 class App extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            researchIsVisible: false,
-            selectedTags: [],
-            isLoaded: false,
-            email: '',
-            password: '',
-            token: '',
-            isConnected: false,
-            id: null
-        }
-        this.handleSelectedTags = this.handleSelectedTags.bind(this)
-        this.handleresearchIsVisible = this.handleresearchIsVisible.bind(this)
-        this.submitForm = this.submitForm.bind(this)
-        this.onChangeEmail = this.onChangeEmail.bind(this)
-        this.onChangePassword = this.onChangePassword.bind(this)
-        this.getUserInfo = this.getUserInfo.bind(this)
-    }
+	constructor(props) {
+		super(props)
+		this.state = {
+			researchIsVisible: false,
+			selectedTags: [],
+			isLoaded: false,
+			email: '',
+			password: '',
+			token: '',
+			isConnected: false,
+			id: null
+		}
+		this.handleSelectedTags = this.handleSelectedTags.bind(this)
+		this.handleresearchIsVisible = this.handleresearchIsVisible.bind(this)
+		this.submitForm = this.submitForm.bind(this)
+		this.onChangeEmail = this.onChangeEmail.bind(this)
+		this.onChangePassword = this.onChangePassword.bind(this)
+		this.getUserInfo = this.getUserInfo.bind(this)
+	}
 
-    submitForm(e) {
-        e.preventDefault()
-        const url = 'http://localhost:3000/login'
+	submitForm(e) {
+		e.preventDefault()
+		const url = 'http://localhost:3000/login'
 
-        axios
-            .post(url, {
-                email: this.state.email,
-                password: this.state.password
-            })
-            .then(data =>
-                data.status === 201
-                    ? this.setState({
-                          token: data.data.token,
-                          isConnected: true
-                      })
-                    : alert('Mauvais identifiants')
-            )
-            .then(() => this.getUserInfo())
-            .catch(function(error) {
-                alert(error)
-            })
-    }
+		axios
+			.post(url, {
+				email: this.state.email,
+				password: this.state.password
+			})
+			.then(data =>
+				data.status === 201
+					? this.setState({
+							token: data.data.token,
+							isConnected: true
+					  })
+					: alert('Mauvais identifiants')
+			)
+			.then(() => this.getUserInfo())
+			.catch(function(error) {
+				alert(error)
+			})
+	}
 
-    getUserInfo = () => {
-        axios
-            .get('http://localhost:3000/profiles/:id', {
-                params: {
-                    token: this.state.token
-                }
-            })
-            .then(data => this.setState({ id: data.data[0].profile_id }))
-    }
+	getUserInfo = () => {
+		axios
+			.get('http://localhost:3000/profiles/:id', {
+				params: {
+					token: this.state.token
+				}
+			})
+			.then(data => this.setState({ id: data.data[0].profile_id }))
+	}
 
-    onChangeEmail(e) {
-        this.setState({
-            email: e.target.value
-        })
-    }
+	onChangeEmail(e) {
+		this.setState({
+			email: e.target.value
+		})
+	}
 
-    onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        })
-    }
+	onChangePassword(e) {
+		this.setState({
+			password: e.target.value
+		})
+	}
 
-    handleresearchIsVisible() {
-        this.setState({ researchIsVisible: !this.state.researchIsVisible })
-    }
+	handleresearchIsVisible() {
+		this.setState({ researchIsVisible: !this.state.researchIsVisible })
+	}
 
     handleSelectedTags(instrument) {
         this.setState({

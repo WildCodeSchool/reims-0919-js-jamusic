@@ -1,24 +1,24 @@
 .btn-animation:active {
-    transform: scale(1.1, 1.1);
+	transform: scale(1.1, 1.1);
 }
 
 .btn-angles {
-    border-radius: 30px;
+	border-radius: 30px;
 }
 
 .btn-shadow {
-    box-shadow: var(--shadow-color) 1px 1px 10px;
+	box-shadow: var(--shadow-color) 1px 1px 10px;
 }
 
 .btn-color {
-    background-color: var(--button-bg-color);
-    color: var(--button-font-color);
+	background-color: var(--button-bg-color);
+	color: var(--button-font-color);
 }
 
 .btn-borderless {
-    border: 0;
+	border: 0;
 }
 
 .is_selected {
-    transform: scale(1.2, 1.2);
+	transform: scale(1.2, 1.2);
 }
