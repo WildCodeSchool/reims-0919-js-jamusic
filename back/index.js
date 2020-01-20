@@ -146,10 +146,13 @@ app.route('/profiles/:id')
 		const param = request.query.token
 		const idProfile = request.params.id
 		jwt.verify(param, secret, (err, authData) => {
+			const userEmail = authData.iss
+			console.log(authData)
 			if (err) {
 				response.sendStatus(401)
 			} else {
 				connection.query(
+					//retrieve only id 1 because we are changing database, will be updated on next PR
 					`SELECT * FROM profile WHERE id = '${idProfile}'`,
 					[idProfile],
 					(err, results) => {
