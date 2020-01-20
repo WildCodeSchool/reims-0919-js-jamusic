@@ -122,7 +122,7 @@ app.route('/profiles').get((request, response) => {
 			response.sendStatus(401)
 		} else {
 			connection.query(
-				`SELECT profile_id FROM account WHERE email = '${userId}'`,
+				`SELECT id FROM account WHERE email = '${userId}'`,
 				[idProfile],
 				(err, results) => {
 					if (err) {
@@ -151,7 +151,7 @@ app.route('/profiles/:id')
 			} else {
 				connection.query(
 					//retrieve only id 1 because we are changing database, will be updated on next PR
-					`SELECT nickname, firstname, lastname FROM profile WHERE id = 1`,
+					`SELECT * FROM profile WHERE id = 1`,
 					[idProfile],
 					(err, results) => {
 						if (err) {
