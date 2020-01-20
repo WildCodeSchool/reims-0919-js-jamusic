@@ -35,10 +35,8 @@ class Profile extends React.Component {
 			})
 			.then(data =>
 				this.setState({
-					id: data.data[0].profile_id,
-					nickname: data.data[0].nickname,
-					firstname: data.data[0].firstname,
-					lastname: data.data[0].lastname
+					id: data.data[0].id,
+					nickname: data.data[0].nickname
 				})
 			)
 	}
