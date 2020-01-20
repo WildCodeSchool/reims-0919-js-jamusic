@@ -15,7 +15,7 @@ library.add(faCommentDots, faTags, faUser, faScroll)
 const Navbar = () => {
 	return (
 		<div className='flex-row width100 space-around border'>
-			<Link to=''>
+			<Link to='/feed'>
 				<FontAwesomeIcon
 					icon='scroll'
 					size='lg'

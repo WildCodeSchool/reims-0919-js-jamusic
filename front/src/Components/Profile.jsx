@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const test = {
 	id: 1,
-	profile_pic:
+	picture:
 		'https://i.pinimg.com/236x/01/ba/d2/01bad2f10881ae2319623e1b62450ff4--fan-art-wallpaper.jpg',
 	nickname: 'Ragsomar',
 	instrument: 'Guitare',
@@ -84,8 +84,8 @@ class Profile extends React.Component {
 							<div className='flex-column'>
 								<img
 									src={
-										test.profile_pic
-											? test.profile_pic
+										test.picture
+											? test.picture
 											: 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
 									}
 									alt='Personnal profile pic'

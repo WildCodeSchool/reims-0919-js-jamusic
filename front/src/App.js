@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
 import Header from './Components/Header'
 import ProfileCreation from './Components/ProfileCreation'
+import NewsFeed from './Components/NewsFeed'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import './Components/Layout.css'
 import './Components/Space.css'
@@ -129,6 +130,11 @@ class App extends React.Component {
 					<div className='flex-column height-max-100'>
 						<Header />
 						<main className='flex1 overflow height-max-100'>
+							<Route
+								exact
+								path={`/feed`}
+								component={() => <NewsFeed />}
+							/>
 							<Route
 								exact
 								path={`/profiles/:id`}
