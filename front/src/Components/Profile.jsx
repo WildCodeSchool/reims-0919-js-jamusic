@@ -3,6 +3,22 @@ import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
 
+<<<<<<< HEAD
+=======
+const test = {
+	id: 1,
+	picture:
+		'https://i.pinimg.com/236x/01/ba/d2/01bad2f10881ae2319623e1b62450ff4--fan-art-wallpaper.jpg',
+	nickname: 'Ragsomar',
+	instrument: 'Guitare',
+	style: 'Rock',
+	status: 'Amateur',
+	city: 'Reims',
+	bio:
+		'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti consectetur, architecto accusamus modi optio sunt qui at et incidunt quidem accusantium pariatur nobis, animi quis placeat earum amet quasi fugit.'
+}
+
+>>>>>>> dev
 class Profile extends React.Component {
 	constructor(props) {
 		super(props)
@@ -74,8 +90,13 @@ class Profile extends React.Component {
 							<div className='flex-column'>
 								<img
 									src={
+<<<<<<< HEAD
 										this.state.picture
 											? this.state.picture
+=======
+										test.picture
+											? test.picture
+>>>>>>> dev
 											: 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
 									}
 									alt='Personnal profile pic'

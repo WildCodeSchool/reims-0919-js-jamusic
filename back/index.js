@@ -152,8 +152,7 @@ app.route('/profiles/:id')
 				response.sendStatus(401)
 			} else {
 				connection.query(
-					//retrieve only id 1 because we are changing database, will be updated on next PR
-					`SELECT * FROM profile INNER JOIN account on email = '${userEmail}'`,
+					`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = '${idProfile}'`,
 					[idProfile],
 					(err, results) => {
 						if (err) {
