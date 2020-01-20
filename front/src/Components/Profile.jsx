@@ -28,6 +28,7 @@ class Profile extends React.Component {
 		}
 	}
 	componentDidMount() {
+		console.log(this.state.id)
 		axios
 			.get(`http://localhost:3000/profiles/${this.state.id}`, {
 				params: {
