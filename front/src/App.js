@@ -7,6 +7,7 @@ import LoginForm from './Components/LoginForm'
 import Navbar from './Components/Navbar'
 import ModifProfileForm from './Components/ModifProfileForm'
 import Header from './Components/Header'
+import ProfileCreation from './Components/ProfileCreation'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import './Components/Layout.css'
 import './Components/Space.css'
@@ -174,6 +175,11 @@ class App extends React.Component {
 										}
 									/>
 								)}
+							/>
+							<Route
+								exact
+								path={'/creationtest'}
+								component={() => <ProfileCreation />}
 							/>
 						</main>
 						<Navbar />
