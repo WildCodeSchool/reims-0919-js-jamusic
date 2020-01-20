@@ -22,8 +22,9 @@ class Profile extends React.Component {
 		this.state = {
 			id: this.props.id,
 			nickname: '',
-			firstname: '',
-			lastname: ''
+			picture: '',
+			biography: '',
+			ville: ''
 		}
 	}
 	componentDidMount() {
@@ -33,11 +34,13 @@ class Profile extends React.Component {
 					token: this.props.token
 				}
 			})
-			.then(data =>
-				this.setState({
-					id: data.data[0].id,
-					nickname: data.data[0].nickname
-				})
+			.then(
+				data => console.log(data)
+				// this.setState({
+				// 	id: data.data[0].id,
+				// 	nickname: data.data[0].nickname,
+
+				// })
 			)
 	}
 

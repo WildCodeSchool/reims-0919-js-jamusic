@@ -68,8 +68,9 @@ class App extends React.Component {
 					token: this.state.token
 				}
 			})
-			.then(data =>
-				this.setState({ id: data.data[0].id, isLoaded: true })
+			.then(
+				data => console.log(data)
+				//this.setState({ id: data.data[0].id, isLoaded: true })
 			)
 	}
 
