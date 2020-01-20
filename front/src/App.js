@@ -68,7 +68,7 @@ class App extends React.Component {
 					token: this.state.token
 				}
 			})
-			.then(data => this.setState({ id: data.data[0].profile_id }))
+			.then(data => console.log(data)) //this.setState({ id: data.data[0].id }))
 	}
 
 	onChangeEmail(e) {
@@ -99,11 +99,7 @@ class App extends React.Component {
 			<div className='background-color body-font'>
 				<Switch>
 					<Route exact path='/'>
-						{this.state.isLoaded ? (
-							<Redirect to='/login' />
-						) : (
-							<h1>JaMusic</h1>
-						)}
+						<Redirect to='/login' />
 					</Route>
 					<Route
 						exact
