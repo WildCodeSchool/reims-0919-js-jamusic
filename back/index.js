@@ -74,7 +74,7 @@ app.route('/login').post((request, response) => {
 	const username = request.body.email
 	const password = request.body.password
 	const payload = {
-		sub: username
+		iss: username
 	}
 	if (username && password) {
 		connection.query(
@@ -117,12 +117,13 @@ app.route('/profiles').get((request, response) => {
 	const param = request.query.token
 	const idProfile = request.params.id
 	jwt.verify(param, secret, (err, authData) => {
-		const userId = authData.sub
+		const userEmail = authData.iss
+		console.log(authData)
 		if (err) {
 			response.sendStatus(401)
 		} else {
 			connection.query(
-				`SELECT profile_id FROM account WHERE email = '${userId}'`,
+				`SELECT profile.id FROM profile INNER JOIN account ON email = '${userEmail}' WHERE profile.account_id  = account.id`,
 				[idProfile],
 				(err, results) => {
 					if (err) {
@@ -145,13 +146,14 @@ app.route('/profiles/:id')
 		const param = request.query.token
 		const idProfile = request.params.id
 		jwt.verify(param, secret, (err, authData) => {
-			const userId = authData.sub
+			const userEmail = authData.iss
+			console.log(authData)
 			if (err) {
 				response.sendStatus(401)
 			} else {
 				connection.query(
 					//retrieve only id 1 because we are changing database, will be updated on next PR
-					`SELECT nickname, firstname, lastname FROM profile WHERE id = 1`,
+					`SELECT * FROM profile WHERE id = '${idProfile}'`,
 					[idProfile],
 					(err, results) => {
 						if (err) {
