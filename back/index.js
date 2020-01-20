@@ -123,7 +123,7 @@ app.route('/profiles').get((request, response) => {
 			response.sendStatus(401)
 		} else {
 			connection.query(
-				`SELECT id FROM profile INNER JOIN acount on email = '${userEmail}'`,
+				`SELECT profile.id FROM profile INNER JOIN account on email = '${userEmail}'`,
 				[idProfile],
 				(err, results) => {
 					if (err) {

@@ -63,12 +63,14 @@ class App extends React.Component {
 
 	getUserInfo = () => {
 		axios
-			.get('http://localhost:3000/profiles/:id', {
+			.get('http://localhost:3000/profiles/', {
 				params: {
 					token: this.state.token
 				}
 			})
-			.then(data => console.log(data)) //this.setState({ id: data.data[0].id }))
+			.then(data =>
+				this.setState({ id: data.data[0].id, isLoaded: true })
+			)
 	}
 
 	onChangeEmail(e) {
@@ -109,7 +111,7 @@ class App extends React.Component {
 					<Route
 						path='/login'
 						render={() =>
-							this.state.isConnected !== true ? (
+							this.state.isLoaded !== true ? (
 								<LoginForm
 									{...this.state}
 									submitForm={this.submitForm}
@@ -117,7 +119,7 @@ class App extends React.Component {
 									onChangePassword={this.onChangePassword}
 								/>
 							) : (
-								<Redirect to='/profiles/:id' />
+								<Redirect to={`/profiles/${this.state.id}`} />
 							)
 						}
 					/>
