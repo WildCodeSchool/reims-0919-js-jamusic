@@ -15,7 +15,7 @@ class Profile extends React.Component {
 		}
 	}
 	componentDidMount() {
-		url=`http://localhost:3000/profiles/${this.state.id}`
+		url = `http://localhost:3000/profiles/${this.state.id}`
 		axios
 			.get(url, {
 				params: {
@@ -32,7 +32,6 @@ class Profile extends React.Component {
 				})
 			)
 	}
-		axios.get()
 
 	render() {
 		return (
