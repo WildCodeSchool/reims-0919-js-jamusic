@@ -15,7 +15,7 @@ class Profile extends React.Component {
 		}
 	}
 	componentDidMount() {
-		url = `http://localhost:3000/profiles/${this.state.id}`
+		const url = `http://localhost:3000/profiles/${this.state.id}`
 		axios
 			.get(url, {
 				params: {
