@@ -92,12 +92,12 @@ class Profile extends React.Component {
 									alt='Personnal profile pic'
 									className='img-chip width100 space:stack'
 								/>
-								{/*<Link
+								<Link
 									to='/profiles/modif'
 									className='space-size:s space:inset-squish space:stack'
 								>
 									Modifier
-								</Link>*/}
+								</Link>
 							</div>
 						</div>
 

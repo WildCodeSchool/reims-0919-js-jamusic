@@ -16,6 +16,7 @@ import './Components/Button.css'
 import './Components/Color.css'
 import './Components/Image.css'
 import './Components/Font.css'
+import PostDisplay from './Components/PostDisplay'
 
 class App extends React.Component {
 	constructor(props) {
@@ -124,6 +125,11 @@ class App extends React.Component {
 					<div className='flex-column height-max-100'>
 						<Header />
 						<main className='flex1 overflow height-max-100'>
+							<Route
+								exact
+								path={`/feed`}
+								component={() => <PostDisplay />}
+							/>
 							<Route
 								exact
 								path={`/profiles/:id`}

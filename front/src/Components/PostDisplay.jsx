@@ -7,7 +7,7 @@ const data = {
 	media:
 		'https://kaamelott.hypnoweb.net/photo/119/divers/ok/guide_des_episodes/Couvertures/livre_i/des_nouvelles_du_monde.jpg',
 	likes: 69420,
-	comment:
+	text:
 		'Sur une échelle de 3 à 11, entre 3 et 5, ce barde est ignoble, entre 5 et 6, il nous fait saigner les oreilles, entre 6 et 8, on peut plus vivre autour de lui, et entre 8 et 11, on sort les tomates pourries pour lui lancer et le faire fuir de la taverne.'
 }
 
@@ -89,9 +89,7 @@ const PostDisplay = () => {
 					</span>{' '}
 					{data.likes}
 				</button>
-				<p style={{ padding: '3%', textAlign: 'left' }}>
-					{data.comment}
-				</p>
+				<p style={{ padding: '3%', textAlign: 'left' }}>{data.text}</p>
 			</div>
 		</div>
 	)
