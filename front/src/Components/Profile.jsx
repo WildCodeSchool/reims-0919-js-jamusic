@@ -3,19 +3,6 @@ import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
 
-const test = {
-	id: 1,
-	profile_pic:
-		'https://i.pinimg.com/236x/01/ba/d2/01bad2f10881ae2319623e1b62450ff4--fan-art-wallpaper.jpg',
-	nickname: 'Ragsomar',
-	instrument: 'Guitare',
-	style: 'Rock',
-	status: 'Amateur',
-	city: 'Reims',
-	bio:
-		'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti consectetur, architecto accusamus modi optio sunt qui at et incidunt quidem accusantium pariatur nobis, animi quis placeat earum amet quasi fugit.'
-}
-
 class Profile extends React.Component {
 	constructor(props) {
 		super(props)
@@ -28,22 +15,24 @@ class Profile extends React.Component {
 		}
 	}
 	componentDidMount() {
-		console.log(this.state.id)
+		url=`http://localhost:3000/profiles/${this.state.id}`
 		axios
-			.get(`http://localhost:3000/profiles/${this.state.id}`, {
+			.get(url, {
 				params: {
 					token: this.props.token
 				}
 			})
-			.then(
-				data => console.log(data)
-				// this.setState({
-				// 	id: data.data[0].id,
-				// 	nickname: data.data[0].nickname,
-
-				// })
+			.then(data =>
+				this.setState({
+					id: data.data[0].id,
+					nickname: data.data[0].nickname,
+					picture: data.data[0].picture,
+					biography: data.data[0].biography,
+					ville: data.data[0].ville
+				})
 			)
 	}
+		axios.get()
 
 	render() {
 		return (
@@ -69,16 +58,16 @@ class Profile extends React.Component {
 								<div className='flex-column'>
 									<div className='flex-row'>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											{test.style}
+											Tag
 										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											{test.instrument}
+											Tag
 										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											{test.status}
+											Tag
 										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											{test.city}
+											{this.state.ville}
 										</p>
 									</div>
 								</div>
@@ -86,8 +75,8 @@ class Profile extends React.Component {
 							<div className='flex-column'>
 								<img
 									src={
-										test.profile_pic
-											? test.profile_pic
+										this.state.picture
+											? this.state.picture
 											: 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
 									}
 									alt='Personnal profile pic'
@@ -103,7 +92,7 @@ class Profile extends React.Component {
 						</div>
 
 						<p className='space:inset-squish space:stack'>
-							{test.bio}
+							{this.state.biography}
 						</p>
 					</div>
 				</div>
