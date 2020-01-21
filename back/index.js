@@ -120,7 +120,6 @@ app.route('/profiles')
 		const param = request.query.token
 		const idProfile = request.params.id
 		jwt.verify(param, secret, (err, authData) => {
-			console.log(authData)
 			const userId = authData.sub
 			if (err) {
 				response.sendStatus(401)
