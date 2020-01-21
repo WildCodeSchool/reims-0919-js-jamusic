@@ -52,7 +52,7 @@ class App extends React.Component {
 			.then(data =>
 				data.status === 201
 					? this.setState({
-							token: data.data.token,
+							token: `Bearer ${data.data.token}`,
 							isConnected: true
 					  })
 					: alert('Mauvais identifiants')
@@ -66,8 +66,8 @@ class App extends React.Component {
 	getUserInfo = () => {
 		axios
 			.get('http://localhost:3000/profiles/', {
-				params: {
-					token: this.state.token
+				headers: {
+					Authorization: this.state.token
 				}
 			})
 			.then(data =>

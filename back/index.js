@@ -12,19 +12,19 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
-function verifyToken(req, res, next) {
-	const bearerHeader = req.headers.authorization
+function verifyToken(request, response, next) {
+	const bearerHeader = request.headers.authorization
 	if (typeof bearerHeader !== 'undefined') {
 		const bearer = bearerHeader.split(' ') // split bearerHeader in a new Array
 		const bearerToken = bearer[1] // store index 1 of the newly created array in a new variable bearToken
 		try {
-			req.authData = jwt.verify(bearerToken, secret)
+			request.authData = jwt.verify(bearerToken, secret)
 			next() // step to the next middleware
 		} catch (err) {
-			res.sendStatus(401)
+			response.sendStatus(401)
 		}
 	} else {
-		res.sendStatus(403)
+		response.sendStatus(403)
 	}
 }
 
@@ -119,34 +119,28 @@ app.route('/login').post((request, response) => {
 
 // To retrieve user ID only
 app.route('/profiles')
-	.get((request, response) => {
-		const param = request.query.token
-		const idProfile = request.params.id
-		jwt.verify(param, secret, (err, authData) => {
-			const userId = authData.sub
-			if (err) {
-				response.sendStatus(401)
-			} else {
-				connection.query(
-					'SELECT profile.id FROM profile WHERE profile.account_id = ?',
-					[userId],
-					(err, results) => {
-						if (err) {
-							console.log(err)
-							response
-								.status(500)
-								.send('Erreur dans la récupération du profile')
-						} else {
-							response.json(results)
-						}
-					}
-				)
+	.get(verifyToken, (request, response) => {
+		const idProfile = request.authData.sub
+		console.log(idProfile)
+		connection.query(
+			'SELECT profile.id FROM profile WHERE profile.account_id = ?',
+			[idProfile],
+			(err, results) => {
+				if (err) {
+					console.log(err)
+					response
+						.status(500)
+						.send('Erreur dans la récupération du profile')
+				} else {
+					response.json(results)
+				}
 			}
-		})
+		)
 	})
 
 	// Will be used to create your profile
-	.post((request, response) => {
+	.post(verifyToken, (request, response) => {
+		const idProfile = request.authData.sub
 		const formData = request.body
 		connection.query(
 			'INSERT INTO profile SET ?;',
@@ -164,34 +158,28 @@ app.route('/profiles')
 
 // To retrieve all datas from user (except password)
 app.route('/profiles/:id')
-	.get((request, response) => {
-		const param = request.query.token
-		const idProfile = request.params.id
-		jwt.verify(param, secret, (err, authData) => {
-			if (err) {
-				response.sendStatus(401)
-			} else {
-				connection.query(
-					`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
-					[idProfile],
-					(err, results) => {
-						if (err) {
-							console.log(err)
-							response
-								.status(500)
-								.send('Erreur dans la récupération du profile')
-						} else {
-							response.json(results)
-						}
-					}
-				)
+	.get(verifyToken, (request, response) => {
+		const idProfile = request.authData.sub
+		console.log(idProfile)
+		connection.query(
+			`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
+			[idProfile],
+			(err, results) => {
+				if (err) {
+					console.log(err)
+					response
+						.status(500)
+						.send('Erreur dans la récupération du profile')
+				} else {
+					response.json(results)
+				}
 			}
-		})
+		)
 	})
 
 	// Will be used to edit the profile (<Modify /> component in react)
-	.put((request, response) => {
-		const idProfile = request.params.id
+	.put(verifyToken, (request, response) => {
+		const idProfile = request.authData.sub
 		const formData = request.body
 		connection.query(
 			'UPDATE profile SET ? WHERE id = ?',
@@ -208,33 +196,27 @@ app.route('/profiles/:id')
 	})
 // End of profiles ID routes
 
-app.route('/:id/feed').get((request, response) => {
-	const param = request.query.token
-	const idProfile = request.params.id
-	jwt.verify(param, secret, (err, authData) => {
-		if (err) {
-			response.sendStatus(401)
-		} else {
-			connection.query(
-				'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id',
-				[idProfile],
-				(err, results) => {
-					if (err) {
-						console.log(err)
-						response
-							.status(500)
-							.send('Erreur dans la récupération du profile')
-					} else {
-						response.json(results)
-					}
-				}
-			)
+app.route('/:id/feed').get(verifyToken, (request, response) => {
+	const idProfile = request.authData.sub
+	connection.query(
+		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id',
+		[idProfile],
+		(err, results) => {
+			if (err) {
+				console.log(err)
+				response
+					.status(500)
+					.send('Erreur dans la récupération du profile')
+			} else {
+				response.json(results)
+			}
 		}
-	})
+	)
 })
 
-app.route('/tags').get((request, response) => {
-	connection.query('SELECT * from tag', (err, results) => {
+app.route('/tags').get(verifyToken, (request, response) => {
+	const idProfile = request.authData.sub
+	connection.query('SELECT * from tag', idProfile, (err, results) => {
 		if (err) {
 			response.status(500).send('Error retrieving tags')
 		} else {
