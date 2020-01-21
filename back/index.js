@@ -91,7 +91,7 @@ app.route('/login').post((request, response) => {
 							(error, res) => {
 								if (res) {
 									jwt.sign(
-										{ sub: results.id },
+										{ sub: results.insertId },
 										secret,
 										(err, token) => {
 											response.status(201).json({
