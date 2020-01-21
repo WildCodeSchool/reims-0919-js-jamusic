@@ -73,12 +73,10 @@ app.route('/register').post(async (request, response) => {
 app.route('/login').post((request, response) => {
 	const username = request.body.email
 	const password = request.body.password
-	const payload = {
-		iss: username
-	}
+
 	if (username && password) {
 		connection.query(
-			'SELECT email, password FROM account WHERE email = ?',
+			'SELECT id, email, password FROM account WHERE email = ?',
 			[username],
 			async (err, results) => {
 				if (err) {
@@ -92,11 +90,15 @@ app.route('/login').post((request, response) => {
 							results[0].password,
 							(error, res) => {
 								if (res) {
-									jwt.sign(payload, secret, (err, token) => {
-										response.status(201).json({
-											token
-										})
-									})
+									jwt.sign(
+										{ sub: results.id },
+										secret,
+										(err, token) => {
+											response.status(201).json({
+												token
+											})
+										}
+									)
 								}
 							}
 						)
