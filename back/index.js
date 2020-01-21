@@ -73,12 +73,10 @@ app.route('/register').post(async (request, response) => {
 app.route('/login').post((request, response) => {
 	const username = request.body.email
 	const password = request.body.password
-	const payload = {
-		iss: username
-	}
+
 	if (username && password) {
 		connection.query(
-			'SELECT email, password FROM account WHERE email = ?',
+			'SELECT id, email, password FROM account WHERE email = ?',
 			[username],
 			async (err, results) => {
 				if (err) {
@@ -92,11 +90,15 @@ app.route('/login').post((request, response) => {
 							results[0].password,
 							(error, res) => {
 								if (res) {
-									jwt.sign(payload, secret, (err, token) => {
-										response.status(201).json({
-											token
-										})
-									})
+									jwt.sign(
+										{ sub: results[0].id },
+										secret,
+										(err, token) => {
+											response.status(201).json({
+												token
+											})
+										}
+									)
 								}
 							}
 						)
@@ -118,13 +120,13 @@ app.route('/profiles')
 		const param = request.query.token
 		const idProfile = request.params.id
 		jwt.verify(param, secret, (err, authData) => {
-			const userEmail = authData.iss
+			const userId = authData.sub
 			if (err) {
 				response.sendStatus(401)
 			} else {
 				connection.query(
-					`SELECT profile.id FROM profile INNER JOIN account ON email = ? WHERE profile.account_id  = account.id`,
-					[idProfile],
+					'SELECT profile.id FROM profile WHERE profile.account_id = ?',
+					[userId],
 					(err, results) => {
 						if (err) {
 							console.log(err)
