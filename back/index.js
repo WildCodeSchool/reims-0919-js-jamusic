@@ -36,8 +36,8 @@ app.route('/register').post(async (request, response) => {
 		const user = { email: request.body.email, password: hashedPassword }
 
 		connection.query(
-			'SELECT email FROM account WHERE email = ?',
-			user.email,
+			`SELECT email FROM account WHERE email = ?`,
+			[user.email],
 			(err, results) => {
 				if (err) {
 					response.status(500).send('Problème inscription')
@@ -55,7 +55,7 @@ app.route('/register').post(async (request, response) => {
 							} else {
 								jwt.sign(user.email, secret, (err, token) => {
 									response.json({
-										token: token
+										token
 									})
 								})
 							}
@@ -113,46 +113,17 @@ app.route('/login').post((request, response) => {
 // end of login route
 
 // To retrieve user ID only
-app.route('/profiles').get((request, response) => {
-	const param = request.query.token
-	const idProfile = request.params.id
-	jwt.verify(param, secret, (err, authData) => {
-		const userEmail = authData.iss
-		console.log(authData)
-		if (err) {
-			response.sendStatus(401)
-		} else {
-			connection.query(
-				`SELECT profile.id FROM profile INNER JOIN account ON email = '${userEmail}' WHERE profile.account_id  = account.id`,
-				[idProfile],
-				(err, results) => {
-					if (err) {
-						console.log(err)
-						response
-							.status(500)
-							.send('Erreur dans la récupération du profile')
-					} else {
-						response.json(results)
-					}
-				}
-			)
-		}
-	})
-})
-
-// To retrieve all datas from user (except password)
-app.route('/profiles/:id')
+app.route('/profiles')
 	.get((request, response) => {
 		const param = request.query.token
 		const idProfile = request.params.id
 		jwt.verify(param, secret, (err, authData) => {
 			const userEmail = authData.iss
-			console.log(authData)
 			if (err) {
 				response.sendStatus(401)
 			} else {
 				connection.query(
-					`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = '${idProfile}'`,
+					`SELECT profile.id FROM profile INNER JOIN account ON email = ? WHERE profile.account_id  = account.id`,
 					[idProfile],
 					(err, results) => {
 						if (err) {
@@ -169,7 +140,7 @@ app.route('/profiles/:id')
 		})
 	})
 
-	// Wille be used to create your profile
+	// Will be used to create your profile
 	.post((request, response) => {
 		const formData = request.body
 		connection.query(
@@ -185,6 +156,34 @@ app.route('/profiles/:id')
 			}
 		)
 	})
+
+// To retrieve all datas from user (except password)
+app.route('/profiles/:id')
+	.get((request, response) => {
+		const param = request.query.token
+		const idProfile = request.params.id
+		jwt.verify(param, secret, (err, authData) => {
+			if (err) {
+				response.sendStatus(401)
+			} else {
+				connection.query(
+					`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
+					[idProfile],
+					(err, results) => {
+						if (err) {
+							console.log(err)
+							response
+								.status(500)
+								.send('Erreur dans la récupération du profile')
+						} else {
+							response.json(results)
+						}
+					}
+				)
+			}
+		})
+	})
+
 	// Will be used to edit the profile (<Modify /> component in react)
 	.put((request, response) => {
 		const idProfile = request.params.id
