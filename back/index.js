@@ -90,6 +90,7 @@ app.route('/login').post((request, response) => {
 							results[0].password,
 							(error, res) => {
 								if (res) {
+									console.log(results)
 									jwt.sign(
 										{ sub: results.insertId },
 										secret,
@@ -120,13 +121,14 @@ app.route('/profiles')
 		const param = request.query.token
 		const idProfile = request.params.id
 		jwt.verify(param, secret, (err, authData) => {
-			const userEmail = authData.iss
+			console.log(authData)
+			const userId = authData.sub
 			if (err) {
 				response.sendStatus(401)
 			} else {
 				connection.query(
-					`SELECT profile.id FROM profile INNER JOIN account ON email = ? WHERE profile.account_id  = account.id`,
-					[idProfile],
+					'SELECT profile.id FROM profile WHERE profile.account_id = ?',
+					[userId],
 					(err, results) => {
 						if (err) {
 							console.log(err)
