@@ -90,9 +90,8 @@ app.route('/login').post((request, response) => {
 							results[0].password,
 							(error, res) => {
 								if (res) {
-									console.log(results)
 									jwt.sign(
-										{ sub: results.insertId },
+										{ sub: results[0].id },
 										secret,
 										(err, token) => {
 											response.status(201).json({
