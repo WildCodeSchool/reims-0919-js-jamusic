@@ -14,12 +14,15 @@ app.use(cors())
 
 function verifyToken(req, res, next) {
 	const bearerHeader = req.headers.authorization
-	console.log(bearerHeader)
 	if (typeof bearerHeader !== 'undefined') {
 		const bearer = bearerHeader.split(' ') // split bearerHeader in a new Array
 		const bearerToken = bearer[1] // store index 1 of the newly created array in a new variable bearToken
-		req.token = bearerToken
-		next() // step to the next middleware
+		try {
+			req.authData = jwt.verify(bearerToken, secret)
+			next() // step to the next middleware
+		} catch (err) {
+			res.sendStatus(401)
+		}
 	} else {
 		res.sendStatus(403)
 	}
