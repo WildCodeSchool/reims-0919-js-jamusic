@@ -1,13 +1,6 @@
 import React from 'react'
 
-const PostDisplay = ({
-	profile_pic,
-	nickname,
-	tags,
-	media,
-	likes,
-	comment
-}) => {
+const PostDisplay = ({ profile_pic, nickname, tags, media, likes, text }) => {
 	return (
 		<div
 			className=''
@@ -30,6 +23,7 @@ const PostDisplay = ({
 				}}
 				className='postHeader'
 			>
+				{}
 				<img
 					style={{
 						maxWidth: '64px',
@@ -85,7 +79,7 @@ const PostDisplay = ({
 					</span>{' '}
 					{likes}
 				</button>
-				<p style={{ padding: '3%', textAlign: 'left' }}>{comment}</p>
+				<p style={{ padding: '3%', textAlign: 'left' }}>{text}</p>
 			</div>
 		</div>
 	)

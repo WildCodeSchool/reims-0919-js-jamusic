@@ -130,8 +130,10 @@ class App extends React.Component {
 						<main className='flex1 overflow height-max-100'>
 							<Route
 								exact
-								path={`/feed`}
-								component={() => <NewsFeed />}
+								path={`/${this.state.id}/feed`}
+								component={() => (
+									<NewsFeed {...this.state} {...this.props} />
+								)}
 							/>
 							<Route
 								exact
@@ -184,7 +186,7 @@ class App extends React.Component {
 								component={() => <ProfileCreation />}
 							/>
 						</main>
-						<Navbar />
+						<Navbar {...this.state} />
 					</div>
 				</Switch>
 			</div>
