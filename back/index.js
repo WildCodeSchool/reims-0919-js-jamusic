@@ -36,8 +36,8 @@ app.route('/register').post(async (request, response) => {
 		const user = { email: request.body.email, password: hashedPassword }
 
 		connection.query(
-			`SELECT email FROM account WHERE email = ${user.email}`,
-			user.email,
+			`SELECT email FROM account WHERE email = ?`,
+			[user.email],
 			(err, results) => {
 				if (err) {
 					response.status(500).send('Problème inscription')
@@ -123,7 +123,7 @@ app.route('/profiles')
 				response.sendStatus(401)
 			} else {
 				connection.query(
-					`SELECT profile.id FROM profile INNER JOIN account ON email = '${userEmail}' WHERE profile.account_id  = account.id`,
+					`SELECT profile.id FROM profile INNER JOIN account ON email = ? WHERE profile.account_id  = account.id`,
 					[idProfile],
 					(err, results) => {
 						if (err) {
@@ -167,7 +167,7 @@ app.route('/profiles/:id')
 				response.sendStatus(401)
 			} else {
 				connection.query(
-					`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = '${idProfile}'`,
+					`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
 					[idProfile],
 					(err, results) => {
 						if (err) {
