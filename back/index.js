@@ -203,8 +203,32 @@ app.route('/profiles/:id')
 			}
 		)
 	})
-
 // End of profiles ID routes
+
+app.route('/:id/feed').get((request, response) => {
+	const param = request.query.token
+	const idProfile = request.params.id
+	jwt.verify(param, secret, (err, authData) => {
+		if (err) {
+			response.sendStatus(401)
+		} else {
+			connection.query(
+				'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id',
+				[idProfile],
+				(err, results) => {
+					if (err) {
+						console.log(err)
+						response
+							.status(500)
+							.send('Erreur dans la récupération du profile')
+					} else {
+						response.json(results)
+					}
+				}
+			)
+		}
+	})
+})
 
 app.route('/tags').get((request, response) => {
 	connection.query('SELECT * from tag', (err, results) => {
