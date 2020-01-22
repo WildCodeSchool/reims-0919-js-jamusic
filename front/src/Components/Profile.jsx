@@ -18,8 +18,8 @@ class Profile extends React.Component {
 		const url = `http://localhost:3000/profiles/${this.state.id}`
 		axios
 			.get(url, {
-				params: {
-					token: this.props.token
+				headers: {
+					Authorization: `Bearer ${this.props.token}`
 				}
 			})
 			.then(data =>
