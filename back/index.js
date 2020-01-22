@@ -212,7 +212,7 @@ app.route('/feed').get(verifyToken, (request, response) => {
 	)
 })
 
-app.route('/posts/:id').get(verifyToken, (request, response) => {
+app.route('/profiles/:id/posts').get(verifyToken, (request, response) => {
 	const idProfile = request.params.id
 	connection.query(
 		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id WHERE profile.id = ?',
