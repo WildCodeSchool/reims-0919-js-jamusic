@@ -17,8 +17,8 @@ class Profile extends React.Component {
 	}
 	componentDidMount() {
 		const url = [
-			`http://localhost:3000/profiles/${this.props.id}`,
-			`http://localhost:3000/profiles/${this.props.id}/posts`
+			`http://localhost:3000/profiles/${this.props.match.params.id}`,
+			`http://localhost:3000/profiles/${this.props.match.params.id}/posts`
 		]
 
 		const config = {
@@ -44,7 +44,7 @@ class Profile extends React.Component {
 			<div className=''>
 				<div className='space-between'>
 					<div
-						key={this.state.id}
+						key={this.props.id}
 						className=' flex-column border profile-bg-color'
 					>
 						<div className='flex-row'>
@@ -109,7 +109,7 @@ class Profile extends React.Component {
 						{this.state.posts ? (
 							this.state.posts.map(post => (
 								<PostDisplay
-									key={post.nickname}
+									key={post.id}
 									profile_pic={post.picture}
 									nickname={post.nickname}
 									tags={post.tags}

@@ -138,10 +138,10 @@ class App extends React.Component {
 							<Route
 								exact
 								path={`/profiles/:id`}
-								render={() =>
+								render={props =>
 									this.state.isConnected ? (
 										<Profile
-											{...this.props}
+											{...props}
 											{...this.state}
 											submitForm={this.submitForm}
 											onChangeEmail={this.onChangeEmail}
