@@ -169,7 +169,6 @@ app.route('/profiles/:id')
 						.status(500)
 						.send('Erreur dans la récupération du profile')
 				} else {
-					console.log(results)
 					response.json(results)
 				}
 			}
@@ -199,6 +198,24 @@ app.route('/feed').get(verifyToken, (request, response) => {
 	const idProfile = request.authData.sub
 	connection.query(
 		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id',
+		[idProfile],
+		(err, results) => {
+			if (err) {
+				console.log(err)
+				response
+					.status(500)
+					.send('Erreur dans la récupération du profile')
+			} else {
+				response.json(results)
+			}
+		}
+	)
+})
+
+app.route('/posts/:id').get(verifyToken, (request, response) => {
+	const idProfile = request.params.id
+	connection.query(
+		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id WHERE profile.id = ?',
 		[idProfile],
 		(err, results) => {
 			if (err) {
