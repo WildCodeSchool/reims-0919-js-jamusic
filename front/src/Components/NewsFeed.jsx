@@ -6,16 +6,15 @@ class NewsFeed extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			token: this.props.token,
 			posts: []
 		}
 	}
 
 	componentDidMount() {
 		axios
-			.get(`http://localhost:3000/${this.props.id}/feed`, {
-				params: {
-					token: this.state.token
+			.get(`http://localhost:3000/feed`, {
+				headers: {
+					Authorization: `Bearer ${this.props.token}`
 				}
 			})
 			.then(data =>
