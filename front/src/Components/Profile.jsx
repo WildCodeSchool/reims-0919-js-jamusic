@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
+import PostDisplay from './PostDisplay'
 
 class Profile extends React.Component {
 	constructor(props) {
