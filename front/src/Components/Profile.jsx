@@ -116,6 +116,8 @@ class Profile extends React.Component {
 									media={post.media}
 									likes={post.likes}
 									text={post.text}
+									loadProfile={this.props.loadProfile}
+									profileId={this.props.id}
 								/>
 							))
 						) : (

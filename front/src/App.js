@@ -75,6 +75,10 @@ class App extends React.Component {
 			)
 	}
 
+	loadProfile = event => {
+		console.log(event.target.id)
+	}
+
 	onChangeEmail(e) {
 		this.setState({
 			email: e.target.value
@@ -131,8 +135,12 @@ class App extends React.Component {
 							<Route
 								exact
 								path={`/${this.state.id}/feed`}
-								component={() => (
-									<NewsFeed {...this.state} {...this.props} />
+								component={props => (
+									<NewsFeed
+										{...this.state}
+										{...props}
+										loadProfile={this.loadProfile}
+									/>
 								)}
 							/>
 							<Route
@@ -148,6 +156,7 @@ class App extends React.Component {
 											onChangePassword={
 												this.onChangePassword
 											}
+											loadProfile={this.loadProfile}
 										/>
 									) : (
 										<Redirect to='/login/' />

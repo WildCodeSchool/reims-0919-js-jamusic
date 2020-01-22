@@ -1,6 +1,15 @@
 import React from 'react'
 
-const PostDisplay = ({ profile_pic, nickname, tags, media, likes, text }) => {
+const PostDisplay = ({
+	profile_pic,
+	nickname,
+	tags,
+	media,
+	likes,
+	text,
+	loadProfile,
+	profileId
+}) => {
 	return (
 		<div
 			className=''
@@ -32,6 +41,8 @@ const PostDisplay = ({ profile_pic, nickname, tags, media, likes, text }) => {
 					}}
 					src={profile_pic}
 					alt={nickname}
+					id={profileId}
+					onClick={loadProfile}
 				/>
 				<p
 					style={{
