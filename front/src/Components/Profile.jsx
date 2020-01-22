@@ -113,21 +113,17 @@ class Profile extends React.Component {
 						DERNIERES PUBLICATIONS
 					</h2>
 					<div>
-						{this.state.posts ? (
-							this.state.posts.map(post => (
-								<PostDisplay
-									key={post.nickname}
-									profile_pic={post.picture}
-									nickname={post.nickname}
-									tags={post.tags}
-									media={post.media}
-									likes={post.likes}
-									text={post.text}
-								/>
-							))
-						) : (
-							<p>Chargement des posts ...</p>
-						)}
+						{this.state.posts.map(post => (
+							<PostDisplay
+								key={post.nickname}
+								profile_pic={post.picture}
+								nickname={post.nickname}
+								tags={post.tags}
+								media={post.media}
+								likes={post.likes}
+								text={post.text}
+							/>
+						))}
 					</div>
 				</div>
 			</div>
