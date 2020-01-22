@@ -11,13 +11,13 @@ class Profile extends React.Component {
 			picture: '',
 			biography: '',
 			ville: '',
-			tags: []
+			posts: []
 		}
 	}
 	componentDidMount() {
 		const url = [
 			`http://localhost:3000/profiles/${this.props.id}`,
-			'http://localhost:3000/tags'
+			`http://localhost:3000/posts/${this.props.id}`
 		]
 		axios
 			.all([
@@ -33,13 +33,13 @@ class Profile extends React.Component {
 				}))
 			])
 			.then(
-				axios.spread((profileRes, tagRes) => {
+				axios.spread((profileRes, postsRes) => {
 					this.setState({
 						nickname: profileRes.data[0].nickname,
 						picture: profileRes.data[0].picture,
 						biography: profileRes.data[0].biography,
 						ville: profileRes.data[0].ville,
-						tags: tagRes
+						tags: postsRes
 					})
 				})
 			)
@@ -111,17 +111,23 @@ class Profile extends React.Component {
 					<h2 className='flex-column space:inset title-font'>
 						DERNIERES PUBLICATIONS
 					</h2>
-					<p>
-						Lorem ipsum dolor sit, amet consectetur adipisicing
-						elit. Maiores sapiente esse ipsum quisquam quibusdam,
-						beatae aperiam tempore quo alias exercitationem dolorum,
-						quaerat eos magni voluptates at veniam odio obcaecati
-						culpa! Lorem ipsum dolor sit amet consectetur
-						adipisicing elit. Ullam laboriosam itaque,
-						necessitatibus expedita aut voluptatibus ad animi totam
-						quod ratione quaerat nisi doloribus quidem non assumenda
-						quam atque! Ex, in?
-					</p>
+					<div>
+						{this.state.posts ? (
+							this.state.posts.map(post => (
+								<PostDisplay
+									key={post.nickname}
+									profile_pic={post.picture}
+									nickname={post.nickname}
+									tags={post.tags}
+									media={post.media}
+									likes={post.likes}
+									text={post.text}
+								/>
+							))
+						) : (
+							<p>Chargement des posts ...</p>
+						)}
+					</div>
 				</div>
 			</div>
 		)
