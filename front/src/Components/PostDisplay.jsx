@@ -7,8 +7,8 @@ const PostDisplay = ({
 	media,
 	likes,
 	text,
-	loadProfile,
-	profileId
+	profileId,
+	loadAnotherProfile
 }) => {
 	return (
 		<div
@@ -42,7 +42,7 @@ const PostDisplay = ({
 					src={profile_pic}
 					alt={nickname}
 					id={profileId}
-					onClick={loadProfile}
+					onClick={loadAnotherProfile}
 				/>
 				<p
 					style={{
