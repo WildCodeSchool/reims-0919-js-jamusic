@@ -18,8 +18,9 @@ class Profile extends React.Component {
 	componentDidMount() {
 		const url = [
 			`http://localhost:3000/profiles/${this.props.id}`,
-			`http://localhost:3000/posts/${this.props.id}`
+			`http://localhost:3000/profiles/${this.props.id}/posts`
 		]
+
 		const config = {
 			headers: {
 				Authorization: `Bearer ${this.props.token}`
@@ -105,7 +106,7 @@ class Profile extends React.Component {
 						DERNIERES PUBLICATIONS
 					</h2>
 					<div>
-						{this.state ? (
+						{this.state.posts ? (
 							this.state.posts.map(post => (
 								<PostDisplay
 									key={post.nickname}
@@ -118,7 +119,7 @@ class Profile extends React.Component {
 								/>
 							))
 						) : (
-							<p> Chargement des posts</p>
+							<p>Chargement des posts ...</p>
 						)}
 					</div>
 				</div>
