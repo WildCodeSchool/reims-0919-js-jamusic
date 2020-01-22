@@ -121,7 +121,6 @@ app.route('/login').post((request, response) => {
 app.route('/profiles')
 	.get(verifyToken, (request, response) => {
 		const idProfile = request.authData.sub
-		console.log(idProfile)
 		connection.query(
 			'SELECT profile.id FROM profile WHERE profile.account_id = ?',
 			[idProfile],
@@ -160,9 +159,8 @@ app.route('/profiles')
 app.route('/profiles/:id')
 	.get(verifyToken, (request, response) => {
 		const idProfile = request.authData.sub
-		console.log(idProfile)
 		connection.query(
-			`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
+			`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
 			[idProfile],
 			(err, results) => {
 				if (err) {
@@ -171,6 +169,7 @@ app.route('/profiles/:id')
 						.status(500)
 						.send('Erreur dans la récupération du profile')
 				} else {
+					console.log(results)
 					response.json(results)
 				}
 			}
@@ -196,7 +195,7 @@ app.route('/profiles/:id')
 	})
 // End of profiles ID routes
 
-app.route('/:id/feed').get(verifyToken, (request, response) => {
+app.route('/feed').get(verifyToken, (request, response) => {
 	const idProfile = request.authData.sub
 	connection.query(
 		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id',

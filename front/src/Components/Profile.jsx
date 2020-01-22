@@ -7,7 +7,6 @@ class Profile extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			id: this.props.id,
 			nickname: '',
 			picture: '',
 			biography: '',
@@ -17,26 +16,25 @@ class Profile extends React.Component {
 	}
 	componentDidMount() {
 		const url = [
-			`http://localhost:3000/profiles/${this.state.id}`,
+			`http://localhost:3000/profiles/${this.props.id}`,
 			'http://localhost:3000/tags'
 		]
 		axios
 			.all([
 				(axios.get(url[0], {
-					params: {
-						token: this.props.token
+					headers: {
+						Authorization: `Bearer ${this.props.token}`
 					}
 				}),
 				axios.get(url[1], {
-					params: {
-						token: this.props.token
+					headers: {
+						Authorization: `Bearer ${this.props.token}`
 					}
 				}))
 			])
 			.then(
 				axios.spread((profileRes, tagRes) => {
 					this.setState({
-						id: profileRes.data[0].id,
 						nickname: profileRes.data[0].nickname,
 						picture: profileRes.data[0].picture,
 						biography: profileRes.data[0].biography,

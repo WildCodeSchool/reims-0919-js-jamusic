@@ -28,7 +28,7 @@ class App extends React.Component {
 			isLoaded: false,
 			email: '',
 			password: '',
-			token: '',
+			token: null,
 			isConnected: false,
 			id: null
 		}
@@ -52,7 +52,7 @@ class App extends React.Component {
 			.then(data =>
 				data.status === 201
 					? this.setState({
-							token: `Bearer ${data.data.token}`,
+							token: data.data.token,
 							isConnected: true
 					  })
 					: alert('Mauvais identifiants')
@@ -67,7 +67,7 @@ class App extends React.Component {
 		axios
 			.get('http://localhost:3000/profiles/', {
 				headers: {
-					Authorization: this.state.token
+					Authorization: `Bearer ${this.state.token}`
 				}
 			})
 			.then(data =>
