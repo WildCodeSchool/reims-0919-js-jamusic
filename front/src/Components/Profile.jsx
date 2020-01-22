@@ -20,30 +20,22 @@ class Profile extends React.Component {
 			`http://localhost:3000/profiles/${this.props.id}`,
 			`http://localhost:3000/posts/${this.props.id}`
 		]
-		axios
-			.all([
-				(axios.get(url[0], {
-					headers: {
-						Authorization: `Bearer ${this.props.token}`
-					}
-				}),
-				axios.get(url[1], {
-					headers: {
-						Authorization: `Bearer ${this.props.token}`
-					}
-				}))
-			])
-			.then(
-				axios.spread((profileRes, postsRes) => {
-					this.setState({
-						nickname: profileRes.data[0].nickname,
-						picture: profileRes.data[0].picture,
-						biography: profileRes.data[0].biography,
-						ville: profileRes.data[0].ville,
-						tags: postsRes
-					})
+		const config = {
+			headers: {
+				Authorization: `Bearer ${this.props.token}`
+			}
+		}
+		axios.all([axios.get(url[0], config), axios.get(url[1], config)]).then(
+			axios.spread((profileRes, postsRes) => {
+				this.setState({
+					nickname: profileRes.data[0].nickname,
+					picture: profileRes.data[0].picture,
+					biography: profileRes.data[0].biography,
+					ville: profileRes.data[0].ville,
+					posts: postsRes.data
 				})
-			)
+			})
+		)
 	}
 
 	render() {
@@ -113,17 +105,21 @@ class Profile extends React.Component {
 						DERNIERES PUBLICATIONS
 					</h2>
 					<div>
-						{this.state.posts.map(post => (
-							<PostDisplay
-								key={post.nickname}
-								profile_pic={post.picture}
-								nickname={post.nickname}
-								tags={post.tags}
-								media={post.media}
-								likes={post.likes}
-								text={post.text}
-							/>
-						))}
+						{this.state ? (
+							this.state.posts.map(post => (
+								<PostDisplay
+									key={post.nickname}
+									profile_pic={post.picture}
+									nickname={post.nickname}
+									tags={post.tags}
+									media={post.media}
+									likes={post.likes}
+									text={post.text}
+								/>
+							))
+						) : (
+							<p> Chargement des posts</p>
+						)}
 					</div>
 				</div>
 			</div>
