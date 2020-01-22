@@ -28,7 +28,7 @@ class App extends React.Component {
 			isLoaded: false,
 			email: '',
 			password: '',
-			token: '',
+			token: null,
 			isConnected: false,
 			id: null
 		}
@@ -66,8 +66,8 @@ class App extends React.Component {
 	getUserInfo = () => {
 		axios
 			.get('http://localhost:3000/profiles/', {
-				params: {
-					token: this.state.token
+				headers: {
+					Authorization: `Bearer ${this.state.token}`
 				}
 			})
 			.then(data =>
