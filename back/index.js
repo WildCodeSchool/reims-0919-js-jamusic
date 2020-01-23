@@ -146,8 +146,14 @@ app.route('/profiles')
 		const idProfile = request.authData.sub
 		const formData = request.body
 		connection.query(
-			'INSERT INTO profile SET ?;',
-			formData,
+			'INSERT INTO profile SET ?',
+			{
+				picture: formData.picture,
+				nickname: formData.nickname,
+				biography: formData.biography,
+				ville: formData.ville,
+				account_id: idProfile
+			},
 			(err, results) => {
 				if (err) {
 					console.log(err)
