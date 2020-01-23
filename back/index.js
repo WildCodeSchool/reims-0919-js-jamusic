@@ -168,21 +168,39 @@ app.route('/profiles')
 // To retrieve all datas from user (except password)
 app.route('/profiles/:id')
 	.get(verifyToken, (request, response) => {
+		const foreignId = request.params.id
 		const idProfile = request.authData.sub
-		connection.query(
-			`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
-			[idProfile],
-			(err, results) => {
-				if (err) {
-					console.log(err)
-					response
-						.status(500)
-						.send('Erreur dans la récupération du profile')
-				} else {
-					response.json(results)
+		if (foreignId > 0 && foreignId === idProfile) {
+			connection.query(
+				`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
+				[idProfile],
+				(err, results) => {
+					if (err) {
+						console.log(err)
+						response
+							.status(500)
+							.send('Erreur dans la récupération du profile')
+					} else {
+						response.json(results)
+					}
 				}
-			}
-		)
+			)
+		} else {
+			connection.query(
+				`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
+				[foreignId],
+				(err, results) => {
+					if (err) {
+						console.log(err)
+						response
+							.status(500)
+							.send('Erreur dans la récupération du profile')
+					} else {
+						response.json(results)
+					}
+				}
+			)
+		}
 	})
 
 	// Will be used to edit the profile (<Modify /> component in react)

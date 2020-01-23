@@ -17,21 +17,17 @@ const PostDisplay = ({
 	return (
 		<div className='PostDisplay'>
 			<div className='postHeader'>
-				<img src={profile_pic} alt={nickname} />
+				<img
+					src={profile_pic}
+					alt={nickname}
+					id={profileId}
+					onClick={loadAnotherProfile}
+				/>
 				<p>{nickname}</p>
 				<p>{tags}</p>
 			</div>
 			<div className='postBody'>
-				{media ? (
-					<img
-						src={media}
-						alt='Média du post'
-						id={profileId}
-						onClick={loadAnotherProfile}
-					/>
-				) : (
-					<></>
-				)}
+				{media ? <img src={media} alt='Média du post' /> : <></>}
 				<div className='postInfo'>
 					<button>
 						<span

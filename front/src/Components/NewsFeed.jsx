@@ -25,7 +25,6 @@ class NewsFeed extends React.Component {
 	}
 
 	loadAnotherProfile = event => {
-		console.log(event.target.id)
 		this.props.history.push(`/profiles/${event.target.id}`)
 	}
 
@@ -41,7 +40,7 @@ class NewsFeed extends React.Component {
 						media={post.media}
 						likes={post.likes}
 						text={post.text}
-						profileId={this.props.profile_id}
+						profileId={post.profile_id}
 						loadAnotherProfile={this.loadAnotherProfile}
 						date={post.date}
 					/>
