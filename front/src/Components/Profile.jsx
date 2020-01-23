@@ -87,12 +87,15 @@ class Profile extends React.Component {
 									alt='Personnal profile pic'
 									className='img-chip width100 space:stack'
 								/>
-								<Link
-									to='/profiles/modif'
-									className='space-size:s space:inset-squish space:stack'
-								>
-									Modifier
-								</Link>
+								{this.props.match.params.id ==
+									this.props.id && (
+									<Link
+										to='/profiles/modif'
+										className='space-size:s space:inset-squish space:stack'
+									>
+										Modifier
+									</Link>
+								)}
 							</div>
 						</div>
 
