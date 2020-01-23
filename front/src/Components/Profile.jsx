@@ -116,6 +116,8 @@ class Profile extends React.Component {
 									media={post.media}
 									likes={post.likes}
 									text={post.text}
+									loadProfile={this.loadProfile}
+									profileId={this.props.match.params.id}
 									date={post.date}
 								/>
 							))

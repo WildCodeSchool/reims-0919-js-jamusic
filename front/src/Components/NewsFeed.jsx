@@ -24,18 +24,24 @@ class NewsFeed extends React.Component {
 			)
 	}
 
+	loadAnotherProfile = event => {
+		this.props.history.push(`/profiles/${event.target.id}`)
+	}
+
 	render() {
 		return (
 			<div>
 				{this.state.posts.map(post => (
 					<PostDisplay
-						key={post.nickname}
+						key={post.id}
 						profile_pic={post.picture}
 						nickname={post.nickname}
 						tags={post.tags}
 						media={post.media}
 						likes={post.likes}
 						text={post.text}
+						profileId={post.profile_id}
+						loadAnotherProfile={this.loadAnotherProfile}
 						date={post.date}
 					/>
 				))}

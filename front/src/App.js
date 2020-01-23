@@ -131,8 +131,12 @@ class App extends React.Component {
 							<Route
 								exact
 								path={`/${this.state.id}/feed`}
-								component={() => (
-									<NewsFeed {...this.state} {...this.props} />
+								component={props => (
+									<NewsFeed
+										{...this.state}
+										{...props}
+										loadProfile={this.loadProfile}
+									/>
 								)}
 							/>
 							<Route
