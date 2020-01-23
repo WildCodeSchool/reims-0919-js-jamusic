@@ -1,7 +1,6 @@
 USE jamusic;
-INSERT INTO
-    "account"
-    ("id", "email", "password", "date")
+INSERT INTO account
+    (id, email, password)
 VALUES
     (
         1,
