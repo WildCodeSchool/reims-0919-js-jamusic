@@ -5,8 +5,10 @@ class Search extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			tags: []
+			tags: [],
+			matchedProfiles: []
 		}
+		this.getProfileViaTag = this.getProfileViaTag.bind(this)
 	}
 	componentDidMount() {
 		axios
@@ -18,11 +20,17 @@ class Search extends React.Component {
 			.then(data => this.setState({ tags: data.data }))
 	}
 
+	getProfileViaTag() {
+		axios.get(`http://localhost:3000/tags/${this.props.match.params.id}`, {
+			headers: {
+				Authorization: `Bearer ${this.props.token}`
+			}.then(data => this.setState({ matchedProfiles: data.data }))
+		})
+	}
+
 	render() {
 		return (
 			<div className='flex-column overflow:hidden'>
-				<form action='' method='get'></form>
-				<input type='text' id='nickname' name='nickname' />
 				<h2 className='space-size:xl space:inset-squish title-font'>
 					Selectionnez vos tags:
 				</h2>
@@ -78,6 +86,7 @@ class Search extends React.Component {
 						</ul>
 					</div>
 				</div>
+				<input type='submit' onClick={this.getProfileViaTag()} />
 			</div>
 		)
 	}
