@@ -182,8 +182,8 @@ class App extends React.Component {
 							/>
 							<Route
 								exact
-								path={'/creationtest'}
-								component={() => <ProfileCreation />}
+								path={'/profiles/new'}
+								render={props => <ProfileCreation {...props} />}
 							/>
 						</main>
 						<Navbar {...this.state} />
