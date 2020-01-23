@@ -1,3 +1,4 @@
+USE jamusic;
 INSERT INTO
     "account"
     ("id", "email", "password", "date")
