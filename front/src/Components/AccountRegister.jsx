@@ -1,13 +1,24 @@
 import React, { useState } from 'react'
 import logo from './images/logo.png'
+import axios from 'axios'
 
 const AccountRegister = () => {
-	const [password, setPassword] = useState()
-	const [passwordCheck, setPasswordCheck] = useState()
-
-	const handleForm = e => {
-		if (password === passwordCheck) {
-			alert('les mots de passe correspondent')
+	const [account, setAccount] = useState({
+		email: '',
+		password: '',
+		passwordCheck: ''
+	})
+	const [token, setToken] = useState({ token: null })
+	const onChange = e => {
+		setAccount({ ...account, [e.target.name]: e.target.value })
+	}
+	const submitForm = e => {
+		if (account.password === account.passwordCheck) {
+			const data = { email: account.email, password: account.password }
+			axios
+				.post('http://localhost:3000/register', data)
+				.then(response => console.log(response))
+			alert('Compte créé')
 		} else {
 			e.preventDefault()
 			alert('Les mots de passe ne correspondent pas')
@@ -17,7 +28,7 @@ const AccountRegister = () => {
 		<div className='height-max-100 flex-column flex-align:center'>
 			<img src={logo} alt='logo de JaMusic' className='rescale50' />
 			<form
-				onSubmit={handleForm}
+				onSubmit={submitForm}
 				action='http://localhost:3000/register'
 				method='post'
 				className='flex-column'
@@ -30,6 +41,7 @@ const AccountRegister = () => {
 					name='email'
 					id='email'
 					required
+					onInput={onChange}
 					className='space:stack underlined no-focus body-font'
 				/>
 				<label htmlFor='password' className='space:stack'>
@@ -40,7 +52,7 @@ const AccountRegister = () => {
 					name='password'
 					id='password'
 					required
-					onInput={e => setPassword(e.target.value)}
+					onInput={onChange}
 					className='space:stack underlined no-focus body-font'
 				/>
 				<label htmlFor='passwordCheck' className='space:stack'>
@@ -51,7 +63,7 @@ const AccountRegister = () => {
 					name='passwordCheck'
 					id='passwordCheck'
 					className='space:stack underlined no-focus body-font'
-					onInput={e => setPasswordCheck(e.target.value)}
+					onInput={onChange}
 				/>
 				<button
 					type='submit'
