@@ -1,13 +1,13 @@
 USE jamusic;
 INSERT INTO
-    "profile"
+    profile
     (
-    "id",
-    "picture",
-    "nickname",
-    "biography",
-    "ville",
-    "account_id"
+    id,
+    picture,
+    nickname,
+    biography,
+    ville,
+    account_id
     )
 VALUES
     (

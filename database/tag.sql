@@ -1,7 +1,7 @@
 USE jamusic;
 
-INSERT INTO "tag"
-    (" id","name ","category")
+INSERT INTO tag
+    (id, name, category)
 VALUES
     (1, "Violon", "Instrument"),
     (2, "Guitare", "Instrument"),
