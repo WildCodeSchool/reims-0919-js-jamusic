@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 const ProfileCreation = props => {
-	console.log(props)
 	const [profileData, setProfileData] = useState({
 		picture: '',
 		nickname: '',
 		biography: '',
 		ville: ''
 	})
+	const [accountCreated, setAccountCreated] = useState(false)
+
 	const submitForm = e => {
 		e.preventDefault()
 		const data = {
@@ -18,19 +20,27 @@ const ProfileCreation = props => {
 			ville: profileData.ville
 		}
 		axios
-			.post('http://localhost:3000/profiles', data, {
+			.post('http://localhost:3000/profiles/', data, {
 				headers: {
 					Authorization: `Bearer ${props.location.state.token}`
 				}
 			})
-			.then(response => console.log(response))
+			.then(alert('Compte créé'))
+			.then(() => setAccountCreated(true))
 	}
 
 	const onChange = e => {
 		setProfileData({ ...profileData, [e.target.name]: e.target.value })
 	}
 
-	return (
+	return accountCreated ? (
+		<Redirect
+			to={{
+				pathname: '/login/',
+				state: { token: props.location.state.token }
+			}}
+		/>
+	) : (
 		<form onSubmit={submitForm}>
 			<label htmlFor='nickname'>Pseudonyme :</label>
 			<input

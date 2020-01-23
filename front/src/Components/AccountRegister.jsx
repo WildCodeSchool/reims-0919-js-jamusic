@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import logo from './images/logo.png'
 import axios from 'axios'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const AccountRegister = props => {
 	const [account, setAccount] = useState({
@@ -11,7 +11,6 @@ const AccountRegister = props => {
 	})
 	const [isCreated, setIsCreated] = useState(false)
 	const [token, setToken] = useState({ token: '' })
-	console.log({ token })
 
 	const onChange = e => {
 		setAccount({ ...account, [e.target.name]: e.target.value })
