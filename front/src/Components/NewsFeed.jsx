@@ -34,14 +34,14 @@ class NewsFeed extends React.Component {
 			<div>
 				{this.state.posts.map(post => (
 					<PostDisplay
-						key={post.nickname}
+						key={post.id}
 						profile_pic={post.picture}
 						nickname={post.nickname}
 						tags={post.tags}
 						media={post.media}
 						likes={post.likes}
 						text={post.text}
-						profileId={post.profile_id}
+						profileId={this.props.profile_id}
 						loadAnotherProfile={this.loadAnotherProfile}
 						date={post.date}
 					/>
