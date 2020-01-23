@@ -1,6 +1,7 @@
 import React from 'react'
 
-const ProfileCreation = () => {
+const ProfileCreation = props => {
+	console.log(props)
 	return (
 		<form method='post' action='http://localhost:3000/profiles'>
 			<label htmlFor='nickname'>Pseudonyme :</label>

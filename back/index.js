@@ -56,11 +56,15 @@ app.route('/register').post(async (request, response) => {
 									.status(500)
 									.send("Erreur pendant l'inscription.")
 							} else {
-								jwt.sign(user.email, secret, (err, token) => {
-									response.json({
-										token
-									})
-								})
+								jwt.sign(
+									{ sub: results.insertId },
+									secret,
+									(err, token) => {
+										response.json({
+											token
+										})
+									}
+								)
 							}
 						}
 					)
