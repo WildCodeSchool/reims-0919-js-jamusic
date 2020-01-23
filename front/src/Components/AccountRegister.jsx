@@ -23,10 +23,9 @@ const AccountRegister = props => {
 			axios
 				.post('http://localhost:3000/register', data)
 				.then(response => setToken(response.data.token))
-				.then(
+				.then(() => {
 					setIsCreated(true)
-					//console.log({ token })
-				)
+				})
 		} else {
 			e.preventDefault()
 			alert('Les mots de passe ne correspondent pas')
