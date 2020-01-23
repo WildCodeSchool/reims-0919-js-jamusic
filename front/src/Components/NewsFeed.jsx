@@ -43,6 +43,7 @@ class NewsFeed extends React.Component {
 						text={post.text}
 						profileId={post.profile_id}
 						loadAnotherProfile={this.loadAnotherProfile}
+						date={post.date}
 					/>
 				))}
 			</div>

@@ -118,6 +118,7 @@ class Profile extends React.Component {
 									text={post.text}
 									loadProfile={this.loadProfile}
 									profileId={this.props.match.params.id}
+									date={post.date}
 								/>
 							))
 						) : (

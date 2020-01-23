@@ -1,4 +1,5 @@
 import React from 'react'
+import './PostDisplay.css'
 
 const PostDisplay = ({
 	profile_pic,
@@ -8,89 +9,52 @@ const PostDisplay = ({
 	likes,
 	text,
 	profileId,
-	loadAnotherProfile
+	loadAnotherProfile,
+	date
 }) => {
+	const formattedDate = new Date(date)
+
 	return (
-		<div
-			className=''
-			style={{
-				display: 'flex',
-				flexDirection: 'column',
-				width: '90%',
-				margin: '0.5% auto',
-				background: '#eeefff',
-				borderRadius: '10px'
-			}}
-		>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'row',
-					width: '100%',
-					margin: '3%',
-					justifyContent: 'space-between'
-				}}
-				className='postHeader'
-			>
-				{}
-				<img
-					style={{
-						maxWidth: '64px',
-						maxHeight: '64px',
-						borderRadius: '50%'
-					}}
-					src={profile_pic}
-					alt={nickname}
-					id={profileId}
-					onClick={loadAnotherProfile}
-				/>
-				<p
-					style={{
-						overflowWrap: 'anywhere',
-						margin: 'auto',
-						textAlign: 'center'
-					}}
-				>
-					{' '}
-					{nickname}
-				</p>
-				<p
-					style={{
-						overflowWrap: 'anywhere',
-						margin: 'auto',
-						textAlign: 'center'
-					}}
-				>
-					{tags}
-				</p>
+		<div className='PostDisplay'>
+			<div className='postHeader'>
+				<img src={profile_pic} alt={nickname} />
+				<p>{nickname}</p>
+				<p>{tags}</p>
 			</div>
-			<div
-				style={{ display: 'flex', flexDirection: 'column' }}
-				className='postBody'
-			>
-				<img
-					style={{
-						maxWidth: '100%'
-					}}
-					src={media}
-					alt='Média du post'
-				/>
-				<button
-					style={{
-						background: 'none',
-						border: 'none',
-						padding: '3%',
-						alignSelf: 'start',
-						textDecoration: 'none',
-						outline: '0'
-					}}
-				>
-					<span className='likesSymbol' role='img' aria-label='Likes'>
-						❤️
-					</span>{' '}
-					{likes}
-				</button>
-				<p style={{ padding: '3%', textAlign: 'left' }}>{text}</p>
+			<div className='postBody'>
+				{media ? (
+					<img
+						src={media}
+						alt='Média du post'
+						id={profileId}
+						onClick={loadAnotherProfile}
+					/>
+				) : (
+					<></>
+				)}
+				<div className='postInfo'>
+					<button>
+						<span
+							className='likesSymbol'
+							role='img'
+							aria-label='Likes'
+						>
+							❤️
+						</span>{' '}
+						{likes}
+					</button>
+					<p>
+						{new Intl.DateTimeFormat('default', {
+							year: 'numeric',
+							month: '2-digit',
+							day: '2-digit',
+							hour: '2-digit',
+							minute: '2-digit',
+							second: '2-digit'
+						}).format(formattedDate)}
+					</p>
+				</div>
+				<p>{text}</p>
 			</div>
 		</div>
 	)
