@@ -26,7 +26,7 @@ class Search extends React.Component {
 				<h2 className='space-size:xl space:inset-squish title-font'>
 					Selectionnez vos tags:
 				</h2>
-				<div className='flex:row'>
+				<div className='flex-row'>
 					<div>
 						<ul>
 							{this.state.tags.map(tag => {
@@ -43,8 +43,8 @@ class Search extends React.Component {
 												this.props.selectedTags.includes(
 													tag.name
 												)
-													? 'is_selected space-size:s space:stack style:none space:inset-squish tags-font'
-													: 'space-size:s space:stack style:none space:inset-squish tags-font'
+													? 'is_selected space-size:s space:stack style:none tags-font'
+													: 'space-size:s space:stack style:none tags-font'
 											}
 										>{`#${tag.name}`}</li>
 									)
@@ -68,8 +68,8 @@ class Search extends React.Component {
 												this.props.selectedTags.includes(
 													tag.name
 												)
-													? 'is_selected space-size:s space:stack style:none space:inset-squish tags-font'
-													: 'space-size:s space:stack style:none space:inset-squish tags-font'
+													? 'is_selected space-size:s space:stack style:none tags-font'
+													: 'space-size:s space:stack style:none tags-font'
 											}
 										>{`#${tag.name}`}</li>
 									)
