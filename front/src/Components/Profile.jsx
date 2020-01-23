@@ -2,35 +2,41 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
+import PostDisplay from './PostDisplay'
 
 class Profile extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			id: this.props.id,
 			nickname: '',
 			picture: '',
 			biography: '',
-			ville: ''
+			ville: '',
+			posts: []
 		}
 	}
 	componentDidMount() {
-		const url = `http://localhost:3000/profiles/${this.state.id}`
-		axios
-			.get(url, {
-				params: {
-					token: this.props.token
-				}
-			})
-			.then(data =>
+		const url = [
+			`http://localhost:3000/profiles/${this.props.match.params.id}`,
+			`http://localhost:3000/profiles/${this.props.match.params.id}/posts`
+		]
+
+		const config = {
+			headers: {
+				Authorization: `Bearer ${this.props.token}`
+			}
+		}
+		axios.all([axios.get(url[0], config), axios.get(url[1], config)]).then(
+			axios.spread((profileRes, postsRes) => {
 				this.setState({
-					id: data.data[0].id,
-					nickname: data.data[0].nickname,
-					picture: data.data[0].picture,
-					biography: data.data[0].biography,
-					ville: data.data[0].ville
+					nickname: profileRes.data[0].nickname,
+					picture: profileRes.data[0].picture,
+					biography: profileRes.data[0].biography,
+					ville: profileRes.data[0].ville,
+					posts: postsRes.data
 				})
-			)
+			})
+		)
 	}
 
 	render() {
@@ -38,7 +44,7 @@ class Profile extends React.Component {
 			<div className=''>
 				<div className='space-between'>
 					<div
-						key={this.state.id}
+						key={this.props.id}
 						className=' flex-column border profile-bg-color'
 					>
 						<div className='flex-row'>
@@ -99,17 +105,23 @@ class Profile extends React.Component {
 					<h2 className='flex-column space:inset title-font'>
 						DERNIERES PUBLICATIONS
 					</h2>
-					<p>
-						Lorem ipsum dolor sit, amet consectetur adipisicing
-						elit. Maiores sapiente esse ipsum quisquam quibusdam,
-						beatae aperiam tempore quo alias exercitationem dolorum,
-						quaerat eos magni voluptates at veniam odio obcaecati
-						culpa! Lorem ipsum dolor sit amet consectetur
-						adipisicing elit. Ullam laboriosam itaque,
-						necessitatibus expedita aut voluptatibus ad animi totam
-						quod ratione quaerat nisi doloribus quidem non assumenda
-						quam atque! Ex, in?
-					</p>
+					<div>
+						{this.state.posts ? (
+							this.state.posts.map(post => (
+								<PostDisplay
+									key={post.id}
+									profile_pic={post.picture}
+									nickname={post.nickname}
+									tags={post.tags}
+									media={post.media}
+									likes={post.likes}
+									text={post.text}
+								/>
+							))
+						) : (
+							<p>Chargement des posts ...</p>
+						)}
+					</div>
 				</div>
 			</div>
 		)

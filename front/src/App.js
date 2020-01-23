@@ -28,7 +28,7 @@ class App extends React.Component {
 			isLoaded: false,
 			email: '',
 			password: '',
-			token: '',
+			token: null,
 			isConnected: false,
 			id: null
 		}
@@ -66,8 +66,8 @@ class App extends React.Component {
 	getUserInfo = () => {
 		axios
 			.get('http://localhost:3000/profiles/', {
-				params: {
-					token: this.state.token
+				headers: {
+					Authorization: `Bearer ${this.state.token}`
 				}
 			})
 			.then(data =>
@@ -130,16 +130,18 @@ class App extends React.Component {
 						<main className='flex1 overflow height-max-100'>
 							<Route
 								exact
-								path={`/feed`}
-								component={() => <NewsFeed />}
+								path={`/${this.state.id}/feed`}
+								component={() => (
+									<NewsFeed {...this.state} {...this.props} />
+								)}
 							/>
 							<Route
 								exact
 								path={`/profiles/:id`}
-								render={() =>
+								render={props =>
 									this.state.isConnected ? (
 										<Profile
-											{...this.props}
+											{...props}
 											{...this.state}
 											submitForm={this.submitForm}
 											onChangeEmail={this.onChangeEmail}
@@ -184,7 +186,7 @@ class App extends React.Component {
 								component={() => <ProfileCreation />}
 							/>
 						</main>
-						<Navbar />
+						<Navbar {...this.state} />
 					</div>
 				</Switch>
 			</div>

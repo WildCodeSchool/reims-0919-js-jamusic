@@ -12,10 +12,10 @@ import './Navbar.css'
 
 library.add(faCommentDots, faTags, faUser, faScroll)
 
-const Navbar = () => {
+const Navbar = props => {
 	return (
 		<div className='flex-row width100 space-around border'>
-			<Link to='/feed'>
+			<Link to={`/${props.id}/feed`}>
 				<FontAwesomeIcon
 					icon='scroll'
 					size='lg'
@@ -29,7 +29,7 @@ const Navbar = () => {
 					className='icon-zone nav-icon-color'
 				/>
 			</Link>
-			<Link to='/profiles'>
+			<Link to={`/profiles/${props.id}`}>
 				<FontAwesomeIcon
 					icon='user'
 					size='lg'
