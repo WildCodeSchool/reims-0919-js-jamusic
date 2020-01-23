@@ -56,11 +56,15 @@ app.route('/register').post(async (request, response) => {
 									.status(500)
 									.send("Erreur pendant l'inscription.")
 							} else {
-								jwt.sign(user.email, secret, (err, token) => {
-									response.json({
-										token
-									})
-								})
+								jwt.sign(
+									{ sub: results.insertId },
+									secret,
+									(err, token) => {
+										response.json({
+											token
+										})
+									}
+								)
 							}
 						}
 					)
@@ -142,8 +146,14 @@ app.route('/profiles')
 		const idProfile = request.authData.sub
 		const formData = request.body
 		connection.query(
-			'INSERT INTO profile SET ?;',
-			formData,
+			'INSERT INTO profile SET ?',
+			{
+				picture: formData.picture,
+				nickname: formData.nickname,
+				biography: formData.biography,
+				ville: formData.ville,
+				account_id: idProfile
+			},
 			(err, results) => {
 				if (err) {
 					console.log(err)
@@ -158,21 +168,39 @@ app.route('/profiles')
 // To retrieve all datas from user (except password)
 app.route('/profiles/:id')
 	.get(verifyToken, (request, response) => {
+		const foreignId = request.params.id
 		const idProfile = request.authData.sub
-		connection.query(
-			`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
-			[idProfile],
-			(err, results) => {
-				if (err) {
-					console.log(err)
-					response
-						.status(500)
-						.send('Erreur dans la récupération du profile')
-				} else {
-					response.json(results)
+		if (foreignId > 0 && foreignId === idProfile) {
+			connection.query(
+				`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
+				[idProfile],
+				(err, results) => {
+					if (err) {
+						console.log(err)
+						response
+							.status(500)
+							.send('Erreur dans la récupération du profile')
+					} else {
+						response.json(results)
+					}
 				}
-			}
-		)
+			)
+		} else {
+			connection.query(
+				`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
+				[foreignId],
+				(err, results) => {
+					if (err) {
+						console.log(err)
+						response
+							.status(500)
+							.send('Erreur dans la récupération du profile')
+					} else {
+						response.json(results)
+					}
+				}
+			)
+		}
 	})
 
 	// Will be used to edit the profile (<Modify /> component in react)

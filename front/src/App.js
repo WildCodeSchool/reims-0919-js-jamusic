@@ -109,7 +109,7 @@ class App extends React.Component {
 					<Route
 						exact
 						path='/register'
-						component={() => <AccountRegister />}
+						component={props => <AccountRegister {...props} />}
 					/>
 					<Route
 						path='/login'
@@ -132,8 +132,12 @@ class App extends React.Component {
 							<Route
 								exact
 								path={`/${this.state.id}/feed`}
-								component={() => (
-									<NewsFeed {...this.state} {...this.props} />
+								component={props => (
+									<NewsFeed
+										{...this.state}
+										{...props}
+										loadProfile={this.loadProfile}
+									/>
 								)}
 							/>
 							<Route
@@ -177,8 +181,8 @@ class App extends React.Component {
 							/>
 							<Route
 								exact
-								path={'/creationtest'}
-								component={() => <ProfileCreation />}
+								path={'/createprofile'}
+								render={props => <ProfileCreation {...props} />}
 							/>
 						</main>
 						<Navbar {...this.state} />
