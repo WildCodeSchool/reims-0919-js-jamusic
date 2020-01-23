@@ -116,6 +116,7 @@ class Profile extends React.Component {
 									media={post.media}
 									likes={post.likes}
 									text={post.text}
+									date={post.date}
 								/>
 							))
 						) : (
