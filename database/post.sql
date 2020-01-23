@@ -1,3 +1,4 @@
+USE jamusic;
 INSERT INTO "post"
     ( "id", "text", "media", "likes", "share", "profile_id" )
 VALUES

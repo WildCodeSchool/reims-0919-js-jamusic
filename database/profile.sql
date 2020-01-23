@@ -1,3 +1,4 @@
+USE jamusic;
 INSERT INTO
     "profile"
     (
