@@ -8,13 +8,21 @@ const PostDisplay = ({
 	media,
 	likes,
 	text,
+	profileId,
+	loadAnotherProfile,
 	date
 }) => {
 	const formattedDate = new Date(date)
+
 	return (
 		<div className='PostDisplay'>
 			<div className='postHeader'>
-				<img src={profile_pic} alt={nickname} />
+				<img
+					src={profile_pic}
+					alt={nickname}
+					id={profileId}
+					onClick={loadAnotherProfile}
+				/>
 				<p>{nickname}</p>
 				<p>{tags}</p>
 			</div>

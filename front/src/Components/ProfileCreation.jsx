@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
@@ -10,6 +10,18 @@ const ProfileCreation = props => {
 		ville: ''
 	})
 	const [accountCreated, setAccountCreated] = useState(false)
+
+	const [tags, setTags] = useState(
+		useEffect(() => {
+			axios
+				.get('http://localhost:3000/tags', {
+					headers: {
+						Authorization: `Bearer ${props.location.state.token}`
+					}
+				})
+				.then(res => setTags({ tags: res.data }))
+		})
+	)
 
 	const submitForm = e => {
 		e.preventDefault()
@@ -41,40 +53,72 @@ const ProfileCreation = props => {
 			}}
 		/>
 	) : (
-		<form onSubmit={submitForm}>
-			<label htmlFor='nickname'>Pseudonyme :</label>
+		<form
+			onSubmit={submitForm}
+			className='height-max-100 flex-column flex-align:center space-size:l space:stack space:inset-squish'
+		>
+			<label htmlFor='nickname' className='space:stack'>
+				Pseudonyme :
+			</label>
 			<input
 				placeholder='Pseudonyme'
 				type='text'
 				name='nickname'
 				id='nickname'
 				onInput={onChange}
+				className='underlined no-focus space:stack body-font'
 			/>
-			<label htmlFor='picture'>Avatar :</label>
+			<label htmlFor='picture' className='space:stack'>
+				Avatar :
+			</label>
 			<input
 				placeholder="URL d'avatar"
 				type='text'
 				name='picture'
 				id='picture'
 				onInput={onChange}
+				className='underlined no-focus space:stack body-font'
 			/>
-			<label htmlFor='ville'>Ville :</label>
+			<label htmlFor='ville' className='space:stack'>
+				Ville :
+			</label>
 			<input
 				placeholder='Ville'
 				type='text'
 				name='ville'
 				id='ville'
 				onInput={onChange}
+				className='underlined no-focus space:stack body-font'
 			/>
-			<label htmlFor='biography'>Bio :</label>
+			<label htmlFor='biography' className='space:stack'>
+				Bio :
+			</label>
 			<input
 				placeholder='Petite description de vous'
 				type='text'
 				name='biography'
 				id='biography'
 				onInput={onChange}
+				className='underlined no-focus space:stack body-font'
 			/>
-			<button type='submit'>Créer votre profil</button>
+			<label htmlFor='tags' className='space:stack'>
+				Tag :{' '}
+			</label>
+			{tags ? (
+				<select name='tag' id='tag' className='space:stack'>
+					{tags.tags.map(tag => (
+						<option key={tag.id} value={tag.name}>
+							{tag.name}
+						</option>
+					))}
+				</select>
+			) : null}
+			<button
+				type='submit'
+				className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font'
+			>
+				Créer votre profil
+			</button>
 		</form>
 	)
 }

@@ -21,6 +21,15 @@ class Profile extends React.Component {
 			newPostInjected: false
 		}
 	}
+
+	handleSelectedTags(instrument) {
+		this.setState({
+			selectedTags: this.state.selectedTags.includes(instrument)
+				? this.state.selectedTags.filter(tag => tag !== instrument)
+				: [...this.state.selectedTags, instrument]
+		})
+	}
+
 	componentDidMount() {
 		const url = [
 			`http://localhost:3000/profiles/${this.props.match.params.id}`,
@@ -129,7 +138,7 @@ class Profile extends React.Component {
 				<div className='space-between'>
 					<div
 						key={this.props.id}
-						className=' flex-column border profile-bg-color'
+						className='flex-column border profile-bg-color'
 					>
 						<div className='flex-row'>
 							<div className=''>
@@ -203,6 +212,8 @@ class Profile extends React.Component {
 									media={post.media}
 									likes={post.likes}
 									text={post.text}
+									loadProfile={this.loadProfile}
+									profileId={this.props.match.params.id}
 									date={post.date}
 								/>
 							))

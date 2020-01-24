@@ -24,7 +24,6 @@ class App extends React.Component {
 		super(props)
 		this.state = {
 			researchIsVisible: false,
-			selectedTags: [],
 			isLoaded: false,
 			email: '',
 			password: '',
@@ -32,8 +31,6 @@ class App extends React.Component {
 			isConnected: false,
 			id: null
 		}
-		this.handleSelectedTags = this.handleSelectedTags.bind(this)
-		this.handleresearchIsVisible = this.handleresearchIsVisible.bind(this)
 		this.submitForm = this.submitForm.bind(this)
 		this.onChangeEmail = this.onChangeEmail.bind(this)
 		this.onChangePassword = this.onChangePassword.bind(this)
@@ -87,17 +84,6 @@ class App extends React.Component {
 		})
 	}
 
-	handleresearchIsVisible() {
-		this.setState({ researchIsVisible: !this.state.researchIsVisible })
-	}
-
-	handleSelectedTags(instrument) {
-		this.setState({
-			selectedTags: this.state.selectedTags.includes(instrument)
-				? this.state.selectedTags.filter(tag => tag !== instrument)
-				: [...this.state.selectedTags, instrument]
-		})
-	}
 	render() {
 		return (
 			<div className='background-color body-font'>
@@ -131,8 +117,12 @@ class App extends React.Component {
 							<Route
 								exact
 								path={`/${this.state.id}/feed`}
-								component={() => (
-									<NewsFeed {...this.state} {...this.props} />
+								component={props => (
+									<NewsFeed
+										{...this.state}
+										{...props}
+										loadProfile={this.loadProfile}
+									/>
 								)}
 							/>
 							<Route
@@ -166,17 +156,12 @@ class App extends React.Component {
 								path={'/tags'}
 								component={() => (
 									<Search
-										tags={this.state.tags}
 										handleSelectedTags={
 											this.handleSelectedTags
 										}
 										selectedTags={this.state.selectedTags}
-										researchIsVisible={
-											this.state.researchIsVisible
-										}
-										handleresearchIsVisible={
-											this.handleresearchIsVisible
-										}
+										{...this.state}
+										{...this.props}
 									/>
 								)}
 							/>

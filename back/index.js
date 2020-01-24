@@ -168,21 +168,39 @@ app.route('/profiles')
 // To retrieve all datas from user (except password)
 app.route('/profiles/:id')
 	.get(verifyToken, (request, response) => {
+		const foreignId = request.params.id
 		const idProfile = request.authData.sub
-		connection.query(
-			`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
-			[idProfile],
-			(err, results) => {
-				if (err) {
-					console.log(err)
-					response
-						.status(500)
-						.send('Erreur dans la récupération du profile')
-				} else {
-					response.json(results)
+		if (foreignId > 0 && foreignId === idProfile) {
+			connection.query(
+				`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
+				[idProfile],
+				(err, results) => {
+					if (err) {
+						console.log(err)
+						response
+							.status(500)
+							.send('Erreur dans la récupération du profile')
+					} else {
+						response.json(results)
+					}
 				}
-			}
-		)
+			)
+		} else {
+			connection.query(
+				`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
+				[foreignId],
+				(err, results) => {
+					if (err) {
+						console.log(err)
+						response
+							.status(500)
+							.send('Erreur dans la récupération du profile')
+					} else {
+						response.json(results)
+					}
+				}
+			)
+		}
 	})
 
 	// Will be used to edit the profile (<Modify /> component in react)
@@ -259,6 +277,26 @@ app.route('/profile/:id/posts/new').post(verifyToken, (request, response) => {
 	)
 })
 
+app.route('/profiles/tags').post(verifyToken, (request, response) => {
+	const idProfile = request.authData.sub
+	const formData = request.body
+	connection.query(
+		'INSERT INTO profile_has_tag SET ?',
+		{
+			profile_id: idProfile,
+			tag_id: formData.tag
+		},
+		(err, results) => {
+			if (err) {
+				console.log(err)
+				response.status(500).send('Error adding tags on profile')
+			} else {
+				response.json(results)
+			}
+		}
+	)
+})
+
 app.route('/tags').get(verifyToken, (request, response) => {
 	const idProfile = request.authData.sub
 	connection.query('SELECT * from tag', idProfile, (err, results) => {
@@ -270,6 +308,25 @@ app.route('/tags').get(verifyToken, (request, response) => {
 	})
 })
 // End of tags routes
+app.route('/tags/:name').get(verifyToken, (request, response) => {
+	const idProfile = request.params.name
+	connection.query(
+		'SELECT profile.nickname, tag.name FROM profile LEFT JOIN tag ON profile.id = tag.id WHERE tag.name = ?',
+		[idProfile],
+		(err, results) => {
+			if (err) {
+				console.log(err)
+				response
+					.status(500)
+					.send(
+						'Erreur dans la récupération de profils correspondants'
+					)
+			} else {
+				response.json(results)
+			}
+		}
+	)
+})
 
 app.listen(port, err => {
 	if (err) {
