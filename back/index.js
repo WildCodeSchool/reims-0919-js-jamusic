@@ -198,7 +198,6 @@ app.route('/profiles/:id')
 							.status(500)
 							.send('Erreur dans la récupération du profile')
 					} else {
-
 						response.json(results)
 					}
 				}
@@ -239,7 +238,7 @@ app.route('/profiles/:id')
 		)
 	})
 
-	app.route('/profiles/tags').get(verifyToken, (request, response) => {
+/*app.route('/profiles/tags').get(verifyToken, (request, response) => {
 		const idProfile = request.authData.sub
 		connection.query('SELECT tag.name FROM tag INNER JOIN profile ON ', [idProfile],
 		(err, results) => {
@@ -250,7 +249,7 @@ app.route('/profiles/:id')
 				response.json(results)
 			}
 		})
-	})
+	})*/
 // End of profiles ID routes
 
 app.route('/feed').get(verifyToken, (request, response) => {
