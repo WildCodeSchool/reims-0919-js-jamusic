@@ -159,7 +159,24 @@ app.route('/profiles')
 					console.log(err)
 					res.status(500).send('Error adding a new profile')
 				} else {
-					response.json(results)
+					const profile = { ...formData, id: results.insertId }
+					connection.query(
+						'INSERT INTO profile_has_tag SET ?',
+						{
+							profile_id: profile.id,
+							tag_id: formData.tag
+						},
+						(err, results) => {
+							if (err) {
+								console.log(err)
+								response
+									.status(500)
+									.send('Error adding tags on profile')
+							} else {
+								response.json(profile)
+							}
+						}
+					)
 				}
 			}
 		)
@@ -181,6 +198,7 @@ app.route('/profiles/:id')
 							.status(500)
 							.send('Erreur dans la récupération du profile')
 					} else {
+
 						response.json(results)
 					}
 				}
@@ -219,6 +237,19 @@ app.route('/profiles/:id')
 				}
 			}
 		)
+	})
+
+	app.route('/profiles/tags').get(verifyToken, (request, response) => {
+		const idProfile = request.authData.sub
+		connection.query('SELECT tag.name FROM tag INNER JOIN profile ON ', [idProfile],
+		(err, results) => {
+			if(err) {
+				console.log(err)
+				response.status.(500).send('Pas de tag correspondant')
+			} else {
+				response.json(results)
+			}
+		})
 	})
 // End of profiles ID routes
 
