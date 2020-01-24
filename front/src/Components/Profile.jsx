@@ -181,7 +181,12 @@ class Profile extends React.Component {
 											: 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
 									}
 									alt='Personnal profile pic'
-									className='img-chip width100 space:stack'
+									className='img-chip space:stack'
+									style={{
+										width: '64px',
+										height: '64px',
+										objectFit: 'scale-down'
+									}}
 								/>
 								{this.props.match.params.id ==
 									this.props.id && (
