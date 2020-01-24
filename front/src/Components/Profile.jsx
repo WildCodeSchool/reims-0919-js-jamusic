@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
 import PostDisplay from './PostDisplay'
+//import PostCreation from './PostCreation'
+import { FABButton, Icon, Spinner } from 'react-mdl'
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -12,7 +14,11 @@ class Profile extends React.Component {
 			picture: '',
 			biography: '',
 			ville: '',
-			posts: []
+			posts: [],
+			isLoaded: false,
+			didShowPostCreation: false,
+			text: '',
+			media: ''
 		}
 	}
 	componentDidMount() {
@@ -33,14 +39,61 @@ class Profile extends React.Component {
 					picture: profileRes.data[0].picture,
 					biography: profileRes.data[0].biography,
 					ville: profileRes.data[0].ville,
-					posts: postsRes.data
+					posts: postsRes.data,
+					isLoaded: true
 				})
 			})
 		)
 	}
 
+	submitMessage = e => {
+		e.preventDefault()
+		const data = {
+			text: this.state.text,
+			media: this.state.media
+		}
+		axios
+			.post('http://localhost:3000/post/new', data, {
+				headers: {
+					Authorization: `Bearer ${this.props.token}`
+				}
+			})
+			.then(alert('Message créé'))
+	}
+
+	showPostCreation = () => {
+		this.setState({
+			didShowPostCreation: !this.didShowPostCreation
+		})
+	}
+
+	onChange = e => {
+		this.setState({ [e.target.name]: e.target.value })
+	}
+
 	render() {
-		return (
+		return this.state.didShowPostCreation ? (
+			<form onSubmit={this.submitMessage}>
+				<label htmlFor='text'>Votre message :</label>
+				<textarea
+					placeholder='Votre message ici ...'
+					name='text'
+					id='text'
+					rows='5'
+					cols='33'
+					onInput={this.onChange}
+				/>
+				<label htmlFor='picture'>Avatar :</label>
+				<input
+					placeholder='URL de votre media'
+					type='text'
+					name='media'
+					id='media'
+					onInput={this.onChange}
+				/>
+				<button type='submit'>Poster</button>
+			</form>
+		) : (
 			<div className=''>
 				<div className='space-between'>
 					<div
@@ -123,9 +176,15 @@ class Profile extends React.Component {
 								/>
 							))
 						) : (
-							<p>Chargement des posts ...</p>
+							<>
+								<Spinner singleColor />
+								<p>Chargement des posts ...</p>
+							</>
 						)}
 					</div>
+					<FABButton colored ripple onClick={this.showPostCreation}>
+						<Icon name='+' />
+					</FABButton>
 				</div>
 			</div>
 		)
