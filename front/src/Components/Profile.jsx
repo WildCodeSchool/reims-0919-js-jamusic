@@ -53,12 +53,17 @@ class Profile extends React.Component {
 			media: this.state.media
 		}
 		axios
-			.post('http://localhost:3000/post/new', data, {
-				headers: {
-					Authorization: `Bearer ${this.props.token}`
+			.post(
+				`http://localhost:3000/profile/${this.props.id}/posts/new`,
+				data,
+				{
+					headers: {
+						Authorization: `Bearer ${this.props.token}`
+					}
 				}
-			})
+			)
 			.then(alert('Message créé'))
+			.then(() => this.showPostCreation)
 	}
 
 	showPostCreation = () => {
