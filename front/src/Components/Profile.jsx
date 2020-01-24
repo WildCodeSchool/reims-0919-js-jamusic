@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
 import PostDisplay from './PostDisplay'
-import { FABButton, Icon, Spinner, Snackbar } from 'react-mdl'
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -180,15 +179,13 @@ class Profile extends React.Component {
 									alt='Personnal profile pic'
 									className='img-chip width100 space:stack'
 								/>
-								{this.props.match.params.id ==
-									this.props.id && (
-									<Link
-										to='/profiles/modif'
-										className='space-size:s space:inset-squish space:stack'
-									>
-										Modifier
-									</Link>
-								)}
+
+								<Link
+									to='/profiles/modif'
+									className='space-size:s space:inset-squish space:stack'
+								>
+									Modifier
+								</Link>
 							</div>
 						</div>
 
@@ -218,10 +215,7 @@ class Profile extends React.Component {
 								/>
 							))
 						) : (
-							<>
-								<Spinner singleColor />
-								<p>Chargement des posts ...</p>
-							</>
+							<p>Chargement des posts ...</p>
 						)}
 					</div>
 					<button
