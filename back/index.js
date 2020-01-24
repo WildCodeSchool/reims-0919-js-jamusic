@@ -258,6 +258,26 @@ app.route('/profiles/:id/posts').get(verifyToken, (request, response) => {
 	)
 })
 
+app.route('/profiles/tags').post(verifyToken, (request, response) => {
+	const idProfile = request.authData.sub
+	const formData = request.body
+	connection.query(
+		'INSERT INTO profile_has_tag SET ?',
+		{
+			profile_id: idProfile,
+			tag_id: formData.tag
+		},
+		(err, results) => {
+			if (err) {
+				console.log(err)
+				response.status(500).send('Error adding tags on profile')
+			} else {
+				response.json(results)
+			}
+		}
+	)
+})
+
 app.route('/tags').get(verifyToken, (request, response) => {
 	const idProfile = request.authData.sub
 	connection.query('SELECT * from tag', idProfile, (err, results) => {
