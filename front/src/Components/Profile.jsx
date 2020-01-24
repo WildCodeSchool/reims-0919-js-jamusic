@@ -15,6 +15,15 @@ class Profile extends React.Component {
 			posts: []
 		}
 	}
+
+	handleSelectedTags(instrument) {
+		this.setState({
+			selectedTags: this.state.selectedTags.includes(instrument)
+				? this.state.selectedTags.filter(tag => tag !== instrument)
+				: [...this.state.selectedTags, instrument]
+		})
+	}
+
 	componentDidMount() {
 		const url = [
 			`http://localhost:3000/profiles/${this.props.match.params.id}`,

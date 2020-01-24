@@ -24,7 +24,6 @@ class App extends React.Component {
 		super(props)
 		this.state = {
 			researchIsVisible: false,
-			selectedTags: [],
 			isLoaded: false,
 			email: '',
 			password: '',
@@ -32,8 +31,6 @@ class App extends React.Component {
 			isConnected: false,
 			id: null
 		}
-		this.handleSelectedTags = this.handleSelectedTags.bind(this)
-		this.handleresearchIsVisible = this.handleresearchIsVisible.bind(this)
 		this.submitForm = this.submitForm.bind(this)
 		this.onChangeEmail = this.onChangeEmail.bind(this)
 		this.onChangePassword = this.onChangePassword.bind(this)
@@ -84,18 +81,6 @@ class App extends React.Component {
 	onChangePassword(e) {
 		this.setState({
 			password: e.target.value
-		})
-	}
-
-	handleresearchIsVisible() {
-		this.setState({ researchIsVisible: !this.state.researchIsVisible })
-	}
-
-	handleSelectedTags(instrument) {
-		this.setState({
-			selectedTags: this.state.selectedTags.includes(instrument)
-				? this.state.selectedTags.filter(tag => tag !== instrument)
-				: [...this.state.selectedTags, instrument]
 		})
 	}
 
@@ -176,6 +161,7 @@ class App extends React.Component {
 										}
 										selectedTags={this.state.selectedTags}
 										{...this.state}
+										{...this.props}
 									/>
 								)}
 							/>

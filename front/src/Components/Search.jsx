@@ -6,9 +6,11 @@ class Search extends React.Component {
 		super(props)
 		this.state = {
 			tags: [],
-			matchedProfiles: []
+			matchedProfiles: [],
+			selectedTags: []
 		}
 		this.getProfileViaTag = this.getProfileViaTag.bind(this)
+		this.handleSelectedTags = this.handleSelectedTags.bind(this)
 	}
 	componentDidMount() {
 		axios
@@ -20,12 +22,22 @@ class Search extends React.Component {
 			.then(data => this.setState({ tags: data.data }))
 	}
 
-	getProfileViaTag() {
-		axios.get(`http://localhost:3000/tags/${this.props.match.params.id}`, {
-			headers: {
-				Authorization: `Bearer ${this.props.token}`
-			}.then(data => this.setState({ matchedProfiles: data.data }))
+	handleSelectedTags(instrument) {
+		this.setState({
+			selectedTags: this.state.selectedTags.includes(instrument)
+				? this.state.selectedTags.filter(tag => tag !== instrument)
+				: [...this.state.selectedTags, instrument]
 		})
+	}
+
+	getProfileViaTag() {
+		axios
+			.get(`http://localhost:3000/tags/${this.state.selectedTags}`, {
+				headers: {
+					Authorization: `Bearer ${this.props.token}`
+				}
+			})
+			.then(data => this.setState({ matchedProfiles: data.data }))
 	}
 
 	render() {
@@ -43,12 +55,12 @@ class Search extends React.Component {
 										<li
 											key={tag.id}
 											onClick={() =>
-												this.props.handleSelectedTags(
+												this.handleSelectedTags(
 													tag.name
 												)
 											}
 											className={
-												this.props.selectedTags.includes(
+												this.state.selectedTags.includes(
 													tag.name
 												)
 													? 'is_selected space-size:s space:stack style:none tags-font'
@@ -68,12 +80,12 @@ class Search extends React.Component {
 										<li
 											key={tag.id}
 											onClick={() =>
-												this.props.handleSelectedTags(
+												this.handleSelectedTags(
 													tag.name
 												)
 											}
 											className={
-												this.props.selectedTags.includes(
+												this.state.selectedTags.includes(
 													tag.name
 												)
 													? 'is_selected space-size:s space:stack style:none tags-font'
