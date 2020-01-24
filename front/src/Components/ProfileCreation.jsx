@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
@@ -10,6 +10,18 @@ const ProfileCreation = props => {
 		ville: ''
 	})
 	const [accountCreated, setAccountCreated] = useState(false)
+
+	const [tags, setTags] = useState(
+		useEffect(() => {
+			axios
+				.get('http://localhost:3000/tags', {
+					headers: {
+						Authorization: `Bearer ${props.location.state.token}`
+					}
+				})
+				.then(res => setTags({ tags: res.data }))
+		})
+	)
 
 	const submitForm = e => {
 		e.preventDefault()
@@ -89,6 +101,18 @@ const ProfileCreation = props => {
 				onInput={onChange}
 				className='underlined no-focus space:stack body-font'
 			/>
+			<label htmlFor='tags' className='space:stack'>
+				Tag :{' '}
+			</label>
+			{tags ? (
+				<select name='tag' id='tag' className='space:stack'>
+					{tags.tags.map(tag => (
+						<option key={tag.id} value={tag.name}>
+							{tag.name}
+						</option>
+					))}
+				</select>
+			) : null}
 			<button
 				type='submit'
 				className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font'
