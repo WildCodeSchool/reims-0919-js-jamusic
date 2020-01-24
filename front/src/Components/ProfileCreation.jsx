@@ -41,40 +41,60 @@ const ProfileCreation = props => {
 			}}
 		/>
 	) : (
-		<form onSubmit={submitForm}>
-			<label htmlFor='nickname'>Pseudonyme :</label>
+		<form
+			onSubmit={submitForm}
+			className='height-max-100 flex-column flex-align:center space-size:l space:stack space:inset-squish'
+		>
+			<label htmlFor='nickname' className='space:stack'>
+				Pseudonyme :
+			</label>
 			<input
 				placeholder='Pseudonyme'
 				type='text'
 				name='nickname'
 				id='nickname'
 				onInput={onChange}
+				className='underlined no-focus space:stack body-font'
 			/>
-			<label htmlFor='picture'>Avatar :</label>
+			<label htmlFor='picture' className='space:stack'>
+				Avatar :
+			</label>
 			<input
 				placeholder="URL d'avatar"
 				type='text'
 				name='picture'
 				id='picture'
 				onInput={onChange}
+				className='underlined no-focus space:stack body-font'
 			/>
-			<label htmlFor='ville'>Ville :</label>
+			<label htmlFor='ville' className='space:stack'>
+				Ville :
+			</label>
 			<input
 				placeholder='Ville'
 				type='text'
 				name='ville'
 				id='ville'
 				onInput={onChange}
+				className='underlined no-focus space:stack body-font'
 			/>
-			<label htmlFor='biography'>Bio :</label>
+			<label htmlFor='biography' className='space:stack'>
+				Bio :
+			</label>
 			<input
 				placeholder='Petite description de vous'
 				type='text'
 				name='biography'
 				id='biography'
 				onInput={onChange}
+				className='underlined no-focus space:stack body-font'
 			/>
-			<button type='submit'>Créer votre profil</button>
+			<button
+				type='submit'
+				className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font'
+			>
+				Créer votre profil
+			</button>
 		</form>
 	)
 }
