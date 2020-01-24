@@ -45,7 +45,7 @@ class Profile extends React.Component {
 				<div className='space-between'>
 					<div
 						key={this.props.id}
-						className=' flex-column border profile-bg-color'
+						className='flex-column border profile-bg-color'
 					>
 						<div className='flex-row'>
 							<div className=''>

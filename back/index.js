@@ -269,6 +269,25 @@ app.route('/tags').get(verifyToken, (request, response) => {
 	})
 })
 // End of tags routes
+app.route('/tags/:name').get(verifyToken, (request, response) => {
+	const idProfile = request.params.name
+	connection.query(
+		'SELECT profile.nickname, tag.name FROM profile LEFT JOIN tag ON profile.id = tag.id WHERE tag.name = ?',
+		[idProfile],
+		(err, results) => {
+			if (err) {
+				console.log(err)
+				response
+					.status(500)
+					.send(
+						'Erreur dans la récupération de profils correspondants'
+					)
+			} else {
+				response.json(results)
+			}
+		}
+	)
+})
 
 app.listen(port, err => {
 	if (err) {

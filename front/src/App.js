@@ -98,6 +98,7 @@ class App extends React.Component {
 				: [...this.state.selectedTags, instrument]
 		})
 	}
+
 	render() {
 		return (
 			<div className='background-color body-font'>
@@ -170,17 +171,11 @@ class App extends React.Component {
 								path={'/tags'}
 								component={() => (
 									<Search
-										tags={this.state.tags}
 										handleSelectedTags={
 											this.handleSelectedTags
 										}
 										selectedTags={this.state.selectedTags}
-										researchIsVisible={
-											this.state.researchIsVisible
-										}
-										handleresearchIsVisible={
-											this.handleresearchIsVisible
-										}
+										{...this.state}
 									/>
 								)}
 							/>
