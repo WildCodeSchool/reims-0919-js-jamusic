@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
 import PostDisplay from './PostDisplay'
-//import PostCreation from './PostCreation'
-import { FABButton, Icon, Spinner } from 'react-mdl'
+import { FABButton, Icon, Spinner, Snackbar } from 'react-mdl'
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -18,7 +17,8 @@ class Profile extends React.Component {
 			isLoaded: false,
 			didShowPostCreation: false,
 			text: '',
-			media: ''
+			media: '',
+			newPostInjected: false
 		}
 	}
 	componentDidMount() {
@@ -46,6 +46,38 @@ class Profile extends React.Component {
 		)
 	}
 
+	componentDidUpdate() {
+		this.state.newPostInjected &&
+			axios
+				.get(
+					`http://localhost:3000/profiles/${this.props.match.params.id}/posts`,
+					{
+						headers: {
+							Authorization: `Bearer ${this.props.token}`
+						}
+					}
+				)
+				.then(response => {
+					this.setState({
+						posts: response.data,
+						newPostInjected: false,
+						isLoaded: true
+					})
+				})
+	}
+
+	showPostCreation = () => {
+		this.setState({
+			didShowPostCreation: true
+		})
+	}
+
+	hidePostCreation = () => {
+		this.setState({
+			didShowPostCreation: false
+		})
+	}
+
 	submitMessage = e => {
 		e.preventDefault()
 		const data = {
@@ -62,14 +94,8 @@ class Profile extends React.Component {
 					}
 				}
 			)
-			.then(alert('Message créé'))
-			.then(() => this.showPostCreation)
-	}
-
-	showPostCreation = () => {
-		this.setState({
-			didShowPostCreation: !this.didShowPostCreation
-		})
+			.then(this.setState({ newPostInjected: true }))
+			.then(this.hidePostCreation)
 	}
 
 	onChange = e => {
@@ -187,9 +213,12 @@ class Profile extends React.Component {
 							</>
 						)}
 					</div>
-					<FABButton colored ripple onClick={this.showPostCreation}>
-						<Icon name='+' />
-					</FABButton>
+					<button
+						className='addButton'
+						onClick={this.showPostCreation}
+					>
+						+
+					</button>
 				</div>
 			</div>
 		)

@@ -243,9 +243,8 @@ app.route('/profiles/:id/posts').get(verifyToken, (request, response) => {
 app.route('/profile/:id/posts/new').post(verifyToken, (request, response) => {
 	const idProfile = request.params.id
 	const formData = request.body
-	console.log('ok')
 	connection.query(
-		'INSERT INTO post (media, text, profile_id, share) VALUES ( ? , ?, ?, 0) ',
+		'INSERT INTO post (text, media, profile_id, share) VALUES ( ? , ?, ?, 0) ',
 		[formData.text, formData.media, idProfile],
 		(err, results) => {
 			if (err) {
