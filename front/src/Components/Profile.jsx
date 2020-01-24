@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
 import PostDisplay from './PostDisplay'
+import { FABButton, Icon, Spinner, Snackbar } from 'react-mdl'
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -12,7 +13,12 @@ class Profile extends React.Component {
 			picture: '',
 			biography: '',
 			ville: '',
-			posts: []
+			posts: [],
+			isLoaded: false,
+			didShowPostCreation: false,
+			text: '',
+			media: '',
+			newPostInjected: false
 		}
 	}
 
@@ -42,14 +48,92 @@ class Profile extends React.Component {
 					picture: profileRes.data[0].picture,
 					biography: profileRes.data[0].biography,
 					ville: profileRes.data[0].ville,
-					posts: postsRes.data
+					posts: postsRes.data,
+					isLoaded: true
 				})
 			})
 		)
 	}
 
+	componentDidUpdate() {
+		this.state.newPostInjected &&
+			axios
+				.get(
+					`http://localhost:3000/profiles/${this.props.match.params.id}/posts`,
+					{
+						headers: {
+							Authorization: `Bearer ${this.props.token}`
+						}
+					}
+				)
+				.then(response => {
+					this.setState({
+						posts: response.data,
+						newPostInjected: false,
+						isLoaded: true
+					})
+				})
+	}
+
+	showPostCreation = () => {
+		this.setState({
+			didShowPostCreation: true
+		})
+	}
+
+	hidePostCreation = () => {
+		this.setState({
+			didShowPostCreation: false
+		})
+	}
+
+	submitMessage = e => {
+		e.preventDefault()
+		const data = {
+			text: this.state.text,
+			media: this.state.media
+		}
+		axios
+			.post(
+				`http://localhost:3000/profile/${this.props.id}/posts/new`,
+				data,
+				{
+					headers: {
+						Authorization: `Bearer ${this.props.token}`
+					}
+				}
+			)
+			.then(this.setState({ newPostInjected: true }))
+			.then(this.hidePostCreation)
+	}
+
+	onChange = e => {
+		this.setState({ [e.target.name]: e.target.value })
+	}
+
 	render() {
-		return (
+		return this.state.didShowPostCreation ? (
+			<form onSubmit={this.submitMessage}>
+				<label htmlFor='text'>Votre message :</label>
+				<textarea
+					placeholder='Votre message ici ...'
+					name='text'
+					id='text'
+					rows='5'
+					cols='33'
+					onInput={this.onChange}
+				/>
+				<label htmlFor='picture'>Avatar :</label>
+				<input
+					placeholder='URL de votre media'
+					type='text'
+					name='media'
+					id='media'
+					onInput={this.onChange}
+				/>
+				<button type='submit'>Poster</button>
+			</form>
+		) : (
 			<div className=''>
 				<div className='space-between'>
 					<div
@@ -96,12 +180,15 @@ class Profile extends React.Component {
 									alt='Personnal profile pic'
 									className='img-chip width100 space:stack'
 								/>
-								<Link
-									to='/profiles/modif'
-									className='space-size:s space:inset-squish space:stack'
-								>
-									Modifier
-								</Link>
+								{this.props.match.params.id ==
+									this.props.id && (
+									<Link
+										to='/profiles/modif'
+										className='space-size:s space:inset-squish space:stack'
+									>
+										Modifier
+									</Link>
+								)}
 							</div>
 						</div>
 
@@ -131,9 +218,18 @@ class Profile extends React.Component {
 								/>
 							))
 						) : (
-							<p>Chargement des posts ...</p>
+							<>
+								<Spinner singleColor />
+								<p>Chargement des posts ...</p>
+							</>
 						)}
 					</div>
+					<button
+						className='addButton'
+						onClick={this.showPostCreation}
+					>
+						+
+					</button>
 				</div>
 			</div>
 		)

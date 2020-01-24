@@ -22,3 +22,17 @@
 .is_selected {
 	transform: scale(1.2, 1.2);
 }
+
+.addButton {
+	width: 65px;
+	position: fixed;
+	bottom: 10vh;
+	right: 2px;
+	height: 65px;
+	background: var(--button-bg-color);
+	color: var(--button-font-color);
+	font-size: 50px;
+	border-radius: 50%;
+	border: none;
+	box-shadow: 0 0 2px 2px black;
+}
