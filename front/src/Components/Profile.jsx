@@ -150,7 +150,7 @@ class Profile extends React.Component {
 										@{this.state.nickname}
 									</h2>
 									<p className='space-size:s space:stack'>
-										2B abonnés / 1k abonnements
+										2M abonnés / 237 abonnements
 									</p>
 									<h3 className='space:stack title-font'>
 										CENTRES D'INTERETS :{' '}

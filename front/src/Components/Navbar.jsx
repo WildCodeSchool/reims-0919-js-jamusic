@@ -36,13 +36,6 @@ const Navbar = props => {
 					className='icon-zone nav-icon-color'
 				/>
 			</Link>
-			<Link to=''>
-				<FontAwesomeIcon
-					icon='comment-dots'
-					size='lg'
-					className='icon-zone nav-icon-color'
-				/>
-			</Link>
 		</div>
 	)
 }

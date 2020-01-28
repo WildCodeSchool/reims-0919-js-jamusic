@@ -44,8 +44,6 @@ const ProfileCreation = props => {
 					Authorization: `Bearer ${props.location.state.token}`
 				}
 			})
-
-			.then(alert('Compte créé'))
 			.then(() => setAccountCreated(true))
 	}
 
