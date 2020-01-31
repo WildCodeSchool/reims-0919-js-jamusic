@@ -7,29 +7,36 @@ const ProfileCreation = props => {
 		picture: '',
 		nickname: '',
 		biography: '',
-		ville: ''
+		ville: '',
+		tag: ''
 	})
 	const [accountCreated, setAccountCreated] = useState(false)
 
-	const [tags, setTags] = useState(
-		useEffect(() => {
-			axios
-				.get('http://localhost:3000/tags', {
-					headers: {
-						Authorization: `Bearer ${props.location.state.token}`
-					}
-				})
-				.then(res => setTags({ tags: res.data }))
+	const [tags, setTags] = useState([])
+	useEffect(() => {
+		axios
+			.get('http://localhost:3000/tags', {
+				headers: {
+					Authorization: `Bearer ${props.location.state.token}`
+				}
+			})
+			.then(res => setTags(res.data))
+	})
+	const tagData = () => {
+		const tag = { tag: profileData.tag }
+		axios.post('http://localhost:3000/profiles/tags', tag, {
+			headers: {
+				Authorization: `Bearer ${props.location.state.token}`
+			}
 		})
-	)
-
-	const submitForm = e => {
-		e.preventDefault()
+	}
+	const submitProfileData = () => {
 		const data = {
 			picture: profileData.picture,
 			nickname: profileData.nickname,
 			biography: profileData.biography,
-			ville: profileData.ville
+			ville: profileData.ville,
+			tag: profileData.tag
 		}
 		axios
 			.post('http://localhost:3000/profiles/', data, {
@@ -37,8 +44,12 @@ const ProfileCreation = props => {
 					Authorization: `Bearer ${props.location.state.token}`
 				}
 			})
-			.then(alert('Compte créé'))
 			.then(() => setAccountCreated(true))
+	}
+
+	const submitForm = () => {
+		submitProfileData()
+		//tagData()
 	}
 
 	const onChange = e => {
@@ -53,10 +64,7 @@ const ProfileCreation = props => {
 			}}
 		/>
 	) : (
-		<form
-			onSubmit={submitForm}
-			className='height-max-100 flex-column flex-align:center space-size:l space:stack space:inset-squish'
-		>
+		<div className='height-max-100 flex-column flex-align:center space-size:l space:stack space:inset-squish'>
 			<label htmlFor='nickname' className='space:stack'>
 				Pseudonyme :
 			</label>
@@ -104,22 +112,26 @@ const ProfileCreation = props => {
 			<label htmlFor='tags' className='space:stack'>
 				Tag :{' '}
 			</label>
-			{tags ? (
-				<select name='tag' id='tag' className='space:stack'>
-					{tags.tags.map(tag => (
-						<option key={tag.id} value={tag.name}>
-							{tag.name}
-						</option>
-					))}
-				</select>
-			) : null}
+			<select
+				name='tag'
+				id='tag'
+				className='space:stack'
+				onInput={onChange}
+			>
+				{tags.map(tag => (
+					<option key={tag.id} value={tag.id}>
+						{tag.name}
+					</option>
+				))}
+			</select>
 			<button
-				type='submit'
+				type='button'
 				className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font'
+				onClick={submitForm}
 			>
 				Créer votre profil
 			</button>
-		</form>
+		</div>
 	)
 }
 

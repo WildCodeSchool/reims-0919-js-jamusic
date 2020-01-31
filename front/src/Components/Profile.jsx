@@ -112,7 +112,10 @@ class Profile extends React.Component {
 
 	render() {
 		return this.state.didShowPostCreation ? (
-			<form onSubmit={this.submitMessage}>
+			<form
+				onSubmit={this.submitMessage}
+				className='height-max-100 flex-column flex-align:center space-size:l space:stack space:inset-squish'
+			>
 				<label htmlFor='text'>Votre message :</label>
 				<textarea
 					placeholder='Votre message ici ...'
@@ -122,7 +125,7 @@ class Profile extends React.Component {
 					cols='33'
 					onInput={this.onChange}
 				/>
-				<label htmlFor='picture'>Avatar :</label>
+				<label htmlFor='picture'>Media :</label>
 				<input
 					placeholder='URL de votre media'
 					type='text'
@@ -146,7 +149,7 @@ class Profile extends React.Component {
 										@{this.state.nickname}
 									</h2>
 									<p className='space-size:s space:stack'>
-										2B abonnés / 1k abonnements
+										2M abonnés / 237 abonnements
 									</p>
 									<h3 className='space:stack title-font'>
 										CENTRES D'INTERETS :{' '}
@@ -155,16 +158,16 @@ class Profile extends React.Component {
 								<div className='flex-column'>
 									<div className='flex-row'>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Tag
+											Synthwave
 										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Tag
+											Rock
 										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Tag
+											Pro
 										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											{this.state.ville}
+											Ville {this.state.ville}
 										</p>
 									</div>
 								</div>
@@ -177,7 +180,12 @@ class Profile extends React.Component {
 											: 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
 									}
 									alt='Personnal profile pic'
-									className='img-chip width100 space:stack'
+									className='img-chip space:stack'
+									style={{
+										width: '64px',
+										height: '64px',
+										objectFit: 'scale-down'
+									}}
 								/>
 
 								<Link
