@@ -150,7 +150,7 @@ class Profile extends React.Component {
 										@{this.state.nickname}
 									</h2>
 									<p className='space-size:s space:stack'>
-										2M abonnés / 237 abonnements
+										0 abonné / 0 abonnement
 									</p>
 									<h3 className='space:stack title-font'>
 										CENTRES D'INTERETS :{' '}
@@ -159,14 +159,10 @@ class Profile extends React.Component {
 								<div className='flex-column'>
 									<div className='flex-row'>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Synthwave
+											Violon
 										</p>
-										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Rock
-										</p>
-										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Pro
-										</p>
+										<p className='space-size:s space:inline space:stack space:inset-squish'></p>
+										<p className='space-size:s space:inline space:stack space:inset-squish'></p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
 											Ville {this.state.ville}
 										</p>
