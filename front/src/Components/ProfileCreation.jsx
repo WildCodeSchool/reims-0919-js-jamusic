@@ -23,19 +23,7 @@ class ProfileCreation extends React.Component {
 					Authorization: `Bearer ${this.props.location.state.token}`
 				}
 			})
-<<<<<<< HEAD
-			.then(res => setTags(res.data))
-	}, [])
-	const tagData = () => {
-		const tag = { tag: profileData.tag }
-		axios.post('http://localhost:3000/profiles/tags', tag, {
-			headers: {
-				Authorization: `Bearer ${props.location.state.token}`
-			}
-		})
-=======
 			.then(res => this.setState({ tags: res.data }))
->>>>>>> 04d7481eb4b8a219849df0b7cb788759c1fe9595
 	}
 	submitProfileData = () => {
 		const { picture, nickname, biography, ville, tag } = this.state
