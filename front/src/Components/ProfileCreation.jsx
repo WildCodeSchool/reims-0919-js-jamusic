@@ -21,7 +21,7 @@ const ProfileCreation = props => {
 				}
 			})
 			.then(res => setTags(res.data))
-	})
+	}, [])
 	const tagData = () => {
 		const tag = { tag: profileData.tag }
 		axios.post('http://localhost:3000/profiles/tags', tag, {
