@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import logo from './images/logo.png'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import cogoToast from 'cogo-toast'
 
 const AccountRegister = props => {
 	const [account, setAccount] = useState({
@@ -25,6 +26,7 @@ const AccountRegister = props => {
 				.then(() => {
 					setIsCreated(true)
 				})
+				.then(cogoToast.success('Compte créé'))
 		} else {
 			e.preventDefault()
 			alert('Les mots de passe ne correspondent pas')

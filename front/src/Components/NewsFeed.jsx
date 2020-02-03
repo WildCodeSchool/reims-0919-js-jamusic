@@ -31,20 +31,30 @@ class NewsFeed extends React.Component {
 	render() {
 		return (
 			<div>
-				{this.state.posts.map(post => (
-					<PostDisplay
-						key={post.id}
-						profile_pic={post.picture}
-						nickname={post.nickname}
-						tags={post.tags}
-						media={post.media}
-						likes={post.likes}
-						text={post.text}
-						profileId={post.profile_id}
-						loadAnotherProfile={this.loadAnotherProfile}
-						date={post.date}
-					/>
-				))}
+				{this.state.posts
+					.filter(post => {
+						if (this.props.selectedTags.length === 0) {
+							return true // no filters
+						} else {
+							return this.props.selectedTags.some(
+								selectedTag => selectedTag.id === post.tag_id
+							)
+						}
+					})
+					.map(post => (
+						<PostDisplay
+							key={post.id}
+							profile_pic={post.picture}
+							nickname={post.nickname}
+							tags={post.tags}
+							media={post.media}
+							likes={post.likes}
+							text={post.text}
+							profileId={post.profile_id}
+							loadAnotherProfile={this.loadAnotherProfile}
+							date={post.date}
+						/>
+					))}
 			</div>
 		)
 	}

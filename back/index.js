@@ -189,7 +189,7 @@ app.route('/profiles/:id')
 		const idProfile = request.authData.sub
 		if (foreignId > 0 && foreignId === idProfile) {
 			connection.query(
-				`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
+				`SELECT profile.id, profile.picture, profile.nickname, profile.biography, profile.ville, account.email FROM profile INNER JOIN account ON account.id = profile.account_id WHERE profile.account_id =?`,
 				[idProfile],
 				(err, results) => {
 					if (err) {
@@ -204,7 +204,7 @@ app.route('/profiles/:id')
 			)
 		} else {
 			connection.query(
-				`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
+				`SELECT profile.id, profile.picture, profile.nickname, profile.biography, profile.ville, account.email FROM profile INNER JOIN account ON account.id = profile.account_id WHERE profile.account_id =?`,
 				[foreignId],
 				(err, results) => {
 					if (err) {
@@ -253,10 +253,8 @@ app.route('/profiles/:id')
 // End of profiles ID routes
 
 app.route('/feed').get(verifyToken, (request, response) => {
-	const idProfile = request.authData.sub
 	connection.query(
-		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id ORDER BY post.date DESC',
-		[idProfile],
+		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile_has_tag.tag_id, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id JOIN profile_has_tag ON profile.id = profile_has_tag.profile_id ORDER BY post.date DESC',
 		(err, results) => {
 			if (err) {
 				console.log(err)
