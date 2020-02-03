@@ -30,12 +30,14 @@ class App extends React.Component {
 			password: '',
 			token: null,
 			isConnected: false,
-			id: null
+			id: null,
+			selectedTags: []
 		}
 		this.submitForm = this.submitForm.bind(this)
 		this.onChangeEmail = this.onChangeEmail.bind(this)
 		this.onChangePassword = this.onChangePassword.bind(this)
 		this.getUserInfo = this.getUserInfo.bind(this)
+		this.setSelectedTags = this.setSelectedTags.bind(this)
 	}
 
 	submitForm(e) {
@@ -84,6 +86,10 @@ class App extends React.Component {
 		this.setState({
 			password: e.target.value
 		})
+	}
+
+	setSelectedTags(selectedTags) {
+		this.setState({ selectedTags })
 	}
 
 	render() {
@@ -158,9 +164,7 @@ class App extends React.Component {
 								path={'/tags'}
 								component={() => (
 									<Search
-										handleSelectedTags={
-											this.handleSelectedTags
-										}
+										setSelectedTags={this.setSelectedTags}
 										selectedTags={this.state.selectedTags}
 										{...this.state}
 										{...this.props}

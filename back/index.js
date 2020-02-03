@@ -253,10 +253,8 @@ app.route('/profiles/:id')
 // End of profiles ID routes
 
 app.route('/feed').get(verifyToken, (request, response) => {
-	const idProfile = request.authData.sub
 	connection.query(
-		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id ORDER BY post.date DESC',
-		[idProfile],
+		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile_has_tag.tag_id, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id JOIN profile_has_tag ON profile.id = profile_has_tag.profile_id ORDER BY post.date DESC',
 		(err, results) => {
 			if (err) {
 				console.log(err)
