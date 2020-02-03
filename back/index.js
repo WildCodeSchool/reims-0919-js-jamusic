@@ -159,7 +159,24 @@ app.route('/profiles')
 					console.log(err)
 					res.status(500).send('Error adding a new profile')
 				} else {
-					response.json(results)
+					const profile = { ...formData, id: results.insertId }
+					connection.query(
+						'INSERT INTO profile_has_tag SET ?',
+						{
+							profile_id: profile.id,
+							tag_id: formData.tag
+						},
+						(err, results) => {
+							if (err) {
+								console.log(err)
+								response
+									.status(500)
+									.send('Error adding tags on profile')
+							} else {
+								response.json(profile)
+							}
+						}
+					)
 				}
 			}
 		)
@@ -172,7 +189,7 @@ app.route('/profiles/:id')
 		const idProfile = request.authData.sub
 		if (foreignId > 0 && foreignId === idProfile) {
 			connection.query(
-				`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
+				`SELECT profile.id, profile.picture, profile.nickname, profile.biography, profile.ville, account.email FROM profile INNER JOIN account ON account.id = profile.account_id WHERE profile.account_id =?`,
 				[idProfile],
 				(err, results) => {
 					if (err) {
@@ -187,7 +204,7 @@ app.route('/profiles/:id')
 			)
 		} else {
 			connection.query(
-				`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
+				`SELECT profile.id, profile.picture, profile.nickname, profile.biography, profile.ville, account.email FROM profile INNER JOIN account ON account.id = profile.account_id WHERE profile.account_id =?`,
 				[foreignId],
 				(err, results) => {
 					if (err) {
@@ -220,13 +237,24 @@ app.route('/profiles/:id')
 			}
 		)
 	})
+
+/*app.route('/profiles/tags').get(verifyToken, (request, response) => {
+		const idProfile = request.authData.sub
+		connection.query('SELECT tag.name FROM tag INNER JOIN profile ON ', [idProfile],
+		(err, results) => {
+			if(err) {
+				console.log(err)
+				response.status.(500).send('Pas de tag correspondant')
+			} else {
+				response.json(results)
+			}
+		})
+	})*/
 // End of profiles ID routes
 
 app.route('/feed').get(verifyToken, (request, response) => {
-	const idProfile = request.authData.sub
 	connection.query(
-		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id',
-		[idProfile],
+		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile_has_tag.tag_id, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id JOIN profile_has_tag ON profile.id = profile_has_tag.profile_id ORDER BY post.date DESC',
 		(err, results) => {
 			if (err) {
 				console.log(err)
@@ -243,8 +271,27 @@ app.route('/feed').get(verifyToken, (request, response) => {
 app.route('/profiles/:id/posts').get(verifyToken, (request, response) => {
 	const idProfile = request.params.id
 	connection.query(
-		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id WHERE profile.id = ?',
+		'SELECT post.id, post.text, post.media, post.likes, post.share, post.date, post.profile_id, profile.picture,profile.nickname, profile.account_id FROM post INNER JOIN profile ON post.profile_id = profile.id WHERE profile.id = ? ORDER BY post.date DESC',
 		[idProfile],
+		(err, results) => {
+			if (err) {
+				console.log(err)
+				response
+					.status(500)
+					.send('Erreur dans la récupération du profile')
+			} else {
+				response.json(results)
+			}
+		}
+	)
+})
+
+app.route('/profile/:id/posts/new').post(verifyToken, (request, response) => {
+	const idProfile = request.params.id
+	const formData = request.body
+	connection.query(
+		'INSERT INTO post (text, media, profile_id, share) VALUES ( ? , ?, ?, 0) ',
+		[formData.text, formData.media, idProfile],
 		(err, results) => {
 			if (err) {
 				console.log(err)

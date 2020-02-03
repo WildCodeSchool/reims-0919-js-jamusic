@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
 import PostDisplay from './PostDisplay'
+import cogoToast from 'cogo-toast'
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -12,7 +13,13 @@ class Profile extends React.Component {
 			picture: '',
 			biography: '',
 			ville: '',
-			posts: []
+			posts: [],
+			isLoaded: false,
+			didShowPostCreation: false,
+			text: '',
+			media: '',
+			newPostInjected: false,
+			email: ''
 		}
 	}
 
@@ -42,14 +49,97 @@ class Profile extends React.Component {
 					picture: profileRes.data[0].picture,
 					biography: profileRes.data[0].biography,
 					ville: profileRes.data[0].ville,
-					posts: postsRes.data
+					email: profileRes.data[0].email,
+					posts: postsRes.data,
+					isLoaded: true
 				})
 			})
 		)
 	}
 
+	componentDidUpdate() {
+		this.state.newPostInjected &&
+			axios
+				.get(
+					`http://localhost:3000/profiles/${this.props.match.params.id}/posts`,
+					{
+						headers: {
+							Authorization: `Bearer ${this.props.token}`
+						}
+					}
+				)
+				.then(response => {
+					this.setState({
+						posts: response.data,
+						newPostInjected: false,
+						isLoaded: true
+					})
+				})
+	}
+
+	showPostCreation = () => {
+		this.setState({
+			didShowPostCreation: true
+		})
+	}
+
+	hidePostCreation = () => {
+		this.setState({
+			didShowPostCreation: false
+		})
+	}
+
+	submitMessage = e => {
+		e.preventDefault()
+		const data = {
+			text: this.state.text,
+			media: this.state.media
+		}
+		axios
+			.post(
+				`http://localhost:3000/profile/${this.props.id}/posts/new`,
+				data,
+				{
+					headers: {
+						Authorization: `Bearer ${this.props.token}`
+					}
+				}
+			)
+			.then(this.setState({ newPostInjected: true }))
+			.then(this.hidePostCreation)
+			.then(cogoToast.success('Message posté'))
+	}
+
+	onChange = e => {
+		this.setState({ [e.target.name]: e.target.value })
+	}
+
 	render() {
-		return (
+		return this.state.didShowPostCreation ? (
+			<form
+				onSubmit={this.submitMessage}
+				className='height-max-100 flex-column flex-align:center space-size:l space:stack space:inset-squish'
+			>
+				<label htmlFor='text'>Votre message :</label>
+				<textarea
+					placeholder='Votre message ici ...'
+					name='text'
+					id='text'
+					rows='5'
+					cols='33'
+					onInput={this.onChange}
+				/>
+				<label htmlFor='picture'>Media :</label>
+				<input
+					placeholder='URL de votre media'
+					type='text'
+					name='media'
+					id='media'
+					onInput={this.onChange}
+				/>
+				<button type='submit'>Poster</button>
+			</form>
+		) : (
 			<div className=''>
 				<div className='space-between'>
 					<div
@@ -63,7 +153,7 @@ class Profile extends React.Component {
 										@{this.state.nickname}
 									</h2>
 									<p className='space-size:s space:stack'>
-										2B abonnés / 1k abonnements
+										0 abonné / 0 abonnement
 									</p>
 									<h3 className='space:stack title-font'>
 										CENTRES D'INTERETS :{' '}
@@ -72,16 +162,14 @@ class Profile extends React.Component {
 								<div className='flex-column'>
 									<div className='flex-row'>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Tag
+											Violon
 										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Tag
+											Email de contact: {this.state.email}
 										</p>
+										<p className='space-size:s space:inline space:stack space:inset-squish'></p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Tag
-										</p>
-										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											{this.state.ville}
+											Ville {this.state.ville}
 										</p>
 									</div>
 								</div>
@@ -94,8 +182,14 @@ class Profile extends React.Component {
 											: 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
 									}
 									alt='Personnal profile pic'
-									className='img-chip width100 space:stack'
+									className='img-chip space:stack'
+									style={{
+										width: '64px',
+										height: '64px',
+										objectFit: 'scale-down'
+									}}
 								/>
+
 								<Link
 									to='/profiles/modif'
 									className='space-size:s space:inset-squish space:stack'
@@ -134,6 +228,12 @@ class Profile extends React.Component {
 							<p>Chargement des posts ...</p>
 						)}
 					</div>
+					<button
+						className='addButton'
+						onClick={this.showPostCreation}
+					>
+						+
+					</button>
 				</div>
 			</div>
 		)

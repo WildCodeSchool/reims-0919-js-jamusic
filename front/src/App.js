@@ -10,6 +10,7 @@ import Header from './Components/Header'
 import ProfileCreation from './Components/ProfileCreation'
 import NewsFeed from './Components/NewsFeed'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import cogoToast from 'cogo-toast'
 import './Components/Layout.css'
 import './Components/Space.css'
 import './Components/List.css'
@@ -29,12 +30,14 @@ class App extends React.Component {
 			password: '',
 			token: null,
 			isConnected: false,
-			id: null
+			id: null,
+			selectedTags: []
 		}
 		this.submitForm = this.submitForm.bind(this)
 		this.onChangeEmail = this.onChangeEmail.bind(this)
 		this.onChangePassword = this.onChangePassword.bind(this)
 		this.getUserInfo = this.getUserInfo.bind(this)
+		this.setSelectedTags = this.setSelectedTags.bind(this)
 	}
 
 	submitForm(e) {
@@ -52,11 +55,11 @@ class App extends React.Component {
 							token: data.data.token,
 							isConnected: true
 					  })
-					: alert('Mauvais identifiants')
+					: cogoToast.error('Mauvais identifiants')
 			)
 			.then(() => this.getUserInfo())
 			.catch(function(error) {
-				alert(error)
+				cogoToast.error(error)
 			})
 	}
 
@@ -70,6 +73,7 @@ class App extends React.Component {
 			.then(data =>
 				this.setState({ id: data.data[0].id, isLoaded: true })
 			)
+			.then(cogoToast.success('Connexion réussie'))
 	}
 
 	onChangeEmail(e) {
@@ -82,6 +86,10 @@ class App extends React.Component {
 		this.setState({
 			password: e.target.value
 		})
+	}
+
+	setSelectedTags(selectedTags) {
+		this.setState({ selectedTags })
 	}
 
 	render() {
@@ -156,9 +164,7 @@ class App extends React.Component {
 								path={'/tags'}
 								component={() => (
 									<Search
-										handleSelectedTags={
-											this.handleSelectedTags
-										}
+										setSelectedTags={this.setSelectedTags}
 										selectedTags={this.state.selectedTags}
 										{...this.state}
 										{...this.props}
