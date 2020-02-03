@@ -10,6 +10,7 @@ import Header from './Components/Header'
 import ProfileCreation from './Components/ProfileCreation'
 import NewsFeed from './Components/NewsFeed'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import cogoToast from 'cogo-toast'
 import './Components/Layout.css'
 import './Components/Space.css'
 import './Components/List.css'
@@ -52,11 +53,11 @@ class App extends React.Component {
 							token: data.data.token,
 							isConnected: true
 					  })
-					: alert('Mauvais identifiants')
+					: cogoToast.error('Mauvais identifiants')
 			)
 			.then(() => this.getUserInfo())
 			.catch(function(error) {
-				alert(error)
+				cogoToast.error(error)
 			})
 	}
 
@@ -70,6 +71,7 @@ class App extends React.Component {
 			.then(data =>
 				this.setState({ id: data.data[0].id, isLoaded: true })
 			)
+			.then(cogoToast.success('Connexion réussie'))
 	}
 
 	onChangeEmail(e) {

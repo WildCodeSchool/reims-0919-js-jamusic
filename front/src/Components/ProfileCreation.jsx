@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import cogoToast from 'cogo-toast'
 
 const ProfileCreation = props => {
 	const [profileData, setProfileData] = useState({
@@ -45,6 +46,7 @@ const ProfileCreation = props => {
 				}
 			})
 			.then(() => setAccountCreated(true))
+			.then(cogoToast.success('Profile créé'))
 	}
 
 	const submitForm = () => {
