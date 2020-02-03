@@ -189,7 +189,7 @@ app.route('/profiles/:id')
 		const idProfile = request.authData.sub
 		if (foreignId > 0 && foreignId === idProfile) {
 			connection.query(
-				`SELECT id, picture, nickname, biography, ville FROM profile WHERE account_id = ?`,
+				`SELECT profile.id, profile.picture, profile.nickname, profile.biography, profile.ville, account.email FROM profile INNER JOIN account ON account.id = profile.account_id WHERE profile.account_id =?`,
 				[idProfile],
 				(err, results) => {
 					if (err) {
@@ -204,7 +204,7 @@ app.route('/profiles/:id')
 			)
 		} else {
 			connection.query(
-				`SELECT id, picture, nickname, biography, ville FROM profile WHERE id = ?`,
+				`SELECT profile.id, profile.picture, profile.nickname, profile.biography, profile.ville, account.email FROM profile INNER JOIN account ON account.id = profile.account_id WHERE profile.account_id =?`,
 				[foreignId],
 				(err, results) => {
 					if (err) {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './Space.css'
 import axios from 'axios'
 import PostDisplay from './PostDisplay'
+import cogoToast from 'cogo-toast'
 
 class Profile extends React.Component {
 	constructor(props) {
@@ -17,7 +18,8 @@ class Profile extends React.Component {
 			didShowPostCreation: false,
 			text: '',
 			media: '',
-			newPostInjected: false
+			newPostInjected: false,
+			email: ''
 		}
 	}
 
@@ -47,6 +49,7 @@ class Profile extends React.Component {
 					picture: profileRes.data[0].picture,
 					biography: profileRes.data[0].biography,
 					ville: profileRes.data[0].ville,
+					email: profileRes.data[0].email,
 					posts: postsRes.data,
 					isLoaded: true
 				})
@@ -104,6 +107,7 @@ class Profile extends React.Component {
 			)
 			.then(this.setState({ newPostInjected: true }))
 			.then(this.hidePostCreation)
+			.then(cogoToast.success('Message posté'))
 	}
 
 	onChange = e => {
@@ -160,7 +164,9 @@ class Profile extends React.Component {
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
 											Violon
 										</p>
-										<p className='space-size:s space:inline space:stack space:inset-squish'></p>
+										<p className='space-size:s space:inline space:stack space:inset-squish'>
+											Email de contact: {this.state.email}
+										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'></p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
 											Ville {this.state.ville}
