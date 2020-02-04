@@ -124,7 +124,7 @@ class ProfileCreation extends React.Component {
 				</select>
 				<button
 					type='button'
-					className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font'
+					className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font bold'
 					onClick={this.submitForm}
 				>
 					Créer votre profil

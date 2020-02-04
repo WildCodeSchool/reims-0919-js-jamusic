@@ -118,9 +118,11 @@ class Profile extends React.Component {
 		return this.state.didShowPostCreation ? (
 			<form
 				onSubmit={this.submitMessage}
-				className='height-max-100 flex-column flex-align:center space-size:l space:stack space:inset-squish'
+				className='height-max-100 flex-column flex-align:center space-size:l space:stack space:inset-squish flex-self:center body-font'
 			>
-				<label htmlFor='text'>Votre message :</label>
+				<label htmlFor='text' className='space:stack bold'>
+					Votre message :
+				</label>
 				<textarea
 					placeholder='Votre message ici ...'
 					name='text'
@@ -128,16 +130,25 @@ class Profile extends React.Component {
 					rows='5'
 					cols='33'
 					onInput={this.onChange}
+					className='space:stack underlined no-focus space:stack body-font'
 				/>
-				<label htmlFor='picture'>Media :</label>
+				<label htmlFor='picture' className='space:stack bold'>
+					Media :
+				</label>
 				<input
 					placeholder='URL de votre media'
 					type='text'
 					name='media'
 					id='media'
 					onInput={this.onChange}
+					className='space:stack underlined no-focus space:stack body-font'
 				/>
-				<button type='submit'>Poster</button>
+				<button
+					type='submit'
+					className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font bold'
+				>
+					Poster
+				</button>
 			</form>
 		) : (
 			<div className=''>
@@ -168,20 +179,20 @@ class Profile extends React.Component {
 													: 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
 											}
 											alt='Personnal profile pic'
-											className='img-chip space:stack'
+											className='img-chip space:stack width100 space:inset-stretch'
 											style={{
 												width: '64px',
 												height: '64px',
-												objectFit: 'scale-down'
+												objectFit: 'cover'
 											}}
 										/>
 
-										<Link
+										{/*<Link
 											to='/profiles/modif'
 											className='space-size:s space:inset-squish space:stack'
 										>
 											Modifier
-										</Link>
+										</Link>*/}
 									</div>
 								</div>
 								<div className='flex-column space-size:s space:inset-squish'>

@@ -83,7 +83,7 @@ const AccountRegister = props => {
 						/>
 						<button
 							id='submit'
-							className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font'
+							className='space:inset-squish btn-animation btn-angles btn-shadow btn-borderless btn-color body-font bold'
 						>
 							S'inscrire
 						</button>

@@ -2,6 +2,7 @@ import React from 'react'
 import './PostDisplay.css'
 import './Font.css'
 import './Color.css'
+import './Space.css'
 
 const PostDisplay = ({
 	profile_pic,
@@ -20,12 +21,23 @@ const PostDisplay = ({
 		<div className='PostDisplay'>
 			<div className='postHeader'>
 				<img
-					src={profile_pic}
+					src={
+						profile_pic
+							? profile_pic
+							: 'https://www.mystpedia.net/mystpedia/images/8/86/Point_d%27interrogation.png'
+					}
+					alt='Personnal profile pic'
+					className='img-chip space:stack'
+					style={{
+						width: '64px',
+						height: '64px',
+						objectFit: 'cover'
+					}}
 					alt={nickname}
 					id={profileId}
 					onClick={loadAnotherProfile}
 				/>
-				<p className='bold'>@{nickname}</p>
+				<p className='bold space:inset-squish'>@{nickname}</p>
 				<p>{tags}</p>
 			</div>
 			<div className='postBody'>
