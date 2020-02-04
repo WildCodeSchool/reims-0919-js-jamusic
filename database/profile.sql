@@ -1,13 +1,13 @@
 USE jamusic;
+
 INSERT INTO
-    profile
-    (
-    id,
-    picture,
-    nickname,
-    biography,
-    ville,
-    account_id
+    profile (
+        id,
+        picture,
+        nickname,
+        biography,
+        ville,
+        account_id
     )
 VALUES
     (
@@ -137,4 +137,12 @@ VALUES
         "Compositeur trap amateur ",
         "Reims",
         16
-    );
+    ),
+(
+        17,
+        "https://randomuser.me/api/portraits/men/79.jpg",
+        "Rid",
+        "Chanteur du groupe RetroidMania",
+        "Reims",
+        17
+    )
