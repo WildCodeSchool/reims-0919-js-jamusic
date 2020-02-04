@@ -33,12 +33,12 @@ VALUES
     (
         2,
         "Salut,
-ON cherche un batteur pour un concert dans deux semaines, le notre est tombé malade.",
+on cherche un batteur pour un concert dans deux semaines, le notre est tombé malade.",
         "",
         10,
         2,
         "2020-02-02 07:45:57",
-        2
+        7
     ),
     (
         6,
@@ -47,11 +47,11 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         74,
         35,
         "2020-02-03 08:32:36",
-        2
+        6
     ),
     (
         7,
-        "L ambiance était folle !",
+        "INCROYABLE DU Q !",
         "",
         52,
         36,
