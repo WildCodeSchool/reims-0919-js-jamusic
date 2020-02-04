@@ -162,14 +162,14 @@ class Profile extends React.Component {
 								<div className='flex-column'>
 									<div className='flex-row'>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Violon
+											Instrument: Guitare
 										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
 											Email de contact: {this.state.email}
 										</p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'></p>
 										<p className='space-size:s space:inline space:stack space:inset-squish'>
-											Ville {this.state.ville}
+											Ville: {this.state.ville}
 										</p>
 									</div>
 								</div>
