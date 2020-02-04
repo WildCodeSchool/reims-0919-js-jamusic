@@ -1,5 +1,7 @@
 import React from 'react'
 import './PostDisplay.css'
+import './Font.css'
+import './Color.css'
 
 const PostDisplay = ({
 	profile_pic,
@@ -50,7 +52,7 @@ const PostDisplay = ({
 						}).format(formattedDate)}
 					</p>
 				</div>
-				<p>{text}</p>
+				<p className='your_message'>{text}</p>
 			</div>
 		</div>
 	)
