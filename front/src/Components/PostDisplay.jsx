@@ -23,7 +23,7 @@ const PostDisplay = ({
 					id={profileId}
 					onClick={loadAnotherProfile}
 				/>
-				<p>{nickname}</p>
+				<p className='bold'>@{nickname}</p>
 				<p>{tags}</p>
 			</div>
 			<div className='postBody'>

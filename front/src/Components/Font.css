@@ -6,7 +6,7 @@
 
 .body-font {
 	font-family: var(--font-body);
-	font-size: 1.1rem;
+	font-size: 1.15rem;
 }
 
 .title-font {
@@ -15,4 +15,8 @@
 
 .tags-font {
 	font-family: var(--font-tags);
+}
+
+.bold {
+	font-weight: 700;
 }
