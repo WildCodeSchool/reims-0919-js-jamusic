@@ -123,4 +123,12 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         30,
         19,
         7
+    ),
+    (
+        16,
+        "Je fais de la guitare folk depuis 1 an, s'il y a un groupe qui cherche, je suis disponible. Contactez moi par mail!",
+        "",
+        20,
+        10,
+        8
     );
