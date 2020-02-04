@@ -9,6 +9,7 @@
 	width: 100%;
 	background: var(--background-color);
 	border-top: 2px solid var(--border-color);
+	font-size: 1.5rem;
 }
 
 .postHeader {
@@ -29,8 +30,10 @@
 
 .postHeader p {
 	overflow-wrap: anywhere;
-	margin: auto;
 	text-align: center;
+	margin-right: 1rem;
+	font-family: var(--font-title);
+	color: var(--title-color);
 }
 
 .postBody {
@@ -49,6 +52,7 @@
 	align-self: center;
 	text-decoration: none;
 	outline: 0;
+	font-size: 1.3rem;
 }
 
 .postBody p {
@@ -60,4 +64,12 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+
+.postInfo p {
+	font-size: 1.3rem;
+}
+
+.your_message {
+	font-size: 1.2rem;
 }

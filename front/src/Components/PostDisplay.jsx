@@ -1,5 +1,7 @@
 import React from 'react'
 import './PostDisplay.css'
+import './Font.css'
+import './Color.css'
 
 const PostDisplay = ({
 	profile_pic,
@@ -23,8 +25,7 @@ const PostDisplay = ({
 					id={profileId}
 					onClick={loadAnotherProfile}
 				/>
-				<p>{nickname}</p>
-				<p>{tags}</p>
+				<p>@{nickname}</p>
 			</div>
 			<div className='postBody'>
 				{media ? <img src={media} alt='Média du post' /> : <></>}
@@ -50,7 +51,7 @@ const PostDisplay = ({
 						}).format(formattedDate)}
 					</p>
 				</div>
-				<p>{text}</p>
+				<p className='your_message'>{text}</p>
 			</div>
 		</div>
 	)
