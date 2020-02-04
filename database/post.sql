@@ -1,7 +1,7 @@
 USE jamusic;
 
 INSERT INTO
-    post (id, text, media, likes, share, profile_id)
+    post (id, text, media, likes, share, date, profile_id)
 VALUES
     (
         1,
@@ -9,6 +9,7 @@ VALUES
         "https://cdn.pixabay.com/photo/2019/01/19/13/12/synthwave-3941721_960_720.jpg",
         584,
         762,
+        "2020-02-01 14:45:07",
         3
     ),
     (
@@ -17,6 +18,7 @@ VALUES
         "",
         78,
         58,
+        "2020-02-03 22:07:15",
         1
     ),
     (
@@ -25,6 +27,7 @@ VALUES
         "",
         125,
         96,
+        "2020-01-31 16:37:00",
         1
     ),
     (
@@ -34,6 +37,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "",
         10,
         2,
+        "2020-02-02 07:45:57",
         2
     ),
     (
@@ -42,6 +46,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "",
         74,
         35,
+        "2020-02-03 08:32:36",
         2
     ),
     (
@@ -50,6 +55,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "",
         52,
         36,
+        "2020-02-03 23:20:09",
         2
     ),
     (
@@ -58,6 +64,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "",
         54,
         19,
+        "2020-02-01 13:56:49",
         3
     ),
     (
@@ -66,6 +73,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "",
         63,
         24,
+        "2020-01-30 12:45:07",
         3
     ),
     (
@@ -74,6 +82,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "",
         87,
         64,
+        "2020-02-03 06:24:17",
         3
     ),
     (
@@ -82,6 +91,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "https://ordo-ab-chao.fr/wp-content/uploads/2018/02/Codex-Magica-3-Messages-occultes-et-signes-de-la-main.jpg",
         100,
         321,
+        "2020-01-14 19:22:33",
         17
     ),
     (
@@ -90,6 +100,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "https://i.ytimg.com/vi/8II4oKMvudk/hqdefault.jpg",
         66,
         122,
+        "2020-02-03 09:12:57",
         17
     ),
     (
@@ -98,6 +109,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "https://quartierlibre.co/sites/default/files/styles/1200/public/upload/COUV_FB_ST_VALENTIN.jpg?itok=KXGhQ6bN",
         55,
         19,
+        "2020-02-03 11:17:28",
         17
     ),
     (
@@ -106,6 +118,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "",
         129,
         10,
+        "2020-01-07 08:31:23",
         10
     ),
     (
@@ -114,6 +127,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "https://media.istockphoto.com/photos/close-up-of-happy-womans-hand-playing-the-piano-in-the-morning-picture-id901538534?k=6&m=901538534&s=612x612&w=0&h=QnA36AI-c6BILne6DP5Av8vIZXsiNPexpkl8FKzbMXk=",
         222,
         170,
+        "2020-01-31 07:22:33",
         10
     ),
     (
@@ -122,6 +136,7 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "",
         30,
         19,
+        "2020-01-30 13:34:59",
         7
     ),
     (
@@ -130,5 +145,6 @@ ON cherche un batteur pour un concert dans deux semaines, le notre est tombé ma
         "",
         20,
         10,
+        "2020-02-03 23:59:59",
         8
     );
