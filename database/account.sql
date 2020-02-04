@@ -1,6 +1,7 @@
 USE jamusic;
-INSERT INTO account
-    (id, email, password)
+
+INSERT INTO
+    account (id, email, password)
 VALUES
     (
         1,
@@ -80,5 +81,10 @@ VALUES
     (
         16,
         "jessy@test.com",
+        "$2b$10$foYFa8.InpkopSKM6Z0ncOsCf34ZlMhyD7fHez8GrPJRFt5dv9e4i"
+    ),
+    (
+        17,
+        "rid@gmail.com",
         "$2b$10$foYFa8.InpkopSKM6Z0ncOsCf34ZlMhyD7fHez8GrPJRFt5dv9e4i"
     );
